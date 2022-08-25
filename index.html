@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./atoms/button/button.constants.js"></script>
+    <script src="./atoms/button/button.js"></script>
+    <script src="./ds.js"></script>
+  </head>
+  <body>
+    <z-button id="myButton" color="primary" text="Enviar USDT"> </z-button>
+    <script>
+      const myButton = document.getElementById("myButton");
+      myButton.setAttribute("color", "danger");
+      myButton.addCounter(3)
+    </script>
+  </body>
+</html>
