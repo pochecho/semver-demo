@@ -5,6 +5,7 @@ class ZButton extends HTMLElement {
   // attributeChangedCallback: Ejecutado al cambiar uno de sus atributos
   // adoptedCallback: Ejecutado cuando el componente se mueve a otro documento
   pendingsCall;
+  mul;
 
   constructor() {
     super();
@@ -62,16 +63,18 @@ class ZButton extends HTMLElement {
     // (happens in document.adoptNode, very rarely used)
   }
 
-  addCounter(num, mul) {
-    mul = mul != undefined ? mul : 1;
-    
+  addCounter(num) {
     for (let i = 0; i < num; i++) {
       setTimeout(() => {
-        const t = `${this.getAttribute("text")} ${(i + 1) * mul}`;
+        const t = `${this.getAttribute("text")} ${(i + 1) * this.mul}`;
         this.setAttribute("text", t);
         this.__UpdateText(t);
       }, 1000 * i);
     }
+  }
+
+  setMult(mul) {
+    this.mul = mul;
   }
 
   __updateByColor(newValue) {
@@ -102,7 +105,7 @@ class ZButton extends HTMLElement {
         :host {
           display: inline-block;
           background-size: contain;
-          width: 24px;
+          width: 100%;
           height: 24px;
         }
         .danger{
