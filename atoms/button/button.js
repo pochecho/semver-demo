@@ -62,15 +62,18 @@ class ZButton extends HTMLElement {
     // (happens in document.adoptNode, very rarely used)
   }
 
-  addCounter(num) {
+  addCounter(num, mul) {
+    mul = mul != undefined ? mul : 1;
+    
     for (let i = 0; i < num; i++) {
       setTimeout(() => {
-        const t = `${this.getAttribute("text")} ${i + 1}`;
+        const t = `${this.getAttribute("text")} ${(i + 1) * mul}`;
         this.setAttribute("text", t);
         this.__UpdateText(t);
       }, 1000 * i);
     }
   }
+
   __updateByColor(newValue) {
     const p = this.shadowRoot.querySelector("p");
     if (!!p) {
@@ -89,6 +92,7 @@ class ZButton extends HTMLElement {
     const p = this.shadowRoot.querySelector(TEXT_SELECTOR);
     p.innerText = text;
   }
+
   render() {}
 
   defineStyle() {
