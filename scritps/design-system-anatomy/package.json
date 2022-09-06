@@ -1,0 +1,12 @@
+{
+  "name": "design-system-anatomy",
+  "version": "1.0.0",
+  "description": "This project is encharged to get the tree where we can see the component's composition and hierarchy in. Automatically, we will get the right tree based on the Brad Frost's definitions.",
+  "main": "extract-data.js",
+  "scripts": {
+    "start": "node main/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

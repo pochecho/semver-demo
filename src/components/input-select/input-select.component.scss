@@ -1,0 +1,18 @@
+@use "./input-select.foundation.scss" as *;
+@use "../../core/config.scss" as *;
+
+:host {
+  ul {
+    list-style: none;
+    padding: 0;
+    display: none;
+    li {
+      border: 1px solid red;
+    }
+
+    &[aria-expanded="true"] {
+      height: min-content;
+      display: initial;
+    }
+  }
+}

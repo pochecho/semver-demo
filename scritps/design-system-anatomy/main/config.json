@@ -1,0 +1,5 @@
+{
+  "components-folder-path": "../../src/components",
+  "component-identifier": ["<{prefix}-([a-zA-Z-]+)>"],
+  "output-file": "visualizer/components-graph.result.js"
+}

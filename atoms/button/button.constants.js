@@ -1,1 +1,0 @@
-const TEXT_SELECTOR = 'p'
