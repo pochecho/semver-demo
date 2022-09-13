@@ -1,5 +1,3 @@
-import { prefix } from "../configuration";
-
-export function resolveComponentName(componentClass: any) {
-    return `${prefix}-${componentClass.identifierName}`;
-  }
+export function resolveComponentName(prefix: string, componentClass: any) {
+  return `${prefix}-${componentClass.identifierName}`;
+}

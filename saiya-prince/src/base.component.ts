@@ -1,4 +1,6 @@
-import { SCSSStylesResolver, StylesResolver } from "./styles-resolver";
+import { SCSSStylesResolver } from "./resolvers/styles/scss-styles.resolver";
+import { StylesResolver } from "./resolvers/styles/styles.resolver";
+import { TemplateConfiguration } from "./resolvers/templates/interfaces/template-configuration.interface";
 
 export interface BaseCallback {
   callback: Function;
@@ -6,12 +8,7 @@ export interface BaseCallback {
   context: any;
 }
 
-export interface TemplateConfiguration {
-  path?: string;
-  template?: string;
-  scope?: { [index: string]: any };
-  style?: string;
-}
+
 
 export abstract class BaseComponent<Configuration> extends HTMLElement {
   stylesResolver: StylesResolver;

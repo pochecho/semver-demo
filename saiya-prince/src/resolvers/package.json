@@ -1,0 +1,14 @@
+{
+  "name": "@bancolombia/saiya-prince",
+  "main": "public-api.ts",
+  
+  "dependencies": {},
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "css-loader": "^6.7.1",
+    "html-loader": "^4.1.0",
+    "sass": "^1.54.5",
+    "sass-loader": "^13.0.2"
+  }
+}
