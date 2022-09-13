@@ -1,0 +1,27 @@
+@use '../../tokens/spacing.scss' as *;
+@use '../../tokens/colors.scss' as *;
+@use '../../tokens/shadows.scss' as *;
+@use 'sass:math';
+
+$sidebar-open-state-width: $space * 35;
+$sidebar-menu-items-height:$space * 7.5;
+$sidebar-hover-items-background: $brand-secondary-02;
+$sidebar-hover-nav-buttons:rgba($brand-primary-00,8%);
+$sidebar-press-nav-buttons:rgba($brand-primary-00,24%);
+$sidebar-close-state-width: 0;
+$sidebar-menu-width: $space * 7;
+$sidebar-close-collapsible-width: $space * 7;
+$sidebar-padding: $space * 2;
+$sidebar-header-size-buttons: $space * 3;
+$sidebar-margin-button: -1*math.div($sidebar-header-size-buttons, 2) - $sidebar-padding;
+$sidebar-padding-header-button-left: $sidebar-header-size-buttons - $sidebar-padding;
+$sidebar-background-color:$brand-primary-01;
+$sidebar-close-color-background-collap: $transversal-01-05;
+$sidebar-close-color-background-hide: $brand-primary-01;
+$sidebar-text-collapsible: $transversal-01-00;
+$sidebar-text-hide: $group-00-130;
+$sidebar-default-shadow: $shadow-02;
+$sidebar-focus-outline-color: $group-02-00;
+$sidebar-color-icons: $brand-primary-00;
+$sidebar-colors-icons-selected: $transversal-01-00;
+$sidebar-button-shadow: rgba($transversal-01-00,10%)

@@ -1,0 +1,102 @@
+//  .██████╗.██████╗.███╗...███╗███╗...███╗.██████╗.███╗...██╗......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝██╔═══██╗████╗.████║████╗.████║██╔═══██╗████╗..██║......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║.....██║...██║██╔████╔██║██╔████╔██║██║...██║██╔██╗.██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║.....██║...██║██║╚██╔╝██║██║╚██╔╝██║██║...██║██║╚██╗██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ╚██████╗╚██████╔╝██║.╚═╝.██║██║.╚═╝.██║╚██████╔╝██║.╚████║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  .╚═════╝.╚═════╝.╚═╝.....╚═╝╚═╝.....╚═╝.╚═════╝.╚═╝..╚═══╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ...........................................................................................................
+
+@import "../tokens/layout.scss";
+@import "../tokens/colors.scss";
+@import "../tokens/shadows.scss";
+@import "../tokens/typo.scss";
+@import "../tokens/animations.scss";
+@import "../foundations/accesibility-foundations.scss";
+@import "../tokens/spacing.scss";
+
+@mixin size($widthsize: 248px, $heightsize: 48px, $border: none) {
+  height: $heightsize;
+  width: $widthsize;
+  border-radius: $border;
+}
+@mixin noshadow {
+  box-shadow: none;
+  &:hover {
+    box-shadow: none;
+  }
+}
+@mixin border_top($left: 0px, $right: 0px) {
+  border-top-left-radius: $left;
+  border-top-right-radius: $right;
+}
+@mixin border_bottom($left: 0px, $right: 0px) {
+  border-bottom-left-radius: $left;
+  border-bottom-right-radius: $right;
+}
+
+@mixin ripple_animation {
+  border-radius: 50%;
+  opacity: 0;
+  background: rgba($group-00-80, 0.4);
+  animation: ripple-animation 2s infinite linear;
+}
+@mixin tick_animation {
+  animation: tick 150ms ease-in;
+}
+
+@mixin rotate-transform($deg: 45deg) {
+  -webkit-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+@mixin no_select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin flex_center_everything() {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+@mixin flex_justify_start() {
+  display: flex;
+  align-items: center;
+  align-content: flex-start;
+  justify-content: flex-start;
+}
+
+@mixin outline-on-focus {
+  &.outline-element {
+    outline: none;
+  }
+
+  @each $key, $value in $breakpoints {
+    @if $key == sm {
+      @media #{map-get($value,breakpoint-rule)} {
+        &.outline-element {
+          outline: 3px solid $outline-color;
+          outline: auto;
+        }
+      }
+    }
+  }
+}
+@mixin all_paddings($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  padding-top: $space * $top;
+  padding-right: $space * $right;
+  padding-bottom: $space * $bottom;
+  padding-left: $space * $left;
+}
+
+@mixin all_margins($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  margin-top: $space * $top;
+  margin-right: $space * $right;
+  margin-bottom: $space * $bottom;
+  margin-left: $space * $left;
+}

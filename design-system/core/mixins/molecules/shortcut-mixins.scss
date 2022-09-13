@@ -1,0 +1,32 @@
+//  ███████╗██╗..██╗.██████╗.██████╗.████████╗.██████╗██╗...██╗████████╗...███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝██║..██║██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██║...██║╚══██╔══╝...████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ███████╗███████║██║...██║██████╔╝...██║...██║.....██║...██║...██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ╚════██║██╔══██║██║...██║██╔══██╗...██║...██║.....██║...██║...██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ███████║██║..██║╚██████╔╝██║..██║...██║...╚██████╗╚██████╔╝...██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚══════╝╚═╝..╚═╝.╚═════╝.╚═╝..╚═╝...╚═╝....╚═════╝.╚═════╝....╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ..................................................................................................................
+
+@use '../../mixins/common-mixins.scss' as *;
+@use '../../mixins/media-queries-mixins.scss' as *;
+@use '../../foundations/molecules/shortcut-foundations.scss' as *;
+
+@mixin size-shortcut($widthsize: 206px, $heightsize: 84px, $paddingleft: 8px, $paddingright: 8px) {
+    height: $heightsize;
+    width: $widthsize;
+    border-radius: none;
+    padding-left: $paddingleft;
+    padding-right: $paddingright;
+}
+
+@mixin label-style($fontsize: 12px, $lineheightsize: 18px) {
+    font-family: $shortcut_font;
+    font-size: $fontsize;
+    line-height: $lineheightsize;
+    font-weight: 400;
+}
+
+@mixin shortcut-icon ($position: center, $paddingbottom: 8px, $leftsize: 0px){
+    background-position: $position;
+    padding-bottom: $paddingbottom;
+    left: $leftsize;
+}

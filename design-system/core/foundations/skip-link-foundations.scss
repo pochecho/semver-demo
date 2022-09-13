@@ -1,0 +1,7 @@
+@use '../../tokens/colors.scss' as *;
+@use '../../tokens/animations.scss' as *;
+
+$skip-link-background: $group-00-90;
+$skip-link-foreground: $transversal-01-05;
+$skip-link-border: $transversal-01-05;
+$skip-link-focus: $brand-secondary-03;

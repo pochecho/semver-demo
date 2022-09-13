@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./dist/main.js"></script>
+
+    <link rel="stylesheet" href="./dist/styles.css" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body class="bc-container">
+    <div class="bc-row">
+      <div class="bc-col-6">
+        <bc-form-field>
+          <bc-complex-input
+            icon-left="home"
+            icon-right="person"
+            label="Ingrese Apodo"
+          ></bc-complex-input>
+        </bc-form-field>
+      </div>
+      <div class="bc-col-6">
+        <bc-accordion icon-left="home">
+          <img
+            src="https://th.bing.com/th/id/R.acbde7e14ab95153db8c958b5cde9947?rik=n7W63v3VbgfMTg&riu=http%3a%2f%2fimg.desmotivaciones.es%2f201202%2f.Tendrsmicuerpoymialmaperonuncamiorgullo.jpg&ehk=wweeLHyTiqqwCxR3Tqb7gr9ahTMkLVnRFAsWkjPaRRo%3d&risl=&pid=ImgRaw&r=0"
+            alt=""
+            srcset=""
+            style="width: 100%;"
+          />
+        </bc-accordion>
+      </div>
+    </div>
+    <div class="bc-row bc-mt-5">
+      <div class="bc-col-6">
+        <bc-complex-input
+          icon-left="home"
+          icon-right="person"
+          label="Ingrese Apodo"
+        ></bc-complex-input>
+      </div>
+      <div class="bc-col-6 bc-flex bc-justify-content-center">
+        <bc-icon name="home"> </bc-icon>
+      </div>
+    </div>
+    <div class="bc-row bc-mt-5">
+      <div class="bc-col-6">
+        <button class="bc-button-primary">Enviar USDT</button>
+      </div>
+
+      <div class="bc-col-6">
+        <input type="text" class="bc-input" />
+      </div>
+    </div>
+    <div class="bc-row bc-mt-5">
+      <div class="bc-col-6">
+        <bc-input-select label="Sayayin" id="is"></bc-input-select>
+      </div>
+    </div>
+
+    <script>
+      const items = [
+        {
+          display: "Kakaroto",
+          value: "El número uno",
+        },
+        {
+          display: "Vegeta",
+          value: "Principe de los sayayin",
+        },
+        {
+          display: "Son Gohan",
+          value: "La bestia",
+        },
+      ];
+      const config = {
+        items,
+      };
+      const is = document.getElementById("is");
+      const isRef = is.setConfiguration(config);
+      setTimeout(() => {
+        isRef.items = [
+          {
+            display: "Krilin",
+            value: "BFF",
+          },
+        ];
+      }, 2000);
+      is.setAttribute("items", JSON.stringify(items));
+    </script>
+  </body>
+</html>

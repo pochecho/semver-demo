@@ -1,0 +1,8 @@
+@use '../../foundations/molecules/input-currency-foundations.scss' as *;
+@use '../../mixins/common-mixins.scss' as *;
+
+
+@mixin input-currency-status-disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}

@@ -1,0 +1,208 @@
+//  ████████╗██╗...██╗██████╗..██████╗.......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ╚══██╔══╝╚██╗.██╔╝██╔══██╗██╔═══██╗......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ...██║....╚████╔╝.██████╔╝██║...██║█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ...██║.....╚██╔╝..██╔═══╝.██║...██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ...██║......██║...██║.....╚██████╔╝......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  ...╚═╝......╚═╝...╚═╝......╚═════╝.......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  ....................................................................................................................................
+
+@use "../tokens/typo.scss" as *;
+@use "../tokens/colors.scss" as *;
+@use "../configuration.scss" as *;
+
+$theme-color-tags: $brand-primary-00;
+$headings: 'h1', 'h2', 'h3', 'h4', 'h5', 'h6';
+
+body {
+  font-size: 16px;
+  font-family: 'Open Sans', Arial, 'sans-serif';
+  color: $theme-color-tags;
+  line-height: 24px;
+  letter-spacing: -0.3px;
+}
+
+h1 {
+  font-size: $font-size-h1;
+  font-family: 'CIBFontSans Bold', 'sans-serif';
+  line-height: 40px;
+  letter-spacing: -0.6px;
+
+  &.display1 {
+    font-size: $font-size-h1-display1;
+    font-family: 'CIBFontSans Bold', 'sans-serif';
+    line-height: 90px;
+  }
+  &.display2 {
+    font-size: $font-size-h1-display2;
+    font-family: 'CIBFontSans Bold', 'sans-serif';
+    line-height: 80px;
+  }
+  &.display3 {
+    font-size: $font-size-h1-display3;
+    font-family: 'CIBFontSans Bold', 'sans-serif';
+    line-height: 68px;
+  }
+  &.display4 {
+    font-size: $font-size-h1-display4;
+    font-family: 'CIBFontSans Bold', 'sans-serif';
+    line-height: 50px;
+    letter-spacing: -0.47px;
+  }
+}
+
+h2 {
+  font-size: $font-size-h2;
+  font-family: 'CIBFontSans Bold', 'sans-serif';
+  line-height: 32px;
+  letter-spacing: -0.6px;
+
+}
+
+h3 {
+  font-size: $font-size-h3;
+  font-family: 'CIBFontSans Bold', 'sans-serif';
+  line-height: 30px;
+  letter-spacing: -0.6px;
+
+}
+
+h4 {
+  font-size: $font-size-h4;
+  font-family: 'CIBFontSans Bold', 'sans-serif';
+  line-height: 26px;
+  letter-spacing: -0.45px;
+
+}
+
+h5 {
+  font-size: $font-size-h5;
+  font-family: 'CIBFontSans Bold', 'sans-serif';
+  line-height: 24px;
+  letter-spacing: -0.38px;
+}
+
+h6 {
+  font-size: $font-size-h6;
+  font-family: 'CIBFontSans Bold', 'sans-serif';
+  line-height: 20px;
+  letter-spacing: -0.3px;
+}
+
+p {
+  font-size: $font-size-p;
+  font-family: 'Open Sans', 'sans-serif';
+  line-height: 24px;
+  letter-spacing: -0.3px;
+  &.small {
+    font-size: $font-size-p-small;
+    line-height: 20px;
+  }
+  &.xSmall {
+    font-size: $font-size-p-x-small;
+    line-height: 16px;
+    letter-spacing: -0.17px;
+  }
+}
+
+label {
+  font-family: 'Open Sans', 'sans-serif';
+  font-size: $font-size-label;
+  line-height: 24px;
+  letter-spacing: -0.3px;
+  &.small {
+    font-size: $font-size-label-small;
+    line-height: 18px;
+    letter-spacing: -0.2px;
+  }
+}
+
+a {
+  font-family: 'Open Sans SemiBold', 'sans-serif';
+  font-size: $font-size-a;
+  line-height: 24px;
+  letter-spacing: -0.3px;
+  text-decoration: underline;
+}
+
+caption {
+  font-size: $font-size-h5;
+  font-family: 'Nunito Bold', 'sans-serif';
+  line-height: 26px;
+  letter-spacing: -0.38px;
+}
+
+.text {
+  &-center {
+    text-align: center;
+  }
+  &-left {
+    text-align: left;
+  }
+  &-right {
+    text-align: right;
+  }
+}
+
+%span {
+  &.#{$prefix-lib}-hint {
+    font-family: 'Open Sans', 'sans-serif';
+    font-size: $font-size-p-x-small;
+    letter-spacing: -0.17px;
+    line-height: 18px;
+  }
+
+  &.#{$prefix-lib}-error {
+    font-family: 'Open Sans Bold', 'sans-serif';
+    font-size: $font-size-p-x-small;
+    letter-spacing: -0.2px;
+    line-height: 20px;
+  }
+}
+
+input {
+  font-family: 'Open Sans', 'sans-serif';
+  font-size: 16px;
+  letter-spacing: -0.3px;
+  line-height: 24px;
+
+  &.input-place-holder {
+    &::placeholder {
+      font-family: 'Open Sans', 'sans-serif';
+      font-size: $font-size-label;
+      line-height: 24px;
+      letter-spacing: -0.3px;
+    }
+    &:-ms-input-placeholder {
+      font-family: 'Open Sans', 'sans-serif';
+      font-size: $font-size-label;
+      line-height: 24px;
+      letter-spacing: -0.3px;
+    }
+    &::-ms-input-placeholder {
+      font-family: 'Open Sans', 'sans-serif';
+      font-size: $font-size-label;
+      line-height: 24px;
+      letter-spacing: -0.3px;
+    }
+  }
+}
+
+
+
+textarea {
+  font-family: 'Open Sans', 'sans-serif';
+  font-size: 16px;
+  letter-spacing: -0.3px;
+  line-height: 24px;
+}
+@each $h in $headings {
+  #{$h} {
+    &.#{$prefix-lib}-light {
+      font-family: 'CIBFontSans Light', 'sans-serif';
+    }
+    &.#{$prefix-lib}-serif {
+      font-family: 'CIBFontSerif Bold', 'sans-serif';
+    }
+  }
+}
+

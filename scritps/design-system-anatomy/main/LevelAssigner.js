@@ -32,14 +32,14 @@ class LevelAssigner {
     const levels = {};
     let i = 0;
     while (i < pendings.length) {
-      console.log();
-      console.log();
-      console.log("Pendings");
-      console.log(pendings.map(x=>x.name));
-      console.log(levels);
-      console.log(i);
-      console.log();
-      console.log();
+      // console.log();
+      // console.log();
+      // console.log("Pendings");
+      // console.log(pendings.map(x=>x.name));
+      // console.log(levels);
+      // console.log(i);
+      // console.log();
+      // console.log();
       const component = pendings[i];
       const relations = component["components"];
 
@@ -48,7 +48,7 @@ class LevelAssigner {
       for (const relation of relations) {
         if (this.itsAValidComponent(table,relation)) {
           const indexes = this.findLevel(levels, relation);
-          console.log('\t',relation,indexes);
+          // console.log('\t',relation,indexes);
           allComponentsRealized = allComponentsRealized && !!indexes;
           if (!!indexes) {
             if (indexes[0] > max) {

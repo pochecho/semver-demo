@@ -1,5 +1,14 @@
 {
   "components-folder-path": "../../src/components",
-  "component-identifier": ["<{prefix}-([a-zA-Z-]+)>"],
+  "dependency-folders": [
+    {
+      "folder": "styles",
+      "patterns": ["\\.\\./\\.\\./([a-zA-Z-]+)/styles/[a-zA-Z-]+\\.scss"]
+    },
+    {
+      "folder": "templates",
+      "patterns": ["<{prefix}-([a-zA-Z-]+)","class=\"{prefix}-([a-zA-Z-]+)\""]
+    }
+  ],
   "output-file": "visualizer/components-graph.result.js"
 }

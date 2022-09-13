@@ -1,0 +1,124 @@
+//  ██████╗..█████╗..██████╗.██╗███╗...██╗.█████╗.████████╗.██████╗.██████╗.......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔══██╗██╔══██╗██╔════╝.██║████╗..██║██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██████╔╝███████║██║..███╗██║██╔██╗.██║███████║...██║...██║...██║██████╔╝█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██╔═══╝.██╔══██║██║...██║██║██║╚██╗██║██╔══██║...██║...██║...██║██╔══██╗╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║.....██║..██║╚██████╔╝██║██║.╚████║██║..██║...██║...╚██████╔╝██║..██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝.....╚═╝..╚═╝.╚═════╝.╚═╝╚═╝..╚═══╝╚═╝..╚═╝...╚═╝....╚═════╝.╚═╝..╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .........................................................................................................................
+@use "../../mixins/common-mixins.scss" as *;
+@use '../../foundations/molecules/paginator-foundations.scss' as *;
+@use '../../configuration.scss' as *;
+$font-family-selected: "Open Sans SemiBold",
+sans-serif;
+$font-family-no-selected: "Open Sans",
+sans-serif;
+$transition-basic: background 0.2s;
+$paginator-name: "paginator";
+$paginator-namespace: #{$prefix-lib}-#{$paginator-name};
+@mixin size($widthsize, $heightsize, $border) {
+    height: $heightsize;
+    width: $widthsize;
+    border-radius: $border;
+}
+
+@mixin buttom-page($widthsize: none, $heightsize: none, $border: none) {
+    @include size($widthsize, $heightsize, $border);
+    background: none;
+    border-style: none;
+    margin-right: 0.5px;
+    outline: none;
+    @include outline-on-focus;
+    &:hover {
+        background-color: $on-hover-basic;
+        transition: $transition-basic;
+    }
+    &:active,
+    &.#{$paginator-namespace}-number-active {
+        background-color: $on-press-basic;
+        transition: $transition-basic;
+        border: 1px solid $on-press-basic-border;
+    }
+}
+
+@mixin link($widthsize: none, $heightsize: none, $border: none) {
+    @include size($widthsize, $heightsize, $border);
+    text-align: center;
+    padding: 4px 7px;
+    text-decoration: none;
+    outline: none;
+    @include outline-on-focus;
+    &:hover {
+        background-color: $on-hover-basic;
+        transition: $transition-basic;
+    }
+    &:active,
+    &.active {
+        background-color: $on-press-basic;
+        transition: $transition-basic;
+    }
+}
+
+@mixin hide() {
+    &.#{$prefix-lib}-hide {
+        display: none;
+    }
+}
+
+@mixin list {
+    display: -webkit-inline-box;
+    list-style: none;
+    float: left;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+}
+
+@mixin basic-transition($color) {
+    background-color: $color;
+    transition: $transition-basic;
+    box-shadow: none;
+}
+
+@mixin nav-select() {
+    display: block;
+    transition: display 0.2s linear;
+    box-shadow: $shadow-02;
+    background-color: $group-00-100;
+    border-radius: 4%;
+    position: relative;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+    .#{$prefix-lib}-select-content {
+        height: 100%;
+        ul.#{$prefix-lib}-select-list {
+            list-style: none;
+            li {
+                display: block;
+                a {
+                    @include link(35px, 25px, 0);
+                    font-size: 10px;
+                    margin: 0;
+                    padding: 0px 0px 0px 5px;
+                    text-align: left;
+                }
+                @include hide();
+            }
+        }
+    }
+    &.#{$prefix-lib}-selected {
+        transition: display 0.2s, opacity 0.2s linear;
+        opacity: 1;
+        display: block;
+    }
+    &.#{$prefix-lib}-hide {
+        transition: display 0.2s, opacity 0.2s linear;
+        opacity: 0;
+        display: none;
+    }
+}
+
+@mixin margin_left_right($left: 0px, $right: 0px) {
+    margin-left: $left;
+    margin-right: $right;
+}

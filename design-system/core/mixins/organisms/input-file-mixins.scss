@@ -1,0 +1,55 @@
+//  ██╗███╗...██╗██████╗.██╗...██╗████████╗...███████╗██╗██╗.....███████╗....███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██║████╗..██║██╔══██╗██║...██║╚══██╔══╝...██╔════╝██║██║.....██╔════╝....████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║██╔██╗.██║██████╔╝██║...██║...██║█████╗█████╗..██║██║.....█████╗█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║██║╚██╗██║██╔═══╝.██║...██║...██║╚════╝██╔══╝..██║██║.....██╔══╝╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║██║.╚████║██║.....╚██████╔╝...██║......██║.....██║███████╗███████╗....██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝╚═╝..╚═══╝╚═╝......╚═════╝....╚═╝......╚═╝.....╚═╝╚══════╝╚══════╝....╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ....................................................................................................................
+
+@use '../../mixins/common-mixins.scss' as *;
+
+@mixin inputfile-style-text-common($font-size, $line-height, $font-style, $font-weight, $letter-spacing) {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-style: $font-style;
+    font-weight: $font-weight;
+    letter-spacing: $letter-spacing;
+}
+
+@mixin inputfile-style-textalign-common($text-align){
+    #{headings(1,6)}, p {
+        width: 100%;
+        text-align: $text-align;
+    }
+
+}
+
+@mixin input-file-button() {
+    font-family: 'Nunito Bold';
+    font-size: 90%;
+    cursor: pointer;
+    border-style: none;
+    text-transform: uppercase;
+    box-shadow: $shadow-01;
+    outline: 0 none;
+    text-decoration: none;
+    @include size(100%, 48px, 24px);
+    transition: background-color 0.5s, box-shadow 0.5s;
+}
+
+@function headings($from:1, $to:6) {
+    
+    @if $from == $to {
+        @return 'h#{$from}';
+    } @else {
+        @return 'h#{$from},' + headings($from+1, $to);
+    }
+}
+
+
+
+
+
+
+
+

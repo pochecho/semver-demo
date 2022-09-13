@@ -1,0 +1,153 @@
+//  ██████╗.██╗...██╗████████╗████████╗.██████╗.███╗...██╗
+//  ██╔══██╗██║...██║╚══██╔══╝╚══██╔══╝██╔═══██╗████╗..██║
+//  ██████╔╝██║...██║...██║......██║...██║...██║██╔██╗.██║
+//  ██╔══██╗██║...██║...██║......██║...██║...██║██║╚██╗██║
+//  ██████╔╝╚██████╔╝...██║......██║...╚██████╔╝██║.╚████║
+//  ╚═════╝..╚═════╝....╚═╝......╚═╝....╚═════╝.╚═╝..╚═══╝
+//  ......................................................
+@use "../../../core/mixins/common-mixins.scss" as *;
+@use "../../../core/configuration.scss" as *;
+@use "../../../core/foundations/button-foundations.scss" as *;
+
+
+
+@mixin size-button($widthsize: 100%, $heightsize: 48px, $fontsize: 20px) {
+  height: $heightsize;
+  width: $widthsize;
+  font-size: $fontsize;
+}
+
+@mixin style-button(
+  $box-shadow: $button_shadow,
+  $bg-color: $button-background-primary-default,
+  $txt-color: $button-color-text-primary-enabled,
+  $border-color: none,
+  $border: none,
+  $hover-color: $button-background-primary-hover,
+  $press-color: $button-background-primary-press,
+  $disabled-color: $button-color-text-primary-disabled,
+  $opacity: none,
+  $disabled-bg: $button-background-primary-disabled,
+  $outline-focus: $button-outline-color-focus
+) {
+  background-color: $bg-color;
+  color: $txt-color;
+  border-color: $border-color;
+  border: $border;
+  box-shadow: $box-shadow;
+  &:hover:enabled {
+      background-color: $hover-color;
+  }
+  &:active:enabled {
+      background-color: $press-color;
+  }
+  &:disabled {
+      background-color: $disabled-bg;
+      color: $disabled-color;
+  }
+  &:focus-visible {
+      outline: 2px solid $outline-focus;
+      outline-offset: 5px;
+      background-color: $hover-color;
+  }
+}
+
+
+$button-name: "button";
+$button-namespace: #{$prefix-lib}-#{$button-name};
+%#{$button-namespace} {
+  line-break: anywhere;
+  border-style: none;
+  cursor: pointer;
+  font-family: $button-font-cib-font-sans;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.375px;
+  padding: 8px 16px;
+  outline: 0 none;
+  text-transform: none;
+  text-decoration: none;
+  transition: background-color 0.4s, box-shadow 0.4s;
+  border-radius: 100px;
+  &:disabled {
+    cursor: default;
+  }
+  &:hover:enabled {
+    box-shadow: none;
+  }
+  &:active:enabled {
+    box-shadow: none;
+  }
+  .#{$prefix-lib}-icon {
+    vertical-align: middle;
+    float: right;
+    font-size: 24px;
+  }
+  @include outline-on-focus;
+}
+
+.#{$button-namespace} {
+  &-primary {
+    @extend %#{$button-namespace};
+    @include size-button(100%, auto, 20px);
+    min-height: 50px;
+    @include style-button();
+  }
+  &-secondary {
+    @extend %#{$button-namespace};
+    min-height: 50px;
+    @include size-button(100%, auto, 20px);
+    @include style-button(
+      none,
+      $button-background-secondary-default,
+      $button-color-text-secondary-enabled,
+      $button-border-color-secondary-enabled,
+      $button-border-secondary,
+      $button-background-secondary-hover,
+      $button-background-secondary-press,
+      $button-color-text-secondary-disabled,
+      $button-opacity,
+      $button-background-secondary-disabled
+    );
+  }
+
+  &-terciary {
+    @extend %#{$button-namespace};
+    min-height: 50px;
+    @include size-button(100%, auto, 20px);
+    @include style-button(
+      none,
+      $button-background-terciary-default,
+      $button-color-text-terciary-enabled,
+      $button-border-color-terciary-enabled,
+      $button-border-terciary,
+      $button-background-terciary-hover,
+      $button-background-terciary-press,
+      $button-color-text-terciary-disabled,
+      $button-opacity,
+      $button-background-terciary-disabled,
+      $button-outline-color-focus-terciary
+    );
+  }
+
+  &-small {
+    @extend %#{$button-namespace};
+    @include size-button(100%, auto, 16px);
+    padding: 3px 16px;
+    min-height: 38px;
+    font-family: $button-font-open-sans;
+    .#{$prefix-lib}-icon {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+  &-puffy {
+    @extend %#{$button-namespace};
+    @include size-button(100%, auto, 28px);
+    padding: 16px 24px;
+    min-height: 72px;
+    .#{$prefix-lib}-icon {
+      font-size: 26px;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+//  .██████╗.█████╗.██████╗.██████╗.......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝██╔══██╗██╔══██╗██╔══██╗......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║.....███████║██████╔╝██║..██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║.....██╔══██║██╔══██╗██║..██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ╚██████╗██║..██║██║..██║██████╔╝......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  .╚═════╝╚═╝..╚═╝╚═╝..╚═╝╚═════╝.......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .................................................................................
+@use "../../foundations/molecules/card-select-foundations.scss" as *;
+@use '../media-queries-mixins.scss' as *;
+
+@mixin card-base() {
+  padding: 16px;
+  background-color: $card-color-base;
+  box-shadow: $card-shadow-base;
+  display: inline-block;
+  transition: box-shadow 0.5s;
+  object-fit: cover;
+  width:100%;
+  &:hover {
+    box-shadow: $card-shadow-base-hover;
+  }     
+}
+
+@mixin card-size($cardName) {
+  $this: &;
+  & {    
+    width: 100%;
+    min-height: 80px;
+    height: auto;
+  }
+  &.#{$cardName}-large {
+    width: $card-select-size-small;
+  }
+  &.#{$cardName}-small, &.#{$cardName}-small-img {    
+    width: $card-select-size-large;
+  }  
+
+  &.#{$cardName}-mobile-small {
+    width: 100%;
+    #{$this}-img, #{$this}-body {
+      width: 50%;
+    }
+  }  
+
+  &.#{$cardName}-mobile {
+    width: 100%;
+    display: block;
+    #{$this}-img {
+      width: 100%;
+    }
+    #{$this}-body {
+      .#{$cardName}-info {
+        display: flex;
+        justify-content: space-between;
+        .#{$cardName}-tittle {
+          font-size: $card-select-size-title;
+        }
+        & > div {
+          display: inherit;
+          .#{$cardName}-info-aditional-text {
+            display: inherit;
+            justify-content: center;
+            align-items: center;
+            font-size: $card-select-placeholder-size-large;
+            margin-right: $card-selec-footer-margin;
+          }
+          em {
+            font-size: $card-select-font-size-body;
+          }
+        }
+      }
+      .#{$cardName}-info-balance {
+        text-align: right;
+        font-size: $card-select-font-size-info-balance;
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@use '../../foundations/molecules/off-canvas-foundations.scss' as *;
+@use '../../components/atoms/icon.scss' as *;
+@use '../../tokens/layout.scss' as *;
+
+@mixin off-canvas-buttons($border, $justify-content) {
+  justify-content: $justify-content;
+  border: $border;
+  background: $off-canvas-close-color-background;
+  pointer-events: auto;
+  cursor: pointer;
+  display: inherit;
+  color: $off-canvas-color-text;
+  position: static;
+}
+@mixin off-canvas-container($justify-content) {
+  > div:nth-child(2) {
+    height: 100%;
+    justify-content: $justify-content;
+  }
+}
+
+@mixin off-canvas-header-style($justify-content) {
+  > section:first-child {
+    display: flex;
+    justify-content: $justify-content;
+    > button {
+      @extend %#{$icon-namespace};
+    }
+  }
+}
+
+@mixin off-canvas-sizes-media($style) {
+  @media only screen and (min-width: $xs) {
+    #{$style}: $off-canvas-space-width-mobile;
+ }
+  @media only screen and (min-width: $md) {
+    #{$style}: $off-canvas-space-width-table;
+  }
+  @media only screen and (min-width: $lg) {
+    #{$style}: $off-canvas-space-width-table;
+  }
+  @media only screen and (min-width: $xl) {
+    #{$style}: $off-canvas-space-width-desktop;
+  }
+}

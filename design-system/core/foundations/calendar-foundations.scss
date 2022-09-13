@@ -1,0 +1,40 @@
+//  .██████╗.█████╗.██╗.....███████╗███╗...██╗██████╗..█████╗.██████╗.......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██╔════╝██╔══██╗██║.....██╔════╝████╗..██║██╔══██╗██╔══██╗██╔══██╗......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ██║.....███████║██║.....█████╗..██╔██╗.██║██║..██║███████║██████╔╝█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██║.....██╔══██║██║.....██╔══╝..██║╚██╗██║██║..██║██╔══██║██╔══██╗╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ╚██████╗██║..██║███████╗███████╗██║.╚████║██████╔╝██║..██║██║..██║......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  .╚═════╝╚═╝..╚═╝╚══════╝╚══════╝╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝╚═╝..╚═╝......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  ...................................................................................................................................................................
+
+@use '../../tokens/colors.scss' as *;
+@use "../../tokens/spacing.scss" as *;
+
+
+$bc-calendar-font-cib-font-sans : "CIBFontSans Bold",sans-serif;
+$bc-calendar-font-open-sans : "Open Sans";
+$bc-calendar-height: 375px;
+$bc-calendar-input-height: 35px;
+$bc-calendar-day-element: 43px;
+$bc-caledar-font-weight-01: 600;
+$bc-caledar-font-weight-02: 700;
+$bc-caledar-font-size-01:18px;
+$bc-caledar-font-size-02:20px;
+$bc-calendar-space-01: $space;
+$bc-calendar-space-02: $space * 2;
+$bc-calendar-space-03: $space * 3;
+$bc-calendar-space-04: $space * 4;
+$bc-calendar-space-08: $space * 8;
+$bc-calendar-absolute-position: -($bc-calendar-height + $bc-calendar-input-height);
+$bc-calendar-background: $brand-primary-01;
+$bc-calendar-scale-01: $brand-primary-02;
+$bc-calendar-scale-02: $group-00-20;
+$bc-calendar-scale-03: $group-00-60;
+$bc-calendar-scale-05: $group-00-30;
+$bc-calendar-active-item: $group-00-10;
+$bc-calendar-item-hover: $brand-primary-02;
+$bc-calendar-primary-text: $brand-primary-00;
+$bc-calendar-select-text: $group-00-50;
+$bc-calendar-disabled-day: $group-00-40;
+
+
+

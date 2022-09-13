@@ -1,0 +1,8 @@
+@use '../../tokens/colors.scss' as *;
+
+$status-text-color-default: $group-00-10;
+
+$status-background-error: $brand-secondary-01;
+$status-background-alert: $brand-secondary-02;
+$status-background-success: $brand-secondary-00;
+$status-background-info: $brand-secondary-03;

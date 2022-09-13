@@ -1,0 +1,51 @@
+//  ███████╗.██████╗.......██████╗..██████╗.......██╗...██╗████████╗██╗██╗.....██╗████████╗██╗███████╗███████╗
+//  ██╔════╝██╔════╝.......██╔══██╗██╔════╝.......██║...██║╚══██╔══╝██║██║.....██║╚══██╔══╝██║██╔════╝██╔════╝
+//  █████╗..██║..███╗█████╗██████╔╝██║..███╗█████╗██║...██║...██║...██║██║.....██║...██║...██║█████╗..███████╗
+//  ██╔══╝..██║...██║╚════╝██╔══██╗██║...██║╚════╝██║...██║...██║...██║██║.....██║...██║...██║██╔══╝..╚════██║
+//  ██║.....╚██████╔╝......██████╔╝╚██████╔╝......╚██████╔╝...██║...██║███████╗██║...██║...██║███████╗███████║
+//  ╚═╝......╚═════╝.......╚═════╝..╚═════╝........╚═════╝....╚═╝...╚═╝╚══════╝╚═╝...╚═╝...╚═╝╚══════╝╚══════╝
+//  ..........................................................................................................
+
+
+@use '../foundations/fb-bg-foundations.scss' as *;
+
+$fg-bg-utilities: () !default;
+$fg-bg-utilities: (
+    "text-color": (
+        class: "text",
+        property: "color",
+        values: (
+            primary: $fb-bg-primary-color,
+            secondary: $fb-bg-secondary-color,
+            success: $fb-bg-success-color,
+            info: $fb-bg-info-color,
+            warning: $fb-bg-warning-color,
+            danger: $fb-bg-danger-color,
+            light: $fb-bg-light-color,
+            dark:$fb-bg-dark-color,
+            white: $fb-bg-white-color,
+            body: $fb-bg-body-color,
+            muted: $fb-bg-muted-color,
+            black-50: rgba(0, 0, 0, 0.5),
+            white-50: rgba(255, 255, 255, 0.5),
+            reset: inherit,
+        ),
+    ),
+    "background-color": (
+        class: bg,
+        property: "background-color",
+        values: (
+            primary: $fb-bg-primary-color,
+            secondary: $fb-bg-secondary-color,
+            success: $fb-bg-success-color,
+            info: $fb-bg-info-color,
+            warning: $fb-bg-warning-color,
+            danger: $fb-bg-danger-color,
+            light: $fb-bg-light-color,
+            dark: $fb-bg-dark-color,
+            body: $fb-bg-body-color,
+            white: $fb-bg-white-color,
+            transparent: transparent,
+        ),
+    ),
+);

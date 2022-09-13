@@ -1,0 +1,71 @@
+//  ██╗...██╗████████╗██╗██╗.....██╗████████╗██╗███████╗███████╗......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██║...██║╚══██╔══╝██║██║.....██║╚══██╔══╝██║██╔════╝██╔════╝......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║...██║...██║...██║██║.....██║...██║...██║█████╗..███████╗█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║...██║...██║...██║██║.....██║...██║...██║██╔══╝..╚════██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ╚██████╔╝...██║...██║███████╗██║...██║...██║███████╗███████║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  .╚═════╝....╚═╝...╚═╝╚══════╝╚═╝...╚═╝...╚═╝╚══════╝╚══════╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .............................................................................................................
+
+@use "../configuration.scss" as *;
+@use "../common/functions.scss" as *;
+
+@mixin generate-utility($utility) {
+    $values: map-get($utility, values);
+    $properties: map-get($utility, property);
+    $only-pseudo: map-get($utility, only-pseudo);
+    
+    
+    @if type-of($values) == "string" or type-of(nth($values, 1)) != "list" {
+        $values: zip($values, $values);
+    }
+    
+    
+    @if type-of($properties) == "string" {
+        $properties: append((), $properties);
+    }
+    
+    
+    $property-class: if(map-has-key($utility, class), map-get($utility, class), nth($properties, 1));
+    $property-class: if($property-class == null, "", $property-class);
+    
+    
+    $state: if(map-has-key($utility, state), map-get($utility, state), ());
+
+  @each $key, $value in $values {
+
+    
+    $property-class-modifier: if($key, if($property-class == "", "", "-") + $key, "");
+    $property-class-modifier: str-replace($property-class-modifier, '%', '');
+
+    @if $value != null {
+      @if($only-pseudo == null) {
+          .#{$prefix-lib}-#{$property-class + $property-class-modifier} {
+            @each $property in $properties {
+                @if type-of($value) == "map" {
+                    @each $_key, $_val in $value {
+                        #{$property + if($_key == null, '', if($property == null, '', '-') + $_key)}: $_val;        
+                    }
+                } @else {
+                 #{$property}: $value; 
+                }
+            }
+          }
+      }
+      
+
+      @each $pseudo in $state {
+        .#{$prefix-lib}-#{$property-class + $property-class-modifier}::#{$pseudo} {
+          @each $property in $properties {
+              @if type-of($value) == "map" {
+                @each $_key, $_val in $value {
+                    #{$property + if($_key == null, '', if($property == null, '', '-') + $_key)}: $_val;        
+                }
+            } @else {
+             #{$property}: $value; 
+            }
+          }
+        }
+      }     
+    }
+  }
+}

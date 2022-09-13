@@ -1,0 +1,44 @@
+@use '../../foundations/molecules/sidebar-foundations.scss' as *;
+@use '../../components/atoms/icon.scss' as *;
+
+@mixin sidebar-buttons($border, $justify-content, $color, $background) {
+  justify-content: $justify-content;
+  border-radius: 50%;
+  border: $border;
+  background: $background;
+  padding: 3px;
+  pointer-events: auto;
+  cursor: pointer;
+  display: inherit;
+  color: $color;
+  position: static;
+  &:focus-visible{
+    border-radius: 0%;
+    outline-color: $sidebar-focus-outline-color;
+  }
+}
+
+@mixin sidebar-menu-actions-style($background-color,$color-text){
+  background-color: $background-color;
+  >button{
+    background-color: $background-color;
+    color:$color-text;
+  }
+}
+
+@mixin sidebar-menu-style($width, $height) {
+  width: $width;
+  display: flex;
+  height: $height;
+}
+
+@mixin sidebar-header-style($justify-content) {
+  > section:first-child {
+    display: flex;
+    justify-content: $justify-content;
+    padding: $sidebar-padding $sidebar-padding 0 $sidebar-padding;
+    > button {
+      @extend %#{$icon-namespace};
+    }
+  }
+}

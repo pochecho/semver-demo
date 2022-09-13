@@ -1,0 +1,156 @@
+//  .██████╗.██████╗.██╗██████╗.......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝.██╔══██╗██║██╔══██╗......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║..███╗██████╔╝██║██║..██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║...██║██╔══██╗██║██║..██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ╚██████╔╝██║..██║██║██████╔╝......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  .╚═════╝.╚═╝..╚═╝╚═╝╚═════╝.......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .............................................................................
+
+@use '../../foundations/layout-foundations.scss' as *;
+@use './breakpoints-mixins.scss' as *;
+@use '../../configuration.scss' as *;
+@use 'sass:math';
+
+@mixin border-box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin make-container($margin: $margin-container) {
+  width: 100%;
+  padding-right: math.div($margin, 2);
+  padding-left: math.div($margin, 2);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      max-width: $container-max-width;
+    }
+  }
+}
+
+@mixin make-row() {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin make-col($size, $columns: $grid-columns) {
+  flex: 0 0 percentage(math.div($size, $columns));
+  max-width: percentage(math.div($size, $columns));
+}
+
+@mixin make-col-auto() {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  $num: math.div($size, $columns);
+  margin-inline-start: if($num==0, 0, percentage($num));
+}
+
+@mixin make-grid-columns(
+  $columns: $grid-columns,
+  $settings: $grid-configuration
+) {
+
+  %grid-column {
+    position: relative;
+    width: 100%;
+  }
+
+  .#{$prefix-lib}-col-auto{
+    @include make-col-auto();
+  }
+
+  @for $column from 1 through $columns {
+    .#{$prefix-lib}-col-#{$column} {
+      @extend %grid-column;
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: 100%;
+      @include make-col($column);
+    }
+  }
+
+  @for $column from 1 to $columns {
+    .#{$prefix-lib}-offset-#{$column}{
+      @include make-col-offset($column, $columns);
+    }
+  }
+
+  .#{$prefix-lib}-col,
+  .#{$prefix-lib}-col-auto {
+    @extend %grid-column;
+  }
+
+  @each $breakpoint-name, $configuration in $settings {
+    $viewport-min-width: map-get($map: $configuration, $key: viewport-min-width);
+    $viewport-max-width: map-get($map: $configuration, $key: viewport-max-width);
+    $columns: map-get($map: $configuration, $key: 'columns');
+    $gutter: map-get($map: $configuration, $key: gutter);
+    $default-gutter: nth($list: $gutter, $n: 1);
+
+    @for $column from 1 through $columns {
+      @media (min-width: $viewport-min-width) {
+        .#{$prefix-lib}-col-#{$breakpoint-name}-#{$column}{
+          @include make-col($column, $columns);
+        }
+        .#{$prefix-lib}-col-#{$breakpoint-name} {
+          flex-basis: 0;
+          flex-grow: 1;
+          max-width: 100%;
+        }
+        .#{$prefix-lib}-col-#{$breakpoint-name}-auto {
+          @include make-col-auto();
+        }
+        [class*='#{$prefix-lib}-col'] {
+          padding-right: #{math.div($default-gutter, 2)}px;
+          padding-left: #{math.div($default-gutter, 2)}px;
+        }
+        .#{$prefix-lib}-row {
+          margin-right: #{math.div(-$default-gutter, 2)}px;
+          margin-left: #{math.div(-$default-gutter, 2)}px;
+        }
+        @if not($breakpoint-name == xs) {
+          .#{$prefix-lib}-offset-#{$breakpoint-name}-#{$column} {
+            @include make-col-offset($column, $columns);
+          }
+        }
+      }
+      .#{$prefix-lib}-col{
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      }
+    }
+
+    @for $column from 1 through $columns {
+      .#{$prefix-lib}-col-#{$breakpoint-name}-#{$column} {
+        @extend %grid-column;
+      }
+    }
+
+    .#{$prefix-lib}-col-#{$breakpoint-name},
+    .#{$prefix-lib}-col-#{$breakpoint-name}-auto {
+      @extend %grid-column;
+    }
+
+    @if ($breakpoint-name == xs) {
+      @for $column from 1 through $columns {
+        @media ($max-width: $viewport-max-width) {
+          .#{$prefix-lib}-offset-#{$breakpoint-name}-#{$column}{
+            flex: 0 0 percentage(math.div($column, $columns));
+            margin-left: percentage(math.div($column, $columns));
+            padding: 0 6px;
+          }
+        }
+      }
+    }
+  }
+}

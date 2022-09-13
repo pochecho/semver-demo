@@ -1,0 +1,32 @@
+//  .██████╗.█████╗.██████╗.██████╗.......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██╔════╝██╔══██╗██╔══██╗██╔══██╗......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ██║.....███████║██████╔╝██║..██║█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██║.....██╔══██║██╔══██╗██║..██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ╚██████╗██║..██║██║..██║██████╔╝......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  .╚═════╝╚═╝..╚═╝╚═╝..╚═╝╚═════╝.......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  .................................................................................................................................
+@import '../../mixins/common-mixins.scss';
+@import '../../tokens/icon.scss';
+@import '../../tokens/colors.scss';
+@import '../../tokens/sizes.scss';
+@import '../../tokens/spacing.scss';
+$card-bg-color: $group-00-100;
+$card-highlight-icon: $brand-primary-02;
+$card-status-success-color: $brand-secondary-00;
+$card-status-error-color: $transversal-01-05;
+$card-status-warning-color: $brand-secondary-02;
+$card-status-info-color: $brand-secondary-03;
+$card-color-primary: $brand-secondary-02;
+$card-color-light: $transversal-01-09;
+$card-shadow: $shadow-04;
+$card-title-font-size-normal:$size-medium-05;
+$card-title-font-size-medium:$size-medium-00;
+$card-title-font-size-large:$size-medium;
+$card-title-line-height:$size-medium-00;
+$card-title-letter-spacing:$space-small;
+
+$card-title-subtittle-description-medium:$size-medium-05;
+$card-title-subtittle-description-large:$size-medium-06;
+$card-title-subtittle-font-weight:$size-large-03;
+$card-title-subtittle-font-weight-large:$size-large-04;
+

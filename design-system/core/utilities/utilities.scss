@@ -1,0 +1,41 @@
+//  ██╗...██╗████████╗██╗██╗.....██╗████████╗██╗███████╗███████╗
+//  ██║...██║╚══██╔══╝██║██║.....██║╚══██╔══╝██║██╔════╝██╔════╝
+//  ██║...██║...██║...██║██║.....██║...██║...██║█████╗..███████╗
+//  ██║...██║...██║...██║██║.....██║...██║...██║██╔══╝..╚════██║
+//  ╚██████╔╝...██║...██║███████╗██║...██║...██║███████╗███████║
+//  .╚═════╝....╚═╝...╚═╝╚══════╝╚═╝...╚═╝...╚═╝╚══════╝╚══════╝
+//  ............................................................
+
+@use "../mixins/utilities-mixins.scss" as *;
+@use "./border-utilities.scss" as *;
+@use "./clearfix-utilities.scss" as *;
+@use "./fg-bg-utilities.scss" as *;
+@use "./flex-utilities.scss" as *;
+@use "./float-utilities.scss" as *;
+@use "./interactions-utilities.scss" as *;
+@use "./overflow-utilities.scss" as *;
+@use "./position-utilities.scss" as *;
+@use "./sizing-utilities.scss" as *;
+@use "./spacing-utilities.scss" as *;
+@use "./text-utilities.scss" as *;
+@use "./vertical-align-utilitites.scss" as *;
+@use "./visibility-utilities.scss" as *;
+
+$utilities: () !default;
+$utilities: map-merge($border-utilities, $utilities);
+$utilities: map-merge($clearfix-utilities, $utilities);
+$utilities: map-merge($fg-bg-utilities, $utilities);
+$utilities: map-merge($flex-utilities, $utilities);
+$utilities: map-merge($float-utilities, $utilities);
+$utilities: map-merge($interactions-utilities, $utilities);
+$utilities: map-merge($overflow-utilities, $utilities);
+$utilities: map-merge($position-utilities, $utilities);
+$utilities: map-merge($sizing-utilities, $utilities);
+$utilities: map-merge($spacing-utilities, $utilities);
+$utilities: map-merge($text-utilities, $utilities);
+$utilities: map-merge($vertical-align-utlities, $utilities);
+$utilities: map-merge($visibility-utilities, $utilities);
+
+@each $key, $utility in $utilities {
+  @include generate-utility($utility);
+}

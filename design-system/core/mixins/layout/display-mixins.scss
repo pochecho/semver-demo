@@ -1,0 +1,53 @@
+//  ██████╗.██╗███████╗██████╗.██╗......█████╗.██╗...██╗.....███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔══██╗██║██╔════╝██╔══██╗██║.....██╔══██╗╚██╗.██╔╝.....████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║..██║██║███████╗██████╔╝██║.....███████║.╚████╔╝█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║..██║██║╚════██║██╔═══╝.██║.....██╔══██║..╚██╔╝.╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██████╔╝██║███████║██║.....███████╗██║..██║...██║........██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═════╝.╚═╝╚══════╝╚═╝.....╚══════╝╚═╝..╚═╝...╚═╝........╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ....................................................................................................
+
+@use '../../foundations/layout-foundations.scss' as *;
+@use './breakpoints-mixins.scss' as *;
+@use '../../configuration.scss' as *;
+
+
+@mixin hidden($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $breakpoints);
+      .#{$prefix-lib}-hidden#{$infix} {
+        display: none;
+      }
+    }
+
+    @if ($breakpoint == xs) {
+      @media ($max-width: $max-xs) {
+        .#{$prefix-lib}-hidden-#{$breakpoint} {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@mixin block($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $breakpoints);
+      .#{$prefix-lib}-block#{$infix} {
+        display: flex;
+      }
+    }
+
+    @if ($breakpoint == xs) {
+      @media ($max-width: $max-xs) {
+        .#{$prefix-lib}-block-#{$breakpoint} {
+          display: flex;
+        }
+      }
+    }
+  }
+}
+
+// @include hidden();
+// @include block();

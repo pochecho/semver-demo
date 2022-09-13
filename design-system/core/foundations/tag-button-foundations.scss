@@ -1,0 +1,37 @@
+//  ██████╗.██╗...██╗████████╗████████╗.██████╗.███╗...██╗......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██╔══██╗██║...██║╚══██╔══╝╚══██╔══╝██╔═══██╗████╗..██║......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ██████╔╝██║...██║...██║......██║...██║...██║██╔██╗.██║█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██╔══██╗██║...██║...██║......██║...██║...██║██║╚██╗██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ██████╔╝╚██████╔╝...██║......██║...╚██████╔╝██║.╚████║......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  ╚═════╝..╚═════╝....╚═╝......╚═╝....╚═════╝.╚═╝..╚═══╝......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  .......................................................................................................................................................
+
+@use "../../tokens/colors.scss"as *;
+@use "../../tokens/shadows.scss"as *;
+
+$button-background-primary-default: $group-00-50;
+
+$button-background-primary-hover:  $group-00-70;
+$button-background-primary-press: $group-00-00;
+$button-background-primary-disabled: $group-00-50;
+$button-color-text-primary-enabled:  $brand-primary-00;
+$button-color-text-primary-disabled:  rgba( $brand-primary-00, 0.4);
+
+$button-background-secondary-default:  $group-00-30;
+$button-background-secondary-hover: $group-00-120;
+$button-background-secondary-press: $group-00-130;
+$button-background-secondary-disabled:  $group-00-30;
+$button-border-secondary: solid 1px;
+
+$button-border-color-secondary-enabled: $brand-primary-00;
+$button-border-color-secondary-disabled: rgba( $brand-primary-00,40%);
+
+
+$button-color-text-secondary-enabled: $brand-primary-01;
+
+$button-color-text-secondary-disabled: rgba($brand-primary-01,0.4);
+
+$button-opacity: 0.4;
+$button-shadow:$shadow-01;
+$button-outline-color-focus: $brand-primary-00;
+$tag-button-font-open-sans: "Open Sans";

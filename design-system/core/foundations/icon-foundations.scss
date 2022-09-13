@@ -1,0 +1,43 @@
+//  ██╗.██████╗.██████╗.███╗...██╗......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██║██╔════╝██╔═══██╗████╗..██║......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ██║██║.....██║...██║██╔██╗.██║█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██║██║.....██║...██║██║╚██╗██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ██║╚██████╗╚██████╔╝██║.╚████║......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  ╚═╝.╚═════╝.╚═════╝.╚═╝..╚═══╝......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  ...............................................................................................................................
+
+@use "../../tokens/icon.scss" as *;
+@use '../../tokens/colors.scss' as *;
+
+$functional-xs: $icon-functional-xs;
+$functional-sm: $icon-functional-sm;
+$functional-md: $icon-functional-md;
+$functional-lg: $icon-functional-lg;
+$functional-xl: $icon-functional-xl;
+$functional-2xl: $icon-functional-2xl;
+$functional-3xl: $icon-functional-3xl;
+
+$icon-hover-color:rgba($brand-primary-00,8%);
+$icon-press-color:rgba($brand-primary-00,24%);
+$icon-focus-color:$group-02-00;
+$icon-red-color:$complementary-01;
+
+
+$brand-sm: $icon-brand-sm;
+$brand-st: $icon-brand-st;
+$brand-md: $icon-brand-md;
+$brand-lg: $icon-brand-lg;
+$brand-xl: $icon-brand-xl;
+
+$logo-xs: $icon-logo-xs;
+$logo-sm: $icon-logo-sm;
+$logo-st: $icon-logo-st;
+$logo-md: $icon-logo-md;
+$logo-lg: $icon-logo-lg;
+$logo-xl: $icon-logo-xl;
+
+$bc-icon-functional-color-danger: $brand-secondary-01;
+$bc-icon-functional-color-success: $brand-secondary-00;
+$bc-icon-functional-color-info: $brand-secondary-03;
+$bc-icon-functional-color-primary: $brand-secondary-02;
+$bc-icon-functional-color-secondary: $brand-primary-00;

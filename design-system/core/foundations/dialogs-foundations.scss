@@ -1,0 +1,43 @@
+//  ██████╗.██╗.█████╗.██╗......██████╗..██████╗.███████╗......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██╔══██╗██║██╔══██╗██║.....██╔═══██╗██╔════╝.██╔════╝......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ██║..██║██║███████║██║.....██║...██║██║..███╗███████╗█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██║..██║██║██╔══██║██║.....██║...██║██║...██║╚════██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ██████╔╝██║██║..██║███████╗╚██████╔╝╚██████╔╝███████║......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  ╚═════╝.╚═╝╚═╝..╚═╝╚══════╝.╚═════╝..╚═════╝.╚══════╝......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  ......................................................................................................................................................
+
+@import '../../mixins/common-mixins.scss';
+@import '../../tokens/icon.scss';
+
+$dialog-success-color : $brand-secondary-00;
+$dialog-error-color : $brand-secondary-01;
+$dialog-warning-color : $brand-secondary-02;
+$dialog-info-color : $brand-secondary-03;
+$dialog-inactive-color : $group-00-220;
+
+$dialog-outline-color : $group-03-00;
+
+$dialog-icon-md : $icon-functional-md;
+$dialog-icon-sm : $icon-functional-sm;
+$dialog-icon-xs : $icon-functional-xs;
+
+$dialog-bg-color : $brand-primary-00;
+
+$dialog-shadow : $shadow-04;
+
+$dialog-title-color : $brand-primary-01;
+$dialog-text-color : $brand-primary-01;
+$dialog-a-color : $brand-primary-01;
+$dialog-em-color : $brand-primary-01;
+$dialog-em-status-color : $transversal-01-00;
+
+$dialog-font : "Open Sans";
+$dialog-font-semi-bold : "Open Sans SemiBold";
+$dialog-font-bold : "Open Sans Bold";
+
+$dialog-p-title-size : $font-size-p;
+$dialog-p-text-size : $font-size-p-small;
+$dialog-a-size: $font-size-a;
+
+$dialog-top-fixed : $space * 2;
+$dialog-left-fixed : $space * 2;

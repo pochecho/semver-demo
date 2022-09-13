@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 400;
+  src: url("core/font.woff") format("woff");
+}
+
+@import "./core/utilities/utilities.scss";
+@import "./components/button/styles/button.scss";
+@import "./components/input/styles/input.scss";
+@import "./core/layout/grid.scss";

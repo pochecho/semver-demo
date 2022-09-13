@@ -1,0 +1,5 @@
+@use "../../../core/tokens/sizes.scss" as *;
+@use "../../../core/tokens/colors.scss" as *;
+
+$input-border-radius: $size-small;
+$input-base-border-color: $brand-primary-00;

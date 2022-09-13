@@ -1,0 +1,271 @@
+//  ███████╗██████╗..█████╗..██████╗██╗███╗...██╗.██████╗.......██╗...██╗████████╗██╗██╗.....██╗████████╗██╗███████╗███████╗
+//  ██╔════╝██╔══██╗██╔══██╗██╔════╝██║████╗..██║██╔════╝.......██║...██║╚══██╔══╝██║██║.....██║╚══██╔══╝██║██╔════╝██╔════╝
+//  ███████╗██████╔╝███████║██║.....██║██╔██╗.██║██║..███╗█████╗██║...██║...██║...██║██║.....██║...██║...██║█████╗..███████╗
+//  ╚════██║██╔═══╝.██╔══██║██║.....██║██║╚██╗██║██║...██║╚════╝██║...██║...██║...██║██║.....██║...██║...██║██╔══╝..╚════██║
+//  ███████║██║.....██║..██║╚██████╗██║██║.╚████║╚██████╔╝......╚██████╔╝...██║...██║███████╗██║...██║...██║███████╗███████║
+//  ╚══════╝╚═╝.....╚═╝..╚═╝.╚═════╝╚═╝╚═╝..╚═══╝.╚═════╝........╚═════╝....╚═╝...╚═╝╚══════╝╚═╝...╚═╝...╚═╝╚══════╝╚══════╝
+//  ........................................................................................................................
+
+$spacing-utilities: () !default;
+$spacing-utilities: (
+    "spacing-margin": (
+        property: margin,
+        class: m,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+            auto: auto
+        )
+    ),
+    "spacing-mx": (
+        class: mx,
+        values: (
+            0: (
+                margin-right: 0,
+                margin-left: 0
+            ),
+            1: (
+                margin-right: 0.25rem,
+                margin-left: 0.25rem
+            ),
+            2: (
+                margin-right: 0.5rem,
+                margin-left: 0.5rem
+            ),
+            3: (
+                margin-right: 1rem,
+                margin-left: 1rem
+            ),
+            4: (
+                margin-right: 1.5rem,
+                margin-left: 1.5rem
+            ),
+            5: (
+                margin-right: 3rem,
+                margin-left: 3rem
+            ),
+            auto: (
+                margin-right: auto,
+                margin-left: auto
+            ),
+        )
+    ),
+    "spacing-my": (
+        class: my,
+        values: (
+            0: (
+                margin-top: 0,
+                margin-bottom: 0
+            ),
+            1: (
+                margin-top: 0.25rem,
+                margin-bottom: 0.25rem
+            ),
+            2: (
+                margin-top: 0.5rem,
+                margin-bottom: 0.5rem
+            ),
+            3: (
+                margin-top: 1rem,
+                margin-bottom: 1rem
+            ),
+            4: (
+                margin-top: 1.5rem,
+                margin-bottom: 1.5rem
+            ),
+            5: (
+                margin-top: 3rem,
+                margin-bottom: 3rem
+            ),
+            auto: (
+                margin-top: auto,
+                margin-bottom: auto
+            ),
+        )
+    ),
+    "spacing-me": (
+        property: margin-right,
+        class: me,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+            auto: auto
+        )
+    ),
+    "spacing-mb": (
+        property: margin-bottom,
+        class: mb,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+            auto: auto
+        )
+    ),
+    "spacing-ms": (
+        property: margin-left,
+        class: ms,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+            auto: auto
+        )
+    ),
+    "spacing-mt": (
+        property: margin-top,
+        class: mt,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+            auto: auto
+        )
+    ),
+    "spacing-p": (
+        property: padding,
+        class: p,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+        )
+    ),
+    "spacing-px": (
+        class: px,
+        values: (
+            0: (
+                padding-right: 0,
+                padding-left: 0
+            ),
+            1: (
+                padding-right: 0.25rem,
+                padding-left: 0.25rem
+            ),
+            2: (
+                padding-right: 0.5rem,
+                padding-left: 0.5rem
+            ),
+            3: (
+                padding-right: 1rem,
+                padding-left: 1rem
+            ),
+            4: (
+                padding-right: 1.5rem,
+                padding-left: 1.5rem
+            ),
+            5: (
+                padding-right: 3rem,
+                padding-left: 3rem
+            ),
+        )
+    ),
+    "spacing-py": (
+        class: py,
+        values: (
+            0: (
+                padding-top: 0,
+                padding-bottom: 0
+            ),
+            1: (
+                padding-top: 0.25rem,
+                padding-bottom: 0.25rem
+            ),
+            2: (
+                padding-top: 0.5rem,
+                padding-bottom: 0.5rem
+            ),
+            3: (
+                padding-top: 1rem,
+                padding-bottom: 1rem
+            ),
+            4: (
+                padding-top: 1.5rem,
+                padding-bottom: 1.5rem
+            ),
+            5: (
+                padding-top: 3rem,
+                padding-bottom: 3rem
+            ),
+        )
+    ),
+    "spacing-pt": (
+        property: padding-top,
+        class: pt,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+        )
+    ),
+    "spacing-pe": (
+        property: padding-right,
+        class: pe,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+        )
+    ),
+    "spacing-pb": (
+        property: padding-bottom,
+        class: pb,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+        )
+    ),
+    "spacing-ps": (
+        property: padding-left,
+        class: ps,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+        )
+    ),
+    "spacing-gap": (
+        property: gap,
+        values: (
+            0: 0,
+            1: 0.25rem,
+            2: 0.5rem,
+            3: 1rem,
+            4: 1.5rem,
+            5: 3rem,
+        )
+    ),
+);

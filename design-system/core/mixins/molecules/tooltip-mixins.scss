@@ -1,0 +1,35 @@
+//  ████████╗.██████╗..██████╗.██╗..████████╗██╗██████╗.......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ╚══██╔══╝██╔═══██╗██╔═══██╗██║..╚══██╔══╝██║██╔══██╗......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ...██║...██║...██║██║...██║██║.....██║...██║██████╔╝█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ...██║...██║...██║██║...██║██║.....██║...██║██╔═══╝.╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ...██║...╚██████╔╝╚██████╔╝███████╗██║...██║██║...........██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ...╚═╝....╚═════╝..╚═════╝.╚══════╝╚═╝...╚═╝╚═╝...........╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .....................................................................................................
+
+
+@mixin tooltip-arrow($arrow-size: 8px, $position: "bottom", $color: $transversal-01-02) {
+    content: "";
+    left: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: $arrow-size solid transparent;
+    border-right: $arrow-size solid transparent;
+    border-bottom: $arrow-size solid transparent;
+    border-top: $arrow-size solid transparent;
+    @if ($position=="top") {
+        border-top-color: $color;
+    }
+    @else if($position=="bottom") {
+        border-bottom-color: $color;
+    }
+    @else if($position=="left") {
+        border-left-color: $color;
+    }
+    @else if($position=="right") {
+        border-right-color: $color;
+    }
+    @else {
+        border-top-color:$border-top-color;
+    }
+}

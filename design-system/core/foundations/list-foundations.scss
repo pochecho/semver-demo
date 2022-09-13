@@ -1,0 +1,24 @@
+@use "../../tokens/colors.scss" as *;
+@use '../../tokens/typo.scss' as *;
+@use '../../tokens/shadows.scss' as *;
+@use '../../tokens/spacing.scss' as *;
+
+$list-background-color: $brand-primary-01;
+$list-text-color: $brand-primary-00;
+$list-open-sans-font: "Open Sans";
+$list-cibfont-sans: "CIBFontSans Bold";
+$list-font-16: $font-size-p;
+$list-font-14: $font-size-p-small;
+$list-shadow: $shadow-07;
+$list-initial-shadow: $shadow-02;
+$list-pressed-color:rgba($brand-primary-00,16%);
+$list-hover-color:rgba($brand-primary-00,8%);
+$list-width: $space * 8;
+$list-width-padding-right: $space;
+$list-width-padding-left: $space*2;
+$list-border-checkbox:$group-00-90;
+$list-background-selected:$group-00-90;
+$list-background-color-selected: $transversal-01-05;
+$list-outline-color: $group-02-00;
+$list-hover-dropdown-color:rgba($brand-primary-00,8%);
+ 

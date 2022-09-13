@@ -1,0 +1,73 @@
+//  ███████╗████████╗███████╗██████╗.██████╗.███████╗██████╗.......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔════╝██╔══██╗......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ███████╗...██║...█████╗..██████╔╝██████╔╝█████╗..██████╔╝█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ╚════██║...██║...██╔══╝..██╔═══╝.██╔═══╝.██╔══╝..██╔══██╗╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ███████║...██║...███████╗██║.....██║.....███████╗██║..██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚══════╝...╚═╝...╚══════╝╚═╝.....╚═╝.....╚══════╝╚═╝..╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ..........................................................................................................
+
+@use "../../foundations/atoms/stepper-foundations.scss" as *;
+@use '../../mixins/common-mixins.scss' as *;
+@use '../../mixins/media-queries-mixins.scss' as *;
+@use "../../configuration.scss" as *;
+
+@mixin stepper-inner-bullet-horizontal() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: $stepper-font-p;
+    width: $stepper-bullet-width;
+    height: $stepper-bullet-height;
+    background-color: $stepper-scale-02;
+    border: 2px solid $stepper-scale-02;
+    border-radius: $stepper-bullet-border-radius;
+    color: $stepper-text-black;
+    outline: none;
+    @include outline-on-focus();
+  }
+
+  @mixin stepper-inner-label-horizontal {
+    @extend .#{$prefix-lib}-label;
+    position: absolute;
+    top: 45px;
+    left: $stepper-label-left;
+    color: $stepper-text-gray;
+    font-size: $stepper-font-label;
+    width: 120px;
+    text-align: center;
+  }
+
+  @mixin stepper-inner-bullet-vertical() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: $stepper-font-p;
+    width: $stepper-bullet-width;
+    height: $stepper-bullet-height;
+    background-color: $stepper-scale-02;
+    border: 2px solid $stepper-scale-02;
+    border-radius: $stepper-bullet-border-radius;
+    color: $stepper-text-black;
+    outline: none;
+    @include outline-on-focus();
+  }
+
+  @mixin stepper-inner-label-vertical {
+    @extend .#{$prefix-lib}-label;
+    position: absolute;
+    top: 8px;
+    color: $stepper-text-gray;
+    font-size: $stepper-font-label;
+    width: 125px;
+    text-align: right;
+  }

@@ -1,0 +1,42 @@
+@use '../../configuration.scss' as *;
+@use '../../foundations/molecules/menu-tabs-vertical-foundations.scss' as *;
+
+@mixin opacityTransition {
+  transition: opacity 0.3s;
+  transition-timing-function: ease-in;
+}
+
+@mixin opacityTransitionIn {
+  opacity: 1;
+  @include opacityTransition();
+}
+
+@mixin opacityTransitionOut {
+  opacity: 0.65;
+  @include opacityTransition();
+}
+
+@mixin translateTransition() {
+  transition: transform 0.3s, height 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+@mixin flexBehavior($component-name) {
+  section.#{$component-name} {
+    display: flex;
+
+    nav.#{$component-name}-container {
+      height: fit-content;
+      position: sticky;
+      top: $margin-menu;
+
+      &-left {
+        order: 1;
+      }
+
+      &-right {
+        order: 3;
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+//  ███╗...███╗.██████╗.██████╗..█████╗.██╗......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ████╗.████║██╔═══██╗██╔══██╗██╔══██╗██║......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ██╔████╔██║██║...██║██║..██║███████║██║█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██║╚██╔╝██║██║...██║██║..██║██╔══██║██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ██║.╚═╝.██║╚██████╔╝██████╔╝██║..██║███████╗.██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  ╚═╝.....╚═╝.╚═════╝.╚═════╝.╚═╝..╚═╝╚══════╝.╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  ........................................................................................................................................
+
+@use '../../tokens/colors.scss' as * ;
+@use '../../tokens/shadows.scss' as *;
+
+$modal-background: $brand-primary-01;
+$modal-text: $group-00-130;
+$modal-color-text-title: $brand-primary-00;
+$modal-scrollbar: $group-00-60;
+$modal-scrollbar-active: rgba(0, 0, 0, 0.4);
+$modal-active-background: rgba(0, 0, 0, 0.8);
+$modal-icon-success: $brand-secondary-00;
+$modal-icon-error: $brand-secondary-01;
+$modal-icon-warning: $brand-secondary-02;
+$modal-icon-info: $brand-secondary-03;
+$modal-icon-color: $brand-primary-00;
+$modal-footer: $brand-primary-02;
+$modal-close-color-background: $group-00-50;
+$close-modal-button-hover: $group-00-40;
+$modal-width-xs: 400px;
+$modal-width-md: 600px;
+$modal-width-lg: 700px;
+$md-responsive-modal-width-md: 500px;
+$md-responsive-modal-width-lg: 600px;
+$modal-height: auto;
+$responsive-modal-width-xs: 328px;
+$responsive-modal-width-md: 328px;
+$responsive-modal-width-lg: 328px;
+$responsive-modal-height: 500px;
+

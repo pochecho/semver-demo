@@ -1,9 +1,0 @@
-@use "./button.foundation.scss" as *;
-@use "../../core/config.scss" as *;
-
-.#{$prefix}-button {
-  padding: 10px;
-  background-color: $button-base-background-color;
-  color: white;
-  border-radius: $button-border-radius;
-}

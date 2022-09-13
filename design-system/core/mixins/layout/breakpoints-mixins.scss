@@ -1,0 +1,50 @@
+//  ██████╗.██████╗.███████╗.█████╗.██╗..██╗██████╗..██████╗.██╗███╗...██╗████████╗███████╗......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔══██╗██╔══██╗██╔════╝██╔══██╗██║.██╔╝██╔══██╗██╔═══██╗██║████╗..██║╚══██╔══╝██╔════╝......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██████╔╝██████╔╝█████╗..███████║█████╔╝.██████╔╝██║...██║██║██╔██╗.██║...██║...███████╗█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██╔══██╗██╔══██╗██╔══╝..██╔══██║██╔═██╗.██╔═══╝.██║...██║██║██║╚██╗██║...██║...╚════██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██████╔╝██║..██║███████╗██║..██║██║..██╗██║.....╚██████╔╝██║██║.╚████║...██║...███████║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═════╝.╚═╝..╚═╝╚══════╝╚═╝..╚═╝╚═╝..╚═╝╚═╝......╚═════╝.╚═╝╚═╝..╚═══╝...╚═╝...╚══════╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ........................................................................................................................................
+
+@use '../../foundations/layout-foundations.scss' as *;
+/**
+  * Ancho mínimo de punto de ruptura. Nulo para el punto de interrupción más pequeño (primero).
+  * breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px)) 576px
+  */
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min !=0, $min, null);
+}
+
+/**
+  * Devuelve una cadena en blanco si encuentra el punto de interrupción más pequeño,
+  * de lo contrario, devuelve el nombre con un guión al frente.
+  *
+  * Utilidad para el manejo responsivo.
+  *
+  * breakpoint-infix(xs, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+  * ""  (Devuelve un string vacio)
+  *
+  * breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+  * "-sm"
+  */
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
+}
+
+/**
+  * Breakpoint de al menos el ancho mínimo del punto de ruptura.
+  * No devuelve valores para el punto de interrupción más pequeño.
+  * Hace que el @content se aplique al punto de interrupción dado y sea más amplio.
+  */
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

@@ -1,0 +1,60 @@
+//  ███╗...███╗.██████╗.██████╗..█████╗.██╗......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ████╗.████║██╔═══██╗██╔══██╗██╔══██╗██║......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██╔████╔██║██║...██║██║..██║███████║██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║╚██╔╝██║██║...██║██║..██║██╔══██║██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║.╚═╝.██║╚██████╔╝██████╔╝██║..██║███████╗.██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝.....╚═╝.╚═════╝.╚═════╝.╚═╝..╚═╝╚══════╝.╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ........................................................................................
+
+@use '../../foundations/molecules/modal-foundations.scss' as *;
+
+@mixin modal-content {
+  max-height: 40%;
+  overflow: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  pointer-events: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    padding: 43px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $modal-scrollbar;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $modal-scrollbar-active;
+    box-shadow: 0 0 2px 1px $modal-scrollbar-active;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background-color: $modal-scrollbar-active;
+  }
+}
+
+@mixin modal-button-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  pointer-events: auto;
+}
+
+@mixin modal-title {
+  width: 100%;
+  text-align: center;
+}
+
+@mixin modal-center-icon {
+  display: inherit;
+  text-align: center;
+  color: $modal-text;
+  border-radius: 50%;
+}
+@mixin icon-container {
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}

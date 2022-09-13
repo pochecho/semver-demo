@@ -1,0 +1,39 @@
+//  ███████╗██╗.....██╗██████╗.███████╗██████╗.......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝██║.....██║██╔══██╗██╔════╝██╔══██╗......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ███████╗██║.....██║██║..██║█████╗..██████╔╝█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ╚════██║██║.....██║██║..██║██╔══╝..██╔══██╗╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ███████║███████╗██║██████╔╝███████╗██║..██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚══════╝╚══════╝╚═╝╚═════╝.╚══════╝╚═╝..╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ............................................................................................
+
+@use "../../mixins/common-mixins.scss" as *;
+@use "../../foundations/atoms/slider-foundations.scss" as *;
+
+@mixin slider-track($track-w, $track-h, $track-c) {
+    @include size($track-w, $track-h, 8px);
+    box-sizing: border-box;
+    border: none;
+    background-color: $track-c;
+}
+
+@mixin slider-fill($track-h, $filll-c) {
+    height: $track-h;
+    background-color: $filll-c;
+}
+
+@mixin slider-thumb($thumb-d) {
+    box-sizing: border-box;
+    border: none;
+    @include size($thumb-d, $thumb-d, 50%);
+    background: $slider-fill-color;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.102751);
+}
+
+@mixin slider-thumb-double($thumb-d) {
+    box-sizing: border-box;
+    border: none;
+    @include size($thumb-d, $thumb-d, 50%);
+    background: $slider-fill-color;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.102751);
+    transform: translateY(-2px);
+}

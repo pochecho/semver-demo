@@ -1,0 +1,28 @@
+//  ███████╗██╗██╗.....███████╗....██████╗..██████╗.██╗....██╗███╗...██╗██╗......██████╗..█████╗.██████╗.......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗
+//  ██╔════╝██║██║.....██╔════╝....██╔══██╗██╔═══██╗██║....██║████╗..██║██║.....██╔═══██╗██╔══██╗██╔══██╗......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║
+//  █████╗..██║██║.....█████╗█████╗██║..██║██║...██║██║.█╗.██║██╔██╗.██║██║.....██║...██║███████║██║..██║█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║
+//  ██╔══╝..██║██║.....██╔══╝╚════╝██║..██║██║...██║██║███╗██║██║╚██╗██║██║.....██║...██║██╔══██║██║..██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║
+//  ██║.....██║███████╗███████╗....██████╔╝╚██████╔╝╚███╔███╔╝██║.╚████║███████╗╚██████╔╝██║..██║██████╔╝......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║
+//  ╚═╝.....╚═╝╚══════╝╚══════╝....╚═════╝..╚═════╝..╚══╝╚══╝.╚═╝..╚═══╝╚══════╝.╚═════╝.╚═╝..╚═╝╚═════╝.......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝
+//  ..............................................................................................................................................................................................
+@use '../../tokens/colors.scss' as *;
+@use '../../tokens/sizes.scss' as *;
+@use '../../tokens/shadows.scss' as *;
+@use '../../tokens/typo.scss' as *;
+
+$file-download-color-error: $complementary-01;
+$file-download-color-success: $complementary-00;
+$file-download-color-row: $brand-primary-01;
+$file-download-color-rowsContainer: $transversal-01-03;
+$file-download-size-medium: $size-medium-02;
+$file-download-size-large: $size-medium-03;
+$file-download-size-height-header: $size-height-01;
+$file-download-size-padding-vertical-error: $thickness-02;
+$file-download-size-margin-button-row: $thickness-02;
+$file-download-size-padding-horizontal-error: $size-medium-01;
+$file-download-size-margin-container-remove: $size-medium-04;
+$file-download-size-margin-container-fap: $size-medium-04;
+$file-download-size-margin-title: $thickness-04;
+$file-download-size-margin-button-container: $thickness-00;
+$file-download-size-hight-row: $size-height-02;
+$file-download-size-margin-rigth-row: $size-negative-01;

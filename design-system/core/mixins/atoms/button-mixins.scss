@@ -1,0 +1,50 @@
+//  ██████╗.██╗...██╗████████╗████████╗.██████╗.███╗...██╗......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔══██╗██║...██║╚══██╔══╝╚══██╔══╝██╔═══██╗████╗..██║......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██████╔╝██║...██║...██║......██║...██║...██║██╔██╗.██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██╔══██╗██║...██║...██║......██║...██║...██║██║╚██╗██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██████╔╝╚██████╔╝...██║......██║...╚██████╔╝██║.╚████║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═════╝..╚═════╝....╚═╝......╚═╝....╚═════╝.╚═╝..╚═══╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .......................................................................................................
+
+@use "../../foundations/atoms/button-foundations.scss" as *;
+
+@mixin size-button($widthsize: 100%, $heightsize: 48px, $fontsize: 20px) {
+    height: $heightsize;
+    width: $widthsize;
+    font-size: $fontsize;
+}
+
+@mixin style-button(
+    $box-shadow: $button_shadow,
+    $bg-color: $button-background-primary-default,
+    $txt-color: $button-color-text-primary-enabled,
+    $border-color: none,
+    $border: none,
+    $hover-color: $button-background-primary-hover,
+    $press-color: $button-background-primary-press,
+    $disabled-color: $button-color-text-primary-disabled,
+    $opacity: none,
+    $disabled-bg: $button-background-primary-disabled,
+    $outline-focus: $button-outline-color-focus
+) {
+    background-color: $bg-color;
+    color: $txt-color;
+    border-color: $border-color;
+    border: $border;
+    box-shadow: $box-shadow;
+    &:hover:enabled {
+        background-color: $hover-color;
+    }
+    &:active:enabled {
+        background-color: $press-color;
+    }
+    &:disabled {
+        background-color: $disabled-bg;
+        color: $disabled-color;
+    }
+    &:focus-visible {
+        outline: 2px solid $outline-focus;
+        outline-offset: 5px;
+        background-color: $hover-color;
+    }
+}

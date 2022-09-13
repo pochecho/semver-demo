@@ -1,0 +1,50 @@
+//  ██╗..██╗███████╗.█████╗.██████╗.███████╗██████╗.......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██║..██║██╔════╝██╔══██╗██╔══██╗██╔════╝██╔══██╗......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ███████║█████╗..███████║██║..██║█████╗..██████╔╝█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██╔══██║██╔══╝..██╔══██║██║..██║██╔══╝..██╔══██╗╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║..██║███████╗██║..██║██████╔╝███████╗██║..██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝..╚═╝╚══════╝╚═╝..╚═╝╚═════╝.╚══════╝╚═╝..╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .................................................................................................
+
+@mixin span(
+    $color,
+    $font-family,
+    $font-size,
+    $font-weight,
+    $height,
+    $letter-spacing,
+    $line-height,
+    $margin-bottom,
+    $margin-left,
+    $margin-right,
+    $margin-top,
+    $width
+) {
+    color: $color;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    height: $height;
+    letter-spacing: $letter-spacing;
+    line-height: $line-height;
+    margin-bottom: $margin-bottom;
+    margin-left: $margin-left;
+    margin-right: $margin-right;
+    margin-top: $margin-top;
+    width: $width;
+}
+
+@mixin nav-item-mobile-separator($color) {
+    background-color:$color;
+    height: 18px;
+}
+
+@mixin nav-item-padding($padding) {
+    padding: $padding;
+}
+
+@mixin mobile-title{
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: -0.3px;
+}

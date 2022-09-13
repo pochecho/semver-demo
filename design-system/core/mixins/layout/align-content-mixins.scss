@@ -1,0 +1,61 @@
+//  .█████╗.██╗.....██╗.██████╗.███╗...██╗.......██████╗.██████╗.███╗...██╗████████╗███████╗███╗...██╗████████╗...███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔══██╗██║.....██║██╔════╝.████╗..██║......██╔════╝██╔═══██╗████╗..██║╚══██╔══╝██╔════╝████╗..██║╚══██╔══╝...████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ███████║██║.....██║██║..███╗██╔██╗.██║█████╗██║.....██║...██║██╔██╗.██║...██║...█████╗..██╔██╗.██║...██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██╔══██║██║.....██║██║...██║██║╚██╗██║╚════╝██║.....██║...██║██║╚██╗██║...██║...██╔══╝..██║╚██╗██║...██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║..██║███████╗██║╚██████╔╝██║.╚████║......╚██████╗╚██████╔╝██║.╚████║...██║...███████╗██║.╚████║...██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝..╚═╝╚══════╝╚═╝.╚═════╝.╚═╝..╚═══╝.......╚═════╝.╚═════╝.╚═╝..╚═══╝...╚═╝...╚══════╝╚═╝..╚═══╝...╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .........................................................................................................................................................
+
+@use '../../foundations/layout-foundations.scss' as *;
+@use './breakpoints-mixins.scss' as *;
+@use '../../configuration.scss' as *;
+
+$justify-content-class: (flex-start, flex-end, center, space-between, space-around, space-evenly) !default;
+
+$align-content-class: (flex-start, flex-end, center, stretch, baseline);
+
+@mixin generate-justify-content($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+      @each $i in $justify-content-class {
+        .#{$prefix-lib}-justify-content#{$infix}-#{$i} {
+          justify-content: $i;
+        }
+        @if ($breakpoint == xs) {
+          @media ($max-width: $max-xs) {
+            .#{$prefix-lib}-justify-content-#{$breakpoint}-#{$i} {
+              justify-content: $i;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin generate-alignment-content($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+      @each $i in $align-content-class {
+        .#{$prefix-lib}-align-content#{$infix}-#{$i} {
+          justify-content: $i;
+        }
+        @if ($breakpoint == xs) {
+          @media ($max-width: $max-xs) {
+            .#{$prefix-lib}-aling-content-#{$breakpoint}-#{$i} {
+              justify-content: $i;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// @include generate-justify-content();
+
+// @include generate-alignment-content();

@@ -1,0 +1,66 @@
+@use '../../foundations/organisms/coach-mark-foundations.scss'as *;
+
+$coach-mark-namespace: 'bc-coach-mark';
+
+@mixin coach-mark-arrow(
+  $arrow-size: $bc-coach-mark-padding,
+  $position,
+  $color: $transversal-01-02
+) {
+  content: '';
+  left: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: $arrow-size solid transparent;
+  border-right: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid transparent;
+  border-top: $arrow-size solid transparent;
+  @if ($position== 'top') {
+    border-top-color: $color;
+  } @else if($position== 'bottom') {
+    border-bottom-color: $color;
+  } @else if($position== 'left') {
+    border-left-color: $color;
+  } @else if($position== 'right') {
+    border-right-color: $color;
+  } @else {
+    border-top-color: $border-top-color;
+  }
+}
+
+@mixin coachmark-responsive{
+  padding: 24px $bc-coach-mark-padding-2 $bc-coach-mark-padding-4 $bc-coach-mark-padding-5;
+
+  .#{$coach-mark-namespace}-body {
+    padding: $bc-coach-mark-padding $bc-coach-mark-padding-3 0px 0px;
+  }
+
+  .#{$coach-mark-namespace}-footer {
+    display: block;
+    padding-top: $bc-coach-mark-padding-2;
+  }
+
+  .#{$coach-mark-namespace}-icon {
+    display: none;
+  }
+
+  .#{$coach-mark-namespace}-title {
+    margin-top: 0px;
+    margin-bottom: $bc-coach-mark-padding;
+  }
+
+  .#{$coach-mark-namespace}-content {
+    margin-bottom: 0px;
+  }
+
+  .#{$coach-mark-namespace}-quantity-items {
+    padding-bottom: 0px;
+    padding-right: $bc-coach-mark-padding-3;
+    padding-top: $bc-coach-mark-padding-2;
+  }
+
+  .#{$coach-mark-namespace}-link {
+    margin-top: $bc-coach-mark-padding-2;
+  }
+}

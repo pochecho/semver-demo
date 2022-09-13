@@ -1,0 +1,56 @@
+//  ███████╗██╗██╗..████████╗███████╗██████╗.......██╗......█████╗.██████╗.███████╗██╗......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██╔════╝██║██║..╚══██╔══╝██╔════╝██╔══██╗......██║.....██╔══██╗██╔══██╗██╔════╝██║......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  █████╗..██║██║.....██║...█████╗..██████╔╝█████╗██║.....███████║██████╔╝█████╗..██║█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██╔══╝..██║██║.....██║...██╔══╝..██╔══██╗╚════╝██║.....██╔══██║██╔══██╗██╔══╝..██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ██║.....██║███████╗██║...███████╗██║..██║......███████╗██║..██║██████╔╝███████╗███████╗.██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  ╚═╝.....╚═╝╚══════╝╚═╝...╚══════╝╚═╝..╚═╝......╚══════╝╚═╝..╚═╝╚═════╝.╚══════╝╚══════╝.╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  ...................................................................................................................................................................................
+
+@use '../../tokens/colors.scss' as *;
+@use '../../tokens/shadows.scss' as *;
+
+$tag-background-default: $brand-primary-01;
+$tag-text-color-default: $brand-primary-00;
+
+$tag-background-hover: $brand-primary-02;
+$tag-text-color-hover: $brand-primary-00;
+
+$tag-background-active: $transversal-01-03;
+$tag-text-color-active: $brand-primary-00;
+
+$tag-box-shadow: $shadow-07;
+
+$tag-background-disabled: $brand-primary-01;
+$tag-text-color-disabled: $brand-scale-primary-00-60;
+
+$tag-background-selected: $brand-primary-00;
+$tag-text-color-selected: $brand-primary-01;
+$tag-text-color-hover-active-selected: $brand-primary-00;
+
+$tag-background-secondary-default:  $group-00-30;
+$tag-background-secondary-hover: $group-00-190;
+$tag-background-secondary-press: $group-00-180;
+$tag-background-secondary-disabled:  $group-00-30;
+$tag-border-secondary: solid 1px;
+$tag-border-color-secondary-enabled: $brand-primary-00;
+$tag-border-color-secondary-disabled: rgba( $brand-primary-00,40%);
+$tag-color-text-secondary-enabled: $brand-primary-01;
+$tag-color-text-secondary-disabled: rgba($brand-primary-01,0.4);
+$tag-focus-outline-color: $group-02-00;
+
+$tag-button-filter-background-default: $group-00-50;
+$tag-button-filter-text-color-default: $transversal-01-05;
+$tag-button-filter-background-hover: $group-00-70;
+$tag-button-filter-background-press: $group-00-00;
+$tag-button-filter-border-color: $group-00-140;
+$tag-button-filter-background-selected: $group-00-90;
+
+$tag-button-filter-background-disabled: $group-00-50;
+$tag-button-filter-text-color-disabled: rgba($brand-primary-00,0.4);
+
+$tag-button-dropdown-background: $brand-primary-01;
+$tag-button-dropdown-fade-in-animation: fade-in-opacity;
+
+
+$tag-button-border-none:none;
+

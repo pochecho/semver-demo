@@ -1,0 +1,16 @@
+@use '../../tokens/colors.scss' as *;
+@use '../../tokens/spacing.scss' as *;
+
+$container-items-left-border: $transversal-01-03;
+$item-text-color: $brand-primary-00;
+$active-item-indicator-color: $brand-primary-00;
+$focus-item-color: $group-02-00;
+
+$margin-menu: $space * 4;
+$padding-menu: $space;
+
+$indicator-with: calc($space / 2);
+$indicator-height: $space * 3;
+
+$margin-menu-item: $space;
+$padding-menu-item: $space * 2;

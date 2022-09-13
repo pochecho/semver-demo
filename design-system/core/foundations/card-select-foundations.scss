@@ -1,0 +1,57 @@
+//  .██████╗.█████╗.██████╗.██████╗.......███████╗███████╗██╗.....███████╗.██████╗████████╗...███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██╔════╝██╔══██╗██╔══██╗██╔══██╗......██╔════╝██╔════╝██║.....██╔════╝██╔════╝╚══██╔══╝...██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ██║.....███████║██████╔╝██║..██║█████╗███████╗█████╗..██║.....█████╗..██║........██║█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██║.....██╔══██║██╔══██╗██║..██║╚════╝╚════██║██╔══╝..██║.....██╔══╝..██║........██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ╚██████╗██║..██║██║..██║██████╔╝......███████║███████╗███████╗███████╗╚██████╗...██║......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  .╚═════╝╚═╝..╚═╝╚═╝..╚═╝╚═════╝.......╚══════╝╚══════╝╚══════╝╚══════╝.╚═════╝...╚═╝......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  .....................................................................................................................................................................................
+@use "../../tokens/colors.scss" as *;
+@use "../../tokens/shadows.scss" as *;
+@use "../../tokens/typo.scss" as *;
+@use "../../tokens/sizes.scss" as *;
+@use "../../tokens/icon.scss" as *;
+$card-bg-color-item: $brand-primary-01;
+$card-bg-color-container: $brand-primary-01;
+$card-bg-color-active: $brand-primary-02;
+$card-bg-color-content-item: $brand-primary-02;
+$card-shadow: $shadow-03;
+$card-shadow-base: $shadow-03;
+$card-shadow-base-hover: $shadow-04;
+$card-font-family: "Open Sans";
+$card-scrollbar-thumb: $brand-primary-00;
+$card-bg-scrollbar-track: $transversal-01-03;
+$card-status-success: $brand-secondary-00;
+$card-status-queues: $brand-secondary-02;
+$card-status-black: $brand-primary-00;
+$card-status-pink: $brand-secondary-05;
+$card-status-rejected: $brand-secondary-01;
+$card-status-earring: $brand-primary-02;
+$card-status-purple: $brand-secondary-04;
+$card-status-blue: $brand-secondary-03;
+$card-color-base:$brand-primary-01;
+$card-select-focus:$transversal-01-00;
+$card-select-icon-border:$group-00-30;
+$card-selec-footer-border-radius:$size-medium-00;
+$card-selec-footer-margin:$size-small-01;
+$card-select-content-footer-padding:$size-medium-04;
+$card-select-content-active-zIndex:$thickness-03;
+$card-select-placeholder-padding-top:$size-small-00;
+$card-select-placeholder-size-normal:$size-medium-04;
+$card-select-placeholder-size-medium:$size-medium-05;
+$card-select-placeholder-size-large:$size-medium-06;
+$card-select-control-margin-left:$size-small;
+$card-select-control-padding-top:$size-small-01;
+$card-select-size-small:$size-large-01;
+$card-select-size-large:$size-large-02;
+$card-select-size-title:$size-medium;
+$card-select-font-size-body:$size-medium-07;
+$card-select-font-size-info-balance:$size-medium-08;
+$card-select-width-desktop: 40%;
+$card-select-width-table: 40%;
+$card-select-mobile: 90%;
+$card-select-clic-element: adjust-color( $group-00-130 , $alpha: -0.84);
+$card-select-min-with:$icon-logo-lg;
+
+
+
+

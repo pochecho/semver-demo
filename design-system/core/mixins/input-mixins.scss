@@ -1,0 +1,79 @@
+//  ██╗███╗...██╗██████╗.██╗...██╗████████╗...███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██║████╗..██║██╔══██╗██║...██║╚══██╔══╝...████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║██╔██╗.██║██████╔╝██║...██║...██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║██║╚██╗██║██╔═══╝.██║...██║...██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║██║.╚████║██║.....╚██████╔╝...██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝╚═╝..╚═══╝╚═╝......╚═════╝....╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .....................................................................................
+
+
+
+@use '../foundations/input-foundations.scss' as *;
+@use '../configuration.scss' as *;
+
+@mixin input-style(
+  $border,
+  $border-bottom,
+  $color,
+  $display,
+  $height-input,
+  $left-input,
+  $line-height,
+  $top-input,
+  $width-input,
+  $text-area: false
+) {
+  background-color: transparent;
+  border: $border;
+  border-bottom: $border-bottom;
+  color: $color;
+  display: $display;
+  height: $height-input;
+  left: $left-input;
+  line-height: $line-height;
+  top: $top-input;
+  width: $width-input;
+  &:focus,
+  &.focus-input {
+    outline: none;
+    transition: 0.5s;
+    border-bottom: solid 2px $input-border-bottom-focused;
+  }
+
+  @if $text-area == true {
+    height: 63px;
+    padding-left: 5px;
+    & ~ label {
+      top: -20px;
+      font-size: 14px;
+    }
+    &:focus {
+      border-bottom: solid 2px $input-border-bottom-focused;
+    }
+    &.#{$prefix-lib}-input-area-error {
+      border-bottom: solid 2px $input-danger-state;
+    }
+  }
+}
+
+@mixin input-icon($position, $margin-left, $padding, $color, $transition, $top, $font-size, $z-index) {
+  position: $position;
+  margin-left: $margin-left;
+  padding: $padding;
+  color: $color;
+  transition: $transition;
+  top: $top;
+  font-size: $font-size;
+  z-index: $z-index;
+}
+@mixin input-fonts-style($font-family, $font-weight, $font-size){
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  font-style: normal;
+}
+
+@mixin input-status-disabled {
+  pointer-events: none;
+  opacity: 0.35;
+}

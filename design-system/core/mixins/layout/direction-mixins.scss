@@ -1,0 +1,36 @@
+//  ██████╗.██╗██████╗.███████╗.██████╗████████╗██╗.██████╗.███╗...██╗......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔══██╗██║██╔══██╗██╔════╝██╔════╝╚══██╔══╝██║██╔═══██╗████╗..██║......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║..██║██║██████╔╝█████╗..██║........██║...██║██║...██║██╔██╗.██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║..██║██║██╔══██╗██╔══╝..██║........██║...██║██║...██║██║╚██╗██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██████╔╝██║██║..██║███████╗╚██████╗...██║...██║╚██████╔╝██║.╚████║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═════╝.╚═╝╚═╝..╚═╝╚══════╝.╚═════╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ...................................................................................................................
+
+@use '../../foundations/layout-foundations.scss' as *;
+@use './breakpoints-mixins.scss' as *;
+@use '../../configuration.scss' as *;
+
+$direction: (row, row-reverse, column, column-reverse) !default;
+
+@mixin generate-direction($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+      @each $i in $direction {
+        .#{$prefix-lib}-direction#{$infix}-#{$i} {
+          flex-direction: $i;
+        }
+        @if ($breakpoint == xs) {
+          @media ($max-width: $max-xs) {
+            .#{$prefix-lib}-direction-#{$breakpoint}-#{$i} {
+              flex-direction: $i;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// @include generate-direction();

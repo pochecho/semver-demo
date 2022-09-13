@@ -1,0 +1,143 @@
+//  .██████╗.█████╗.██████╗.██████╗.......███████╗███████╗██╗.....███████╗.██████╗████████╗...███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝██╔══██╗██╔══██╗██╔══██╗......██╔════╝██╔════╝██║.....██╔════╝██╔════╝╚══██╔══╝...████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║.....███████║██████╔╝██║..██║█████╗███████╗█████╗..██║.....█████╗..██║........██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║.....██╔══██║██╔══██╗██║..██║╚════╝╚════██║██╔══╝..██║.....██╔══╝..██║........██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ╚██████╗██║..██║██║..██║██████╔╝......███████║███████╗███████╗███████╗╚██████╗...██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  .╚═════╝╚═╝..╚═╝╚═╝..╚═╝╚═════╝.......╚══════╝╚══════╝╚══════╝╚══════╝.╚═════╝...╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .....................................................................................................................................
+
+@use '../../configuration.scss' as *;
+@use '../../foundations/molecules/card-select-foundations.scss' as *;
+@use '../../tokens/layout.scss' as *;
+
+$card-namespace: "dropdown-select";
+$card-dropdown-namespace: "dropdown-card-select";
+$card-dropdown-select-namespace: "#{$prefix-lib}-#{$card-dropdown-namespace}";
+$card-select-toggle-namespace: "#{$prefix-lib}-#{$card-namespace}-toggle";
+$card-select-action-namespace: "#{$prefix-lib}-#{$card-namespace}-action";
+
+@mixin card-input-content($widthinput: 466px) {
+  box-shadow: $card-shadow;
+  background-color: $card-bg-color-item;
+  position: relative;
+  display: inline-block;
+  .#{$card-dropdown-select-namespace} {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 25px;
+    .#{$prefix-lib}-form-field {
+      padding-right: 16px;
+      float: left;
+      width: $widthinput;
+      input {
+        margin-top: 0px;
+      }
+      label {
+        font-family: $card-font-family;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: -0.30px;
+        font-weight: 400;
+        left: 0px;
+        top: -9px;
+      }
+      em {
+        position: absolute;
+        right: 15px;
+        cursor: pointer;
+      }
+      em.#{$card-select-toggle-namespace} {
+        cursor: pointer;
+        padding-left: 16px;
+        margin-top: 20px;
+      }
+    }
+    .#{$card-select-action-namespace} {
+      padding-top: 20px;
+      float: left;
+      cursor: pointer;
+    }
+  }
+}
+
+@mixin card-base-content() {
+  box-shadow: $card-shadow;
+  display: block;
+  display: none;
+  z-index: 1;
+  margin-left: -16px;
+  li {
+    display: block;
+  }
+}
+
+@mixin dropdown-scrollbar() {
+  ul {
+    overflow: auto;
+    max-height: 300px;
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $card-scrollbar-thumb;
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: $card-scrollbar-thumb;
+    }
+    &::-webkit-scrollbar-track {
+      background: $card-bg-scrollbar-track;
+      border-radius: 10px;
+      box-shadow: inset -30px -30px 5px $card-bg-scrollbar-track;
+    }
+  }
+}
+
+@mixin card-base-item() {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: flex-start;
+  background-color: $card-bg-color-item;
+  border-bottom: 2px solid $card-bg-color-content-item;
+}
+
+@mixin card-select-subtitle() {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.3px;
+}
+
+@mixin card-select-detail() {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  letter-spacing: -0.3px;
+}
+
+@mixin card-select-small-text() {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.171px;
+  font-weight: 400;
+}
+
+@mixin card-select-sizes-media($style) {
+  @media  screen and (min-width: $xs) {
+    #{$style}: $card-select-mobile;
+ }
+  @media  screen and (min-width: $md) {
+    #{$style}: $card-select-width-table;
+  }
+  @media  screen and (min-width: $lg) {
+    #{$style}: $card-select-width-table;
+  }
+  @media  screen and (min-width: $xl) {
+    #{$style}: $card-select-width-desktop;
+  }
+}
+

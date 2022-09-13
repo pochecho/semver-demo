@@ -1,0 +1,41 @@
+//  ██████╗.██╗...██╗████████╗████████╗.██████╗.███╗...██╗......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██╔══██╗██║...██║╚══██╔══╝╚══██╔══╝██╔═══██╗████╗..██║......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ██████╔╝██║...██║...██║......██║...██║...██║██╔██╗.██║█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██╔══██╗██║...██║...██║......██║...██║...██║██║╚██╗██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ██████╔╝╚██████╔╝...██║......██║...╚██████╔╝██║.╚████║......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  ╚═════╝..╚═════╝....╚═╝......╚═╝....╚═════╝.╚═╝..╚═══╝......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  .......................................................................................................................................................
+
+@use "../tokens/colors.scss"as *;
+@use "../tokens/shadows.scss"as *;
+
+$button-background-primary-default: $brand-secondary-02;
+$button-background-primary-hover: $brand-scale-secondary-02-80;
+$button-background-primary-press: $brand-scale-secondary-02-20;
+$button-background-primary-disabled: rgba($group-01-00, 40%);
+$button-background-secondary-default:  $brand-transparent;
+$button-background-secondary-hover: rgba( $brand-primary-00,8%);
+$button-background-secondary-press: rgba( $brand-primary-00,24%);
+$button-background-secondary-disabled: $brand-transparent;
+$button-background-terciary-default:  $transversal-01-05;
+$button-background-terciary-hover: $transversal-01-09;
+$button-background-terciary-press: $transversal-01-03;
+$button-background-terciary-disabled: rgba($transversal-01-05,90%);
+$button-border-secondary: solid 1px;
+$button-border-color-secondary-enabled: $brand-primary-00;
+$button-border-color-secondary-disabled: rgba( $brand-primary-00,40%);
+$button-border-terciary: none;
+$button-border-color-terciary-enabled: none;
+$button-border-color-terciary-disabled: none;
+$button-color-text-primary-enabled: $group-00-10;
+$button-color-text-secondary-enabled: $brand-primary-00;
+$button-color-text-terciary-enabled: $transversal-01-10;
+$button-color-text-primary-disabled:  rgba( $transversal-01-10, 40%);
+$button-color-text-secondary-disabled: rgba( $brand-primary-00, 40%);
+$button-color-text-terciary-disabled: rgba( $transversal-01-10, 40%);
+$button-opacity: 0.4;
+$button-shadow:$shadow-01;
+$button-outline-color-focus: $group-02-00;
+$button-outline-color-focus-terciary: $brand-secondary-03;
+$button-font-cib-font-sans : "CIBFontSans Bold";
+$button-font-open-sans : "Open Sans";

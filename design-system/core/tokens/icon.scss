@@ -1,0 +1,35 @@
+
+@use 'path.scss' as *;
+@use '../configuration.scss' as *;
+
+$icon-functional-3xl: 64px;
+$icon-functional-2xl: 56px;
+$icon-functional-xl: 48px;
+$icon-functional-lg: 40px;
+$icon-functional-md: 32px;
+$icon-functional-sm: 24px;
+$icon-functional-xs: 16px;
+
+$icon-brand-xl: 96px;
+$icon-brand-lg: 64px;
+$icon-brand-md: 48px;
+$icon-brand-st: 32px;
+$icon-brand-sm: 24px;
+
+$icon-logo-xl: 296px;
+$icon-logo-lg: 264px;
+$icon-logo-md: 248px;
+$icon-logo-st: 132px;
+$icon-logo-sm: 124px;
+$icon-logo-xs: 116px;
+
+// @font-face {
+//   font-family: 'BC Icons';
+//   font-style: normal;
+//   font-weight: 400;
+//   src: url($path + '/assets/icons/functionals/icons.eot');
+//   src: local('BC icons'),
+//     url($path + '/assets/icons/functionals/icons.ttf') format('opentype'),
+//     url($path + '/assets/icons/functionals/icons.woff') format('woff'),
+//     url($path + '/assets/icons/functionals/icons.woff') format('svg');
+// }

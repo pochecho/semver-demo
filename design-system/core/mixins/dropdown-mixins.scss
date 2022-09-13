@@ -1,0 +1,125 @@
+//  ██████╗.██████╗..██████╗.██████╗.██████╗..██████╗.██╗....██╗███╗...██╗......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔══██╗██╔══██╗██╔═══██╗██╔══██╗██╔══██╗██╔═══██╗██║....██║████╗..██║......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║..██║██████╔╝██║...██║██████╔╝██║..██║██║...██║██║.█╗.██║██╔██╗.██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║..██║██╔══██╗██║...██║██╔═══╝.██║..██║██║...██║██║███╗██║██║╚██╗██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██████╔╝██║..██║╚██████╔╝██║.....██████╔╝╚██████╔╝╚███╔███╔╝██║.╚████║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═════╝.╚═╝..╚═╝.╚═════╝.╚═╝.....╚═════╝..╚═════╝..╚══╝╚══╝.╚═╝..╚═══╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .......................................................................................................................
+
+
+@use 'common-mixins.scss' as *;
+@use '../foundations/molecules/dropdown-foundations.scss' as *;
+@use '../configuration.scss' as *;
+
+@mixin dropdow-structure($dropdown-main) {
+  %content {
+    z-index: 9999;
+    min-width: 243px;
+    background-color: $dropdown-white-color;
+    box-shadow: $dropdown-box-shadow;
+    position: fixed;
+    overflow-y: auto;
+
+    ul {
+      list-style: none;
+      width: 100%;
+
+      li.#{$dropdown-main}-item {
+        height: min-content;
+        min-height: 48px;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+
+        a {
+          width: 100%;
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+          font-family: $dropdown-open-sans-font;
+          font-size: $dropdown-font-size-14;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: -0.20000000298023224px;
+          text-decoration: none;
+          padding: 0 16px;
+
+          .#{$prefix-lib}-icon {
+            margin-right: 19px;
+            margin-left: 0;
+          }
+        }
+
+        &::before {
+          display: none;
+        }
+
+        &:hover {
+          background-color: $dropdown-gray-color;
+        }
+      }
+    }
+  }
+
+  .#{$dropdown-main} {
+    position: relative;
+    display: inline-block;
+
+    &-triangle {
+      display: none;
+    }
+
+    .#{$dropdown-main}-toggle {
+      cursor: pointer;
+    }
+
+    .#{$dropdown-main}-content {
+      @extend %content;
+      display: none;
+      animation: $dropdown-fade-out-animation ease-in-out 0.25s;
+    }
+
+    &.#{$prefix-lib}-input-date-range{
+      display: flex;
+    }
+  }
+  .#{$dropdown-main}-active {
+    position: relative;
+    display: inline-block;
+
+    .#{$dropdown-main}-triangle {
+      width: 0;
+      height: 0;
+      border-left: $dropdown-arrow-width solid transparent;
+      border-right: $dropdown-arrow-width solid transparent;
+      border-bottom: $dropdown-arrow-width solid $dropdown-white-color;
+      position: absolute;
+      left: 50%;
+      margin-left: $dropdown-arrow-width * -1;
+      bottom: -11px;
+      z-index: 10000;
+      animation: $dropdown-fade-in-animation ease-in-out 0.25s;
+      display: block;
+      @include outline-on-focus();
+
+      &.#{$prefix-lib}-droptop {
+        bottom: auto;
+        top: -15px;
+        transform: rotate(180deg);
+      }
+    }
+
+    .#{$dropdown-main}-toggle-active {
+      cursor: pointer;
+    }
+
+    .#{$dropdown-main}-content-active {
+      @extend %content;
+      animation: $dropdown-fade-in-animation ease-in-out 0.25s;
+    }
+
+    &.#{$prefix-lib}-input-date-range{
+      display: flex;
+    }
+  }
+}

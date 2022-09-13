@@ -1,0 +1,247 @@
+//  ██╗....██╗██╗..██╗██╗████████╗███████╗.████████╗██╗..██╗███████╗███╗...███╗███████╗
+//  ██║....██║██║..██║██║╚══██╔══╝██╔════╝.╚══██╔══╝██║..██║██╔════╝████╗.████║██╔════╝
+//  ██║.█╗.██║███████║██║...██║...█████╗█████╗██║...███████║█████╗..██╔████╔██║█████╗..
+//  ██║███╗██║██╔══██║██║...██║...██╔══╝╚════╝██║...██╔══██║██╔══╝..██║╚██╔╝██║██╔══╝..
+//  ╚███╔███╔╝██║..██║██║...██║...███████╗....██║...██║..██║███████╗██║.╚═╝.██║███████╗
+//  .╚══╝╚══╝.╚═╝..╚═╝╚═╝...╚═╝...╚══════╝....╚═╝...╚═╝..╚═╝╚══════╝╚═╝.....╚═╝╚══════╝
+//  ...................................................................................
+$brand-primary-00: #2C2A29;
+$brand-primary-01: #ffffff;
+$brand-primary-02: #f4f4f4;
+$brand-secondary-00: #00c389;
+$brand-secondary-01: #ff7f41;
+$brand-secondary-02: #fdda24;
+$brand-secondary-03: #59cbe8;
+$brand-secondary-04: #9063cd;
+$brand-secondary-05: #f5b6cd;
+$brand-scale-primary-00-80: adjust-color($brand-primary-00, $red: 12, $green: 13, $blue: 13);
+$brand-scale-primary-00-60: adjust-color($brand-primary-00, $red: 32, $green: 32, $blue: 32);
+$brand-scale-primary-00-40: adjust-color($brand-primary-00, $red: 160, $green: 162, $blue: 163);
+$brand-scale-primary-00-20: adjust-color($brand-primary-00, $red: 182, $green: 184, $blue: 185);
+$brand-scale-secondary-02-80: adjust-color($brand-secondary-02, $red: 0, $green: -18, $blue: 6);
+$brand-scale-secondary-02-60: $brand-secondary-02;
+$brand-scale-secondary-02-40: adjust-color($brand-secondary-02, $red: 1, $green: 15, $blue: 88);
+$brand-scale-secondary-02-20: adjust-color($brand-secondary-02, $red: 2, $green: 25, $blue: 147);
+$brand-scale-secondary-02-08: adjust-color($brand-secondary-02, $alpha: -0.92);
+$group-00-240: #F4F4F4;
+$group-00-230: #ffffff;
+$group-00-220: #ffffff;
+$group-00-210: #FFFFFF;
+$group-00-200: #CCCCCC;
+$group-00-190: #2C2A29;
+$group-00-180: #4C4A49;
+$group-00-170: #2C2A2944;
+$group-00-160: #2C2A29;
+$group-00-150: #e2e2e2;
+$group-00-140: #cccccc;
+$group-00-130: #2C2A29;
+$group-00-120: #ffffff;
+$group-00-110: #E2E2E2;
+$group-00-100: #ffffff;
+$group-00-90: #2C2A29;
+$group-00-80: #f4f4f4;
+$group-00-70: #F4F4F4;
+$group-00-60: #4C4A49;
+$group-00-50: #ffffff;
+$group-00-40: #ccc;
+$group-00-30: #383736;
+$group-00-20: #e2e2e2;
+$group-00-10: #292929;
+$group-00-00: #ccc;
+$group-01-00: #dadada;
+$group-02-00: #3455DB;
+$group-03-00: #59cbe8;
+$transversal-00-00: #fdda24;
+$transversal-00-01: #fdc82a;
+$transversal-00-02: #fee97c;
+$transversal-01-00: #292929;
+$transversal-01-01: #383736;
+$transversal-01-02: #4c4a49;
+$transversal-01-03: #cccccc;
+$transversal-01-04: #e2e2e2;
+$transversal-01-05: #ffffff;
+$transversal-01-06: #747779;
+$transversal-01-07: #808285;
+$transversal-01-08: #808285;
+$transversal-01-09: #f4f4f4;
+$transversal-01-10: #2C2A29;
+$transversal-01-11: #616161;
+$brand-transparent: #fff0;
+$complementary-00: #03814a;
+$complementary-01: #e20201;
+$complementary-02: #00448d;
+
+//-------------------------------------------------------------
+
+// Primary
+$bc-brand-primary-00: #2C2A29;
+$bc-brand-primary-01: #ffffff;
+$bc-brand-primary-02: #ABA59D;
+
+// Complementary
+$bc-brand-complementary-00: #038144;
+$bc-brand-complementary-01: #E20201;
+$bc-brand-complementary-03: #3455DB;
+$bc-brand-complementary-04: #69CC96;
+$bc-brand-complementary-05: #FF8389;
+$bc-brand-complementary-06: #59CBE8;
+
+// Status
+$bc-brand-status-success: #00C389;
+$bc-brand-status-wrong: #FF7F41;
+$bc-brand-status-warning: #FDDA24;
+$bc-brand-status-info: #59CBE8;
+$bc-brand-status-generic: #F4F4F4;
+
+// Secuenciales
+$bc-brand-sequential-N-900: #353537;
+$bc-brand-sequential-N-800: #454648;
+$bc-brand-sequential-N-700: #595a5c;
+$bc-brand-sequential-N-600: #727476;
+$bc-brand-sequential-N-500: #7d7f82;
+$bc-brand-sequential-N-400: #97999b;
+$bc-brand-sequential-N-300: #a8a9ab;
+$bc-brand-sequential-N-200: #c3c4c6;
+$bc-brand-sequential-N-100: #d7d7d8;
+$bc-brand-sequential-N-50: #f2f2f3;
+
+$bc-brand-sequential-M-900: #6a5c0f;
+$bc-brand-sequential-M-800: #867313;
+$bc-brand-sequential-M-700: #b49b1a;
+$bc-brand-sequential-M-600: #e6c621;
+$bc-brand-sequential-M-500: #fdda24;
+$bc-brand-sequential-M-400: #fde150;
+$bc-brand-sequential-M-300: #FEE66C;
+$bc-brand-sequential-M-200: #feee9a;
+$bc-brand-sequential-M-100: #fef4bb;
+$bc-brand-sequential-M-50: #fffbe9;
+
+$bc-brand-sequential-A-900: #084a37;
+$bc-brand-sequential-A-800: #086348;
+$bc-brand-sequential-A-700: #07835e;
+$bc-brand-sequential-A-600: #04ad7b;
+$bc-brand-sequential-A-500: #00C389;
+$bc-brand-sequential-A-400: #20dfa7;
+$bc-brand-sequential-A-300: #57DBB4;
+$bc-brand-sequential-A-200: #8ae3c9;
+$bc-brand-sequential-A-100: #B0ECDA;
+$bc-brand-sequential-A-50: #E6F9F3;
+
+$bc-brand-sequential-C-900: #294D56;
+$bc-brand-sequential-C-800: #356E7C;
+$bc-brand-sequential-C-700: #3F90A5;
+$bc-brand-sequential-C-600: #51B9D3;
+$bc-brand-sequential-C-500: #59CBE8;
+$bc-brand-sequential-C-400: #7AD5ED;
+$bc-brand-sequential-C-300: #90DCF0;
+$bc-brand-sequential-C-200: #B3E7F4;
+$bc-brand-sequential-C-100: #CCEFF8;
+$bc-brand-sequential-C-50: #EEFAFD;
+
+$bc-brand-sequential-O-900: #3C2A56;
+$bc-brand-sequential-O-800: #4f3671;
+$bc-brand-sequential-O-700: #664692;
+$bc-brand-sequential-O-600: #835ABB;
+$bc-brand-sequential-O-500: #9063CD;
+$bc-brand-sequential-O-400: #a682d7;
+$bc-brand-sequential-O-300: #B596DE;
+$bc-brand-sequential-O-200: #ccb7e8;
+$bc-brand-sequential-O-100: #DDCFF0;
+$bc-brand-sequential-O-50: #F4EFFA;
+
+$bc-brand-sequential-AL-900: #6B351B;
+$bc-brand-sequential-AL-800: #8c4624;
+$bc-brand-sequential-AL-700: #B55A2E;
+$bc-brand-sequential-AL-600: #E8743B;
+$bc-brand-sequential-AL-500: #FF7F41;
+$bc-brand-sequential-AL-400: #ff9967;
+$bc-brand-sequential-AL-300: #FFA980;
+$bc-brand-sequential-AL-200: #ffc4a8;
+$bc-brand-sequential-AL-100: #FFD7C4;
+$bc-brand-sequential-AL-50: #FFF2EC;
+
+$bc-brand-sequential-F-900: #58414a;
+$bc-brand-sequential-F-800: #755762;
+$bc-brand-sequential-F-700: #AE8192;
+$bc-brand-sequential-F-600: #DFA6BB;
+$bc-brand-sequential-F-500: #F5B6CD;
+$bc-brand-sequential-F-400: #f7c5d7;
+$bc-brand-sequential-F-300: #F8CEDE;
+$bc-brand-sequential-F-200: #fadde8;
+$bc-brand-sequential-F-100: #FCE8F0;
+$bc-brand-sequential-F-50: #FEF8FA;
+
+
+// Dataviz Colors ---------------
+// Secuenciales
+$bc-data-00-900: #290347;
+$bc-data-00-700: #3E046A;
+$bc-data-00-600: #52068E;
+$bc-data-00-500: #6707B1;
+$bc-data-00-300: #8539C1;
+$bc-data-00-200: #A46AD0;
+$bc-data-00-100: #C29CE0;
+
+$bc-data-01-900: #521919;
+$bc-data-01-700: #7B2626;
+$bc-data-01-600: #A43232;
+$bc-data-01-500: #CD3F3F;
+$bc-data-01-300: #D76565;
+$bc-data-01-200: #E18C8C;
+$bc-data-01-100: #EBB2B2;
+
+$bc-data-02-900: #5F2F0D;
+$bc-data-02-700: #8E4713;
+$bc-data-02-600: #BE5E1A;
+$bc-data-02-500: #ED7620;
+$bc-data-02-300: #F1914D;
+$bc-data-02-200: #F4AD79;
+$bc-data-02-100: #F8C8A6;
+
+$bc-data-03-900: #3F3518;
+$bc-data-03-700: #5F5023;
+$bc-data-03-600: #7E6A2F;
+$bc-data-03-500: #9E853B;
+$bc-data-03-300: #B19D62;
+$bc-data-03-200: #C5B689;
+$bc-data-03-100: #D8CEB1;
+
+$bc-data-04-900: #5B2D32;
+$bc-data-04-700: #89444B;
+$bc-data-04-600: #B65A64;
+$bc-data-04-500: #E4717D;
+$bc-data-04-300: #E98D97;
+$bc-data-04-200: #EFAAB1;
+$bc-data-04-100: #F4C6CB;
+
+$bc-data-05-900: #00422E;
+$bc-data-05-700: #006346;
+$bc-data-05-600: #00845D;
+$bc-data-05-500: #00A574;
+$bc-data-05-300: #33B790;
+$bc-data-05-200: #66C9AC;
+$bc-data-05-100: #99DBC7;
+
+$bc-data-06-900: #133F56;
+$bc-data-06-700: #1D5F81;
+$bc-data-06-600: #267EAC;
+$bc-data-06-500: #1EA1E4;
+$bc-data-06-300: #59B1DF;
+$bc-data-06-200: #83C5E7;
+$bc-data-06-100: #ACD8EF;
+
+$bc-data-07-900: #0C1F4E;
+$bc-data-07-700: #122E76;
+$bc-data-07-600: #183E9D;
+$bc-data-07-500: #1E4DC4;
+$bc-data-07-300: #4B71D0;
+$bc-data-07-200: #7894DC;
+$bc-data-07-100: #A5B8E7;
+
+$bc-data-08-900: #3F3F3F;
+$bc-data-08-700: #5F5F5F;
+$bc-data-08-600: #7E7E7E;
+$bc-data-08-500: #888888;
+$bc-data-08-300: #B1B1B1;
+$bc-data-08-200: #C5C5C5;
+$bc-data-08-100: #D8D8D8;

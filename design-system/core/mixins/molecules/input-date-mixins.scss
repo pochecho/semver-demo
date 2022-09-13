@@ -1,0 +1,67 @@
+//  ██╗███╗...██╗██████╗.██╗...██╗████████╗...██████╗..█████╗.████████╗███████╗....███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██║████╗..██║██╔══██╗██║...██║╚══██╔══╝...██╔══██╗██╔══██╗╚══██╔══╝██╔════╝....████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║██╔██╗.██║██████╔╝██║...██║...██║█████╗██║..██║███████║...██║...█████╗█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║██║╚██╗██║██╔═══╝.██║...██║...██║╚════╝██║..██║██╔══██║...██║...██╔══╝╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║██║.╚████║██║.....╚██████╔╝...██║......██████╔╝██║..██║...██║...███████╗....██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝╚═╝..╚═══╝╚═╝......╚═════╝....╚═╝......╚═════╝.╚═╝..╚═╝...╚═╝...╚══════╝....╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ..........................................................................................................................
+
+@use '../../mixins/common-mixins.scss' as *;
+@use '../../foundations/molecules/input-date-foundations.scss' as *;
+@use '../../foundations/organisms/calendar-foundations.scss' as *;
+
+@mixin input-date() {
+  background-color: $input-date-background;
+  text-transform: uppercase;
+  padding: 0;
+  size: $input-date-size-font;
+  font-weight: $input-date-font-weight;
+  line-height: $input-date-line-height;
+  letter-spacing: -0.3px;
+  font-family: $input-date-font;
+
+  &::-webkit-inner-spin-button {
+    display: none;
+    }
+
+  &::-webkit-calendar-picker-indicator {
+    background: none;
+    padding: 0;
+  }
+}
+
+@mixin buttons($button-width:70%) {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (max-width: $sm) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    width: $button-width;
+    margin: $bc-calendar-space-01;
+    @media only screen and (max-width: $sm) {
+      width: 80%;
+    }
+  }
+  a{
+    cursor: pointer;
+  }
+  
+}
+
+@mixin mobileTextMonht($font-size:$bc-caledar-font-size-01) {
+  font-family: $bc-calendar-font-cib-font-sans;
+  font-weight: $bc-caledar-font-weight-02;
+  font-size: $font-size;
+  
+}
+
+
+
+

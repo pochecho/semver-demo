@@ -1,0 +1,30 @@
+//  .█████╗..██████╗.██████╗.██████╗.██████╗.██████╗.██╗.██████╗.███╗...██╗......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██╔══██╗██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔══██╗██║██╔═══██╗████╗..██║......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ███████║██║.....██║.....██║...██║██████╔╝██║..██║██║██║...██║██╔██╗.██║█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██╔══██║██║.....██║.....██║...██║██╔══██╗██║..██║██║██║...██║██║╚██╗██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ██║..██║╚██████╗╚██████╗╚██████╔╝██║..██║██████╔╝██║╚██████╔╝██║.╚████║......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  ╚═╝..╚═╝.╚═════╝.╚═════╝.╚═════╝.╚═╝..╚═╝╚═════╝.╚═╝.╚═════╝.╚═╝..╚═══╝......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  ........................................................................................................................................................................
+
+@use "../tokens/colors.scss" as *;
+@use "../tokens/typo.scss" as *;
+@use './layout-foundations.scss'as *;
+
+
+$accordion-bg-header-active : $group-00-90;
+$accordion-bg-header-text : $brand-primary-00;
+$accordion-bg-header-active-text : $transversal-01-05;
+$accordion-bg-content : $group-00-50;
+$accordion-border-color : $brand-primary-00;
+$accordion-bg-color : $brand-primary-01;
+$accordion-bg-disabled : $group-00-20;
+$accordion-bg-header-disabled-text : $transversal-01-03;
+$accordion-header-title-size : $font-size-p;
+$accordion-header-subtitle-size : $font-size-p-small;
+$accordion-font-open-sans : "Open Sans";
+$accordion-font-open-sans-semibold : "Open Sans SemiBold";
+$accordion-font-open-sans-bold : "Open Sans Bold";
+$accordion-font-cibfont-sans : "CIBFontSans Bold";
+$accordion-outline-color : $group-02-00;
+$accordion-breakpoint-sm: map-get($map: $grid-configuration, $key: md);
+$accordion-breakpoint-sm-max-width: map-get($map: $accordion-breakpoint-sm, $key: viewport-min-width);

@@ -1,0 +1,59 @@
+
+//  .██████╗.██╗...██╗████████╗████████╗███████╗██████╗.......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝.██║...██║╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║..███╗██║...██║...██║......██║...█████╗..██████╔╝█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║...██║██║...██║...██║......██║...██╔══╝..██╔══██╗╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ╚██████╔╝╚██████╔╝...██║......██║...███████╗██║..██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  .╚═════╝..╚═════╝....╚═╝......╚═╝...╚══════╝╚═╝..╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  .....................................................................................................
+
+
+@use '../../foundations/layout-foundations.scss' as *;
+@use '../../configuration.scss' as *;
+@use 'sass:math';
+
+@mixin make-gutter( $settings: $grid-configuration ) {
+    
+  @each $breakpoint-name, $configuration in $settings {
+
+    $viewport-min-width: map-get($map: $configuration, $key: viewport-min-width);
+    $viewport-max-width: map-get($map: $configuration, $key: viewport-max-width);
+    $gutters: map-get($map: $configuration, $key: gutter);
+    
+    @if not( $breakpoint-name == xs or $breakpoint-name == sm ){
+      @media (min-width: $viewport-min-width) and (max-width: $viewport-max-width) {
+        @each $gutter in $gutters {              
+          .#{$prefix-lib}-gutter-#{$breakpoint-name}-#{$gutter}{
+            &.#{$prefix-lib}-row{
+              margin-right: #{math.div(-$gutter, 2)}px;
+              margin-left: #{math.div(-$gutter, 2)}px;
+              > [class*='#{$prefix-lib}-col']{
+                padding-right: #{math.div($gutter, 2)}px;
+                padding-left: #{math.div($gutter, 2)}px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  $breakpoint-md: map-get($map: $settings, $key: md);
+  $gutters: map-get($map: $breakpoint-md, $key: gutter);
+  $viewport-min-width: map-get($map: $breakpoint-md, $key: viewport-min-width);
+
+  @each $gutter in $gutters {
+    @media (min-width: $viewport-min-width) {
+      .#{$prefix-lib}-gutter-#{$gutter}{
+        &.#{$prefix-lib}-row{
+          margin-right: #{math.div(-$gutter, 2)}px;
+          margin-left: #{math.div(-$gutter, 2)}px;
+          > [class*='#{$prefix-lib}-col']{
+            padding-right: #{math.div($gutter, 2)}px;
+            padding-left: #{math.div($gutter, 2)}px;
+          }
+        }
+      }
+    }
+  }
+}

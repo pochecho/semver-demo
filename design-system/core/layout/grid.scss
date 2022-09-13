@@ -1,0 +1,92 @@
+//  .██████╗.██████╗.██╗██████╗.
+//  ██╔════╝.██╔══██╗██║██╔══██╗
+//  ██║..███╗██████╔╝██║██║..██║
+//  ██║...██║██╔══██╗██║██║..██║
+//  ╚██████╔╝██║..██║██║██████╔╝
+//  .╚═════╝.╚═╝..╚═╝╚═╝╚═════╝.
+//  ............................
+
+@use '../mixins/layout/align-content-mixins.scss' as *;
+@use '../mixins/layout/alignment-mixins.scss' as *;
+@use '../mixins/layout/direction-mixins.scss' as *;
+@use '../mixins/layout/gutter-mixins.scss' as *;
+@use '../mixins/layout/display-mixins.scss' as *;
+@use '../mixins/layout/element-space-mixins.scss' as *;
+@use '../mixins/layout/order-mixins.scss' as *;
+@use '../mixins/layout/wrap-mixins.scss' as *;
+@use '../configuration.scss' as *;
+@use '../foundations/layout-foundations.scss' as *;
+@use '../mixins/layout/grid-mixins.scss' as *;
+@use '../mixins/layout/breakpoints-mixins.scss' as *;
+
+@include generate-justify-content();
+
+@include generate-alignment-content();
+
+@include generate-alignment();
+
+@include generate-direction();
+
+@include hidden();
+
+@include block();
+
+@include element-space('padding', 'p');
+
+@include element-space('margin', 'm');
+
+.#{$prefix-lib}-container-solid {
+  background-color: $container-solid-background;
+}
+
+@include generate-order();
+
+@include wrap();
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  @include border-box;
+}
+
+[class*='bc-col-'] {
+  float: left;
+  min-height: 1px;
+}
+
+@if $enable-grid-classes {
+  .#{$prefix-lib}-container {
+    @include make-container();
+    @include make-container-max-widths();
+  }
+  .#{$prefix-lib}-container-fluid {
+    @include make-container();
+  }
+}
+@if $enable-grid-classes {
+  .#{$prefix-lib}-row {
+    @include make-row();
+  }
+
+  .#{$prefix-lib}-no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .#{$prefix-lib}-col,
+    > [class*='col-'] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+@if $enable-grid-classes {
+  @include make-gutter();
+  @include make-grid-columns();
+}
+
+.#{$prefix-lib}-flex {
+  display: flex;
+}

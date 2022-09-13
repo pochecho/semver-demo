@@ -1,0 +1,60 @@
+//  ███████╗.██████╗..██████╗.████████╗███████╗██████╗.......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝██╔═══██╗██╔═══██╗╚══██╔══╝██╔════╝██╔══██╗......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  █████╗..██║...██║██║...██║...██║...█████╗..██████╔╝█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██╔══╝..██║...██║██║...██║...██║...██╔══╝..██╔══██╗╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║.....╚██████╔╝╚██████╔╝...██║...███████╗██║..██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝......╚═════╝..╚═════╝....╚═╝...╚══════╝╚═╝..╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ....................................................................................................
+
+
+@use '../../mixins/media-queries-mixins.scss' as *;
+@use '../../foundations/organisms/footer-foundations.scss' as *;
+
+@mixin footer_container_icon($float: none, $display: none) {
+  float: $float;
+  display: $display;
+}
+
+@mixin footer_divisor($width: 100%) {
+  width: $width;
+  height: 1px;
+  border-radius: 4px;
+  background: $footer-divisor-color;
+}
+
+@mixin footer_top($display: flex) {
+  display: $display;
+}
+
+@mixin footer_link() {
+  all: unset;
+  color: $footer-link-color;
+  cursor: pointer;
+}
+
+@mixin footer_top_links($align: flex-end) {
+  display: flex;
+  justify-content: $align;
+}
+
+@mixin hidden_mobile() {
+  @include media_sm {
+    display: none;
+  }
+
+  @include media_xs {
+    display: none;
+  }
+
+  @include media_md {
+    display: block;
+  }
+
+  @include media_lg {
+    display: block;
+  }
+
+  @include media_xl {
+    display: block;
+  }
+}

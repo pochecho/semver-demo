@@ -1,0 +1,68 @@
+//  ████████╗██╗...██╗██████╗..██████╗.
+//  ╚══██╔══╝╚██╗.██╔╝██╔══██╗██╔═══██╗
+//  ...██║....╚████╔╝.██████╔╝██║...██║
+//  ...██║.....╚██╔╝..██╔═══╝.██║...██║
+//  ...██║......██║...██║.....╚██████╔╝
+//  ...╚═╝......╚═╝...╚═╝......╚═════╝.
+//  ...................................
+
+// @use 'path.scss' as *;
+
+// @font-face {
+//   font-family: "Nunito Bold";
+//   src: url($path + "/assets/fonts/Nunito/Nunito-Bold.ttf") format("opentype");
+// }
+
+// @font-face {
+//   font-family: "Nunito ExtraBold";
+//   src: url($path + "/assets/fonts/Nunito/Nunito-ExtraBold.ttf") format("opentype");
+// }
+
+// @font-face {
+//   font-family: "Open Sans";
+//   src: url($path + "/assets/fonts/Open_Sans/OpenSans-Regular.ttf") format("opentype");
+// }
+
+// @font-face {
+//   font-family: "CIBFontSans Bold";
+//   src: url($path + "/assets/fonts/CIBFont/CIBFontSans-Bold.ttf") format("opentype");
+// }
+
+// @font-face {
+//   font-family: "CIBFontSans Light";
+//   src: url($path + "/assets/fonts/CIBFont/CIBFontSans-Light.ttf") format("opentype");
+// }
+
+// @font-face {
+//   font-family: "CIBFontSerif Bold";
+//   src: url($path + "/assets/fonts/CIBFont/CIBFontSerif-Bold.ttf") format("opentype");
+// }
+
+// @font-face {
+//   font-family: "Open Sans SemiBold";
+//   src: url($path + '/assets/fonts/Open_Sans/OpenSans-SemiBold.ttf') format("opentype");
+// }
+
+// @font-face {
+//   font-family: "Open Sans Bold";
+//   src: url($path + '/assets/fonts/Open_Sans/OpenSans-Bold.ttf') format("opentype");
+// }
+
+
+
+$font-size-h1-display1: 96px;
+$font-size-h1-display2: 88px;
+$font-size-h1-display3: 72px;
+$font-size-h1-display4: 56px;
+$font-size-h1: 40px;
+$font-size-h2: 32px;
+$font-size-h3: 28px;
+$font-size-h4: 24px;
+$font-size-h5: 20px;
+$font-size-h6: 16px;
+$font-size-p: 16px;
+$font-size-p-small: 14px;
+$font-size-p-x-small: 12px;
+$font-size-label: 16px;
+$font-size-label-small: 14px;
+$font-size-a: 16px;

@@ -1,0 +1,28 @@
+<header
+  aria-expanded="false"
+  aria-controls="45"
+  id="header"
+  aria-labelledby="accordion-title-basic"
+>
+  <section class="bc-accordion-header-left">
+    <{prefix}-icon aria-hidden="true" name="{icon-left}">
+    </{prefix}-icon>
+
+    <section class="bc-accordion-text-container">
+      <h6 class="bc-accordion-title" id="accordion-title-basic">
+        Acordeón básico
+      </h6>
+    </section>
+  </section>
+  <section class="bc-accordion-header-right">
+    <{prefix}-icon aria-hidden="true" id="toggle-button" name="expand_more">
+    </{prefix}-icon>
+  </section>
+</header>
+<section
+  class="bc-accordion-content"
+  role="region"
+  aria-labelledby="accordion-title-basic"
+>
+  <slot></slot>
+</section>

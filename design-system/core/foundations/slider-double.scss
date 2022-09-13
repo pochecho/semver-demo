@@ -1,0 +1,117 @@
+
+//  ███████╗██╗.....██╗██████╗.███████╗██████╗.......██████╗..██████╗.██╗...██╗██████╗.██╗.....███████╗
+//  ██╔════╝██║.....██║██╔══██╗██╔════╝██╔══██╗......██╔══██╗██╔═══██╗██║...██║██╔══██╗██║.....██╔════╝
+//  ███████╗██║.....██║██║..██║█████╗..██████╔╝█████╗██║..██║██║...██║██║...██║██████╔╝██║.....█████╗..
+//  ╚════██║██║.....██║██║..██║██╔══╝..██╔══██╗╚════╝██║..██║██║...██║██║...██║██╔══██╗██║.....██╔══╝..
+//  ███████║███████╗██║██████╔╝███████╗██║..██║......██████╔╝╚██████╔╝╚██████╔╝██████╔╝███████╗███████╗
+//  ╚══════╝╚══════╝╚═╝╚═════╝.╚══════╝╚═╝..╚═╝......╚═════╝..╚═════╝..╚═════╝.╚═════╝.╚══════╝╚══════╝
+//  ...................................................................................................
+
+@use "../../mixins/atoms/slider-mixins.scss" as *;
+@use "../../mixins/common-mixins.scss" as *;
+@use "../../foundations/atoms/slider-foundations.scss" as *;
+@use '../../configuration.scss' as *;
+@use 'sass:math';
+
+$namespace: "slider";
+$slider-namespace: #{$prefix-lib}-#{$namespace};
+
+%position-style {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+}
+
+.#{$slider-namespace}-double-container {
+    position: relative;
+    width: $slider-track-width;
+    .#{$namespace} {
+        position: relative;
+        z-index: 1;
+        height: math.div($slider-track-height, 2);
+        margin: 0 0px;
+        .track {
+            @extend %position-style;
+            z-index: 1;
+            left: 0;
+            right: 0;
+            background-color: $slider-track-color;
+        }
+        .range {
+            @extend %position-style;
+            z-index: 2;
+            left: 25%;
+            right: 25%;
+            background-color: $brand-secondary-02;
+            height: $slider-track-height;
+            transform: translateY(-2px);
+        }
+        .thumb {
+            position: absolute;
+            z-index: 3;
+            margin-top: $slider-wrapper;
+            background-color: $brand-secondary-02;
+        }
+    }
+    .#{$slider-namespace}-thumb-left,
+    .#{$slider-namespace}-thumb-right {
+        position: absolute;
+        margin-top: -18px;
+        margin-left: -15px;
+        min-height: $slider-thumb-dimention;
+        min-width: $slider-thumb-dimention;
+        border-radius: 80%;
+        @include outline-on-focus;
+    }
+}
+
+.#{$slider-namespace}-dual {
+    -webkit-appearance: none;
+    pointer-events: none;
+    position: absolute;
+    outline: none;
+    z-index: 2;
+    height: $slider-track-height;
+    width: $slider-track-width;
+    background: transparent;
+
+    &::-webkit-slider-thumb {
+        pointer-events: all;
+        @include slider-thumb-double($slider-thumb-width);
+        border: 0 none;
+        -webkit-appearance: none;
+    }
+    &::-webkit-slider-runnable-track {
+        pointer-events: none;
+    }
+    &::-moz-range-thumb {
+        -moz-appearance: none;
+        pointer-events: all;
+        @include slider-thumb-double($slider-thumb-width);
+        border: 0 none;
+    }
+    &::-ms-track {
+        pointer-events: none;
+        height: $slider-double-track-height;
+        background: transparent;
+        border-color: transparent;
+        border-width: $slider-double-fill 0;
+        color: transparent;
+    }
+    &::-ms-fill-lower,
+    ::-ms-fill-upper {
+        height: $slider-double-fill;
+        background-color: transparent;
+    }
+    &::-ms-thumb {
+        height: $slider-double-fill;
+        pointer-events: all;
+        @include slider-thumb-double($slider-thumb-width);
+    }
+    &::-webkit-slider-thumb:hover {
+      @include slider-thumb-double($slider-thumb-animation);
+      animation: fade-in 100ms;
+      animation: fade-out 75ms;
+    }
+}

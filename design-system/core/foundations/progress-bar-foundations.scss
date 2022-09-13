@@ -1,0 +1,46 @@
+//  ██████╗.██████╗..██████╗..██████╗.██████╗.███████╗███████╗███████╗......██████╗..█████╗.██████╗.......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██╔══██╗██╔══██╗██╔═══██╗██╔════╝.██╔══██╗██╔════╝██╔════╝██╔════╝......██╔══██╗██╔══██╗██╔══██╗......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ██████╔╝██████╔╝██║...██║██║..███╗██████╔╝█████╗..███████╗███████╗█████╗██████╔╝███████║██████╔╝█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ██╔═══╝.██╔══██╗██║...██║██║...██║██╔══██╗██╔══╝..╚════██║╚════██║╚════╝██╔══██╗██╔══██║██╔══██╗╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  ██║.....██║..██║╚██████╔╝╚██████╔╝██║..██║███████╗███████║███████║......██████╔╝██║..██║██║..██║......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  ╚═╝.....╚═╝..╚═╝.╚═════╝..╚═════╝.╚═╝..╚═╝╚══════╝╚══════╝╚══════╝......╚═════╝.╚═╝..╚═╝╚═╝..╚═╝......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  .................................................................................................................................................................................................
+
+@use '../../tokens/colors.scss' as *;
+@use '../../tokens/typo.scss' as *;
+@use '../../tokens/spacing' as *;
+
+$progress-bar: $brand-primary-00;
+$progress-container-color:$brand-primary-01;
+$progress-value-default: $brand-secondary-02;
+
+$progress-value-green: $brand-secondary-00; //#00c389;
+$progress-value-orange: $brand-secondary-01; //#ff7f41;
+$progress-value-yellow: $brand-secondary-02; //#fdda24;
+$progress-value-blue: $brand-secondary-03; //#59cbe8;
+$progress-value-purple: $brand-secondary-04; //#9063cd;
+$progress-value-pink: $brand-secondary-05; //#f5b6cd;
+
+$progress-text-color: $brand-primary-01;
+$progress-text-size: $font-size-p-small;
+$progress-heading-1: $font-size-h1;
+$progress-heading-4: $font-size-h4;
+$progress-heading-5: $font-size-h5;
+$progress-heading-6: $font-size-h6;
+$progress-display3: $font-size-h1-display3;
+
+$available-colors: (
+    "green": $brand-secondary-00,
+    "orange": $brand-secondary-01,
+    "blue": $brand-secondary-03,
+    "purple": $brand-secondary-04,
+    "pink": $brand-secondary-05,
+);
+
+$progress-bar-padding-2: $space * 2;
+$progress-bar-padding-3: $space * 3;
+$progress-bar-padding-4: $space * 4;
+$progress-bar-padding-5: $space * 5;
+$progress-bar-padding: $space;
+$progress-bar-max-width: $space*42.5;
+$progress-bar-min-width: $space*35;

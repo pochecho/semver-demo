@@ -12,6 +12,7 @@ const CATEGORY_IMG = [
   { label: "Molecule", img: "./assets/molecule.jpg" },
   { label: "Cell", img: "./assets/cell.jpg" },
   { label: "Tissue", img: "./assets/tissue.jpg" },
+  { label: "Organ", img: "./assets/organ.jpg" },
   { label: "Organism", img: "./assets/organism.jpg" },
 ];
 
@@ -24,6 +25,7 @@ function createModel(data, categoryImgMapper) {
       key: component["name"],
       name: component["name"].split("-").join(" ").toUpperCase(),
       category: category["label"],
+      level: component["level"],
       source: category["img"],
     });
     const links = component["components"];
@@ -58,6 +60,7 @@ function createModel(data, categoryImgMapper) {
         background: "white",
       }).bind("source")
     )
+
     .add(
       new go.TextBlock("Default Text", {
         margin: 6,
@@ -65,12 +68,20 @@ function createModel(data, categoryImgMapper) {
         font: "bold 16px sans-serif",
       }).bind("text", "name")
     )
+    // .add(new go.Panel("Auto", {name: "PANEL"},))
     .add(
       new go.TextBlock("Default Text", {
         margin: 6,
         stroke: "black",
         font: " 13px sans-serif",
       }).bind("text", "category")
+    )
+    .add(
+      new go.TextBlock("Default Text", {
+        margin: 6,
+        stroke: "gray",
+        font: " 10px sans-serif",
+      }).bind("text", "level")
     );
 
   const model = new go.GraphLinksModel();

@@ -1,0 +1,39 @@
+//  ███████╗██╗██╗..████████╗███████╗██████╗.......██╗......█████╗.██████╗.███████╗██╗......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝██║██║..╚══██╔══╝██╔════╝██╔══██╗......██║.....██╔══██╗██╔══██╗██╔════╝██║......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  █████╗..██║██║.....██║...█████╗..██████╔╝█████╗██║.....███████║██████╔╝█████╗..██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██╔══╝..██║██║.....██║...██╔══╝..██╔══██╗╚════╝██║.....██╔══██║██╔══██╗██╔══╝..██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║.....██║███████╗██║...███████╗██║..██║......███████╗██║..██║██████╔╝███████╗███████╗.██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝.....╚═╝╚══════╝╚═╝...╚══════╝╚═╝..╚═╝......╚══════╝╚═╝..╚═╝╚═════╝.╚══════╝╚══════╝.╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ...................................................................................................................................
+
+@use "../../foundations/molecules/tag-foundations.scss" as *;
+ 
+@mixin style-tag(
+    $default-background: $tag-background-default,
+    $default-text-color: $tag-text-color-default,
+
+    $hover-background: $tag-background-hover,
+    $hover-text-color: $tag-text-color-hover,
+
+    $active-background: $tag-background-active,
+    $active-text-color: $tag-text-color-active,
+
+    $active-hover-text-color-selected: none,
+    $box-shadow: $tag-box-shadow
+) {
+    background-color: $default-background;
+    color: $default-text-color;
+    box-shadow: $box-shadow;
+    &:hover {
+        background-color: $hover-background;
+        @if $active-hover-text-color-selected != none {
+            color: $active-hover-text-color-selected;
+        }
+    }
+    &:active {
+        background-color: $active-background;
+        @if $active-hover-text-color-selected != none {
+            color: $active-hover-text-color-selected;
+        }
+    }
+}

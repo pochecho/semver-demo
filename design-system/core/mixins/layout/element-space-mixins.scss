@@ -1,0 +1,89 @@
+//  ███████╗██╗.....███████╗███╗...███╗███████╗███╗...██╗████████╗...███████╗██████╗..█████╗..██████╗███████╗....███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔════╝██║.....██╔════╝████╗.████║██╔════╝████╗..██║╚══██╔══╝...██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝....████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  █████╗..██║.....█████╗..██╔████╔██║█████╗..██╔██╗.██║...██║█████╗███████╗██████╔╝███████║██║.....█████╗█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██╔══╝..██║.....██╔══╝..██║╚██╔╝██║██╔══╝..██║╚██╗██║...██║╚════╝╚════██║██╔═══╝.██╔══██║██║.....██╔══╝╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ███████╗███████╗███████╗██║.╚═╝.██║███████╗██║.╚████║...██║......███████║██║.....██║..██║╚██████╗███████╗....██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚══════╝╚══════╝╚══════╝╚═╝.....╚═╝╚══════╝╚═╝..╚═══╝...╚═╝......╚══════╝╚═╝.....╚═╝..╚═╝.╚═════╝╚══════╝....╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ........................................................................................................................................................
+
+@use '../../tokens/spacing.scss' as *;
+@use '../../foundations/layout-foundations.scss' as *;
+@use './breakpoints-mixins.scss' as *;
+@use '../../configuration.scss' as *;
+
+@mixin element-space($property, $identificator, $breakpoints: $grid-breakpoints) {
+  @each $i in $values {
+    @each $type in $types {
+
+
+      .#{$prefix-lib}-#{$property}-#{$type}-#{$i} {
+        #{$property}-#{$type}: $space * $i;
+      }
+
+      .#{$prefix-lib}-#{$property}-#{$type}-auto {
+        #{$property}-#{$type}: auto;
+      }
+
+      .#{$prefix-lib}-#{$property}-#{$type}-0 {
+        #{$property}-#{$type}: 0;
+      }
+
+      .#{$prefix-lib}-#{$property}-#{$i} {
+        #{$property}: $space * $i;
+      }
+
+      .#{$prefix-lib}-#{$identificator}x-#{$i} {
+        #{$property}-right: $space * $i;
+        #{$property}-left: $space * $i;
+      }
+
+      .#{$prefix-lib}-#{$identificator}y-#{$i} {
+        #{$property}-top: $space * $i;
+        #{$property}-bottom: $space * $i;
+      }
+
+      @each $breakpoint in map-keys($grid-breakpoints) {
+        @include media-breakpoint-up($breakpoint) {
+          $infix: breakpoint-infix($breakpoint, $breakpoints);
+          .#{$prefix-lib}-#{$property}#{infix}-#{$type}-#{$i} {
+            #{$property}-#{$type}: $space * $i;
+          }
+
+          @if ($breakpoint == xs) {
+            @media ($max-width: $max-xs) {
+              .#{$prefix-lib}-#{$property}-#{$breakpoint}-#{$type}-#{$i} {
+                #{$property}-#{$type}: $space * $i;
+              }
+
+              .#{$prefix-lib}-#{$identificator}x-#{$breakpoint}-#{$i} {
+                #{$property}-right: $space * $i;
+                #{$property}-left: $space * $i;
+              }
+
+              .#{$prefix-lib}-#{$identificator}y-#{$breakpoint}-#{$i} {
+                #{$property}-top: $space * $i;
+                #{$property}-bottom: $space * $i;
+              }
+            }
+          }
+
+
+          .#{$prefix-lib}-#{$identificator}x#{$infix}-#{$i} {
+            #{$property}-right: $space * $i;
+            #{$property}-left: $space * $i;
+          }
+
+          .#{$prefix-lib}-#{$identificator}y#{$infix}-#{$i} {
+            #{$property}-top: $space * $i;
+            #{$property}-bottom: $space * $i;
+          }
+        }
+
+
+      }
+    }
+  }
+}
+
+// @include element-space("padding", "p");
+// @include element-space("margin", "m");

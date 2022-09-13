@@ -1,0 +1,17 @@
+@use "../../../core/foundations/input-select-foundations.scss" as *;
+@use "../../../core/configuration.scss" as *;
+
+:host {
+  ul {
+    list-style: none;
+    padding: 0;
+    display: none;
+    li {
+    }
+
+    &[aria-expanded="true"] {
+      height: min-content;
+      display: initial;
+    }
+  }
+}

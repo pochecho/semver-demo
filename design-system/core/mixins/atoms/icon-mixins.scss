@@ -1,0 +1,68 @@
+//  ██╗.██████╗.██████╗.███╗...██╗......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██║██╔════╝██╔═══██╗████╗..██║......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║██║.....██║...██║██╔██╗.██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║██║.....██║...██║██║╚██╗██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║╚██████╗╚██████╔╝██║.╚████║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝.╚═════╝.╚═════╝.╚═╝..╚═══╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ...............................................................................
+
+@use "../../foundations/atoms/icon-foundations.scss" as *;
+
+
+@mixin size-icon($type-icon, $size) {
+    @if $type-icon == 'icon' {
+        @if $size == 'xs' {
+            font-size: $functional-xs;
+            width: $functional-xs;
+        } @else if ($size == 'sm'){
+            font-size: $functional-sm;
+            width: $functional-sm;
+        } @else if ($size == 'md'){
+            font-size: $functional-md;
+            width: $functional-md;
+        } @else if ($size == 'lg'){
+            font-size: $functional-lg;
+            width: $functional-lg;
+        } @else if ($size == 'xl'){
+            font-size: $functional-xl;
+            width: $functional-xl;
+        } @else if ($size == '2xl'){
+            font-size: $functional-2xl;
+            width: $functional-2xl;
+        } @else if ($size == '3xl'){
+            font-size: $functional-3xl;
+            width: $functional-3xl;
+        }
+    } @else if $type-icon == 'icon-brand' {
+        @if $size == 'sm' {
+            height: $brand-sm;
+            width: $brand-sm;
+        } @else if ($size == 'st'){
+            height: $brand-st;
+            width: $brand-st;
+        } @else if ($size == 'md'){
+            height: $brand-md;
+            width: $brand-md;
+        } @else if ($size == 'lg'){
+            height: $brand-lg;
+            width: $brand-lg;
+        } @else if ($size == 'xl'){
+            height: $brand-xl;
+            width: $brand-xl;
+        }
+    } @else if $type-icon == 'logo' {
+        @if $size == 'xs' {
+            width: $logo-xs;
+        } @else if $size == 'sm' {
+            width: $logo-sm;
+        } @else if ($size == 'st'){
+            width: $logo-st;
+        } @else if ($size == 'md'){
+            width: $logo-md;
+        } @else if ($size == 'lg'){
+            width: $logo-lg;
+        } @else if ($size == 'xl'){
+            width: $logo-xl;
+        }
+    }
+}

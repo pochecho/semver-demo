@@ -1,0 +1,89 @@
+//  ███████╗██╗.....███████╗██╗..██╗.....██╗...██╗████████╗██╗██╗.....██╗████████╗██╗███████╗███████╗
+//  ██╔════╝██║.....██╔════╝╚██╗██╔╝.....██║...██║╚══██╔══╝██║██║.....██║╚══██╔══╝██║██╔════╝██╔════╝
+//  █████╗..██║.....█████╗...╚███╔╝█████╗██║...██║...██║...██║██║.....██║...██║...██║█████╗..███████╗
+//  ██╔══╝..██║.....██╔══╝...██╔██╗╚════╝██║...██║...██║...██║██║.....██║...██║...██║██╔══╝..╚════██║
+//  ██║.....███████╗███████╗██╔╝.██╗.....╚██████╔╝...██║...██║███████╗██║...██║...██║███████╗███████║
+//  ╚═╝.....╚══════╝╚══════╝╚═╝..╚═╝......╚═════╝....╚═╝...╚═╝╚══════╝╚═╝...╚═╝...╚═╝╚══════╝╚══════╝
+//  .................................................................................................
+
+$flex-utilities: () !default;
+$flex-utilities: (
+  "display": (
+    class: "d",
+    property: "display",
+    values: inline inline-block block grid table table-row table-cell flex inline-flex none
+  ),
+  "flex": (
+      class: "flex",
+      values: (
+          fill: (flex: 1 1 auto),
+          row: (flex-direction: row),
+          column: (flex-direction: column),
+          row-reverse: (flex-direction: row-reverse),
+          column-reverse: (flex-direction: column-reverse),
+          grow-0: (flex-grow: 0),
+          grow-1: (flex-grow: 1),
+          shrink-0: (flex-shrink: 0),
+          shrink-1: (flex-shrink: 1),
+          wrap: (flex-wrap: wrap),
+          nowrap: (flex-wrap: nowrap),          
+          wrap-reverse: (flex-wrap: wrap-reverse),
+      )
+  ),
+  "justify-conten": (
+      property: "justify-content",
+      values: (
+          start: flex-start,
+          end: flex-end,
+          center: center,
+          between: space-between,
+          around: space-around,
+          evenly: space-evenly
+      )
+  ),
+  "align-items": (
+      property: "align-items",
+      values: (
+          start: flex-start,
+          end: flex-end,
+          center: center,
+          baseline: baseline,
+          stretch: stretch,
+      ),
+  ),
+  "align-content": (
+      property: "align-content",
+      values: (
+          start: flex-start,
+          end: flex-end,
+          center: center,
+          between: space-between,
+          around: space-around,
+          stretch: stretch,
+      )
+  ),
+  "align-self": (
+      property: "align-self",
+      values: (
+          auto: auto,
+          start: flex-start,
+          end: flex-end,
+          center: center,
+          baseline: baseline,
+          stretch: stretch,
+      )
+  ),
+  "order": (
+      property: "order",
+      values: (
+          first: -1,
+          0:0,
+          1:1,
+          2:2,
+          3:3,
+          4:4,
+          5:5,
+          last:6
+      )
+  ),
+);

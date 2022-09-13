@@ -1,0 +1,42 @@
+//  .██████╗.██████╗.██████╗.███████╗██████╗.......███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔═══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗......████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ██║...██║██████╔╝██║..██║█████╗..██████╔╝█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██║...██║██╔══██╗██║..██║██╔══╝..██╔══██╗╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ╚██████╔╝██║..██║██████╔╝███████╗██║..██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  .╚═════╝.╚═╝..╚═╝╚═════╝.╚══════╝╚═╝..╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ..........................................................................................
+
+@use '../../foundations/layout-foundations.scss' as *;
+@use './breakpoints-mixins.scss' as *;
+@use '../../configuration.scss' as *;
+
+@mixin generate-order($breakpoints: $grid-breakpoints, $columns: $grid-columns, $order: 0) {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+      @if ($order > $columns) {
+        $order: $columns;
+      }
+
+      @if ($order < 0) {
+        $order: 0;
+      }
+
+      @for $i from 1 through $columns {
+        .#{$prefix-lib}-order#{$infix}-#{$i} {
+          order: $i;
+        }
+        @if ($breakpoint == xs) {
+          @media ($max-width: $max-xs) {
+            .#{$prefix-lib}-order-#{$breakpoint}-#{$i} {
+              order: $i;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// @include generate-order();

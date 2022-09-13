@@ -1,0 +1,49 @@
+//  .█████╗.██╗.....██╗.██████╗.███╗...██╗███╗...███╗███████╗███╗...██╗████████╗...███╗...███╗██╗██╗..██╗██╗███╗...██╗███████╗
+//  ██╔══██╗██║.....██║██╔════╝.████╗..██║████╗.████║██╔════╝████╗..██║╚══██╔══╝...████╗.████║██║╚██╗██╔╝██║████╗..██║██╔════╝
+//  ███████║██║.....██║██║..███╗██╔██╗.██║██╔████╔██║█████╗..██╔██╗.██║...██║█████╗██╔████╔██║██║.╚███╔╝.██║██╔██╗.██║███████╗
+//  ██╔══██║██║.....██║██║...██║██║╚██╗██║██║╚██╔╝██║██╔══╝..██║╚██╗██║...██║╚════╝██║╚██╔╝██║██║.██╔██╗.██║██║╚██╗██║╚════██║
+//  ██║..██║███████╗██║╚██████╔╝██║.╚████║██║.╚═╝.██║███████╗██║.╚████║...██║......██║.╚═╝.██║██║██╔╝.██╗██║██║.╚████║███████║
+//  ╚═╝..╚═╝╚══════╝╚═╝.╚═════╝.╚═╝..╚═══╝╚═╝.....╚═╝╚══════╝╚═╝..╚═══╝...╚═╝......╚═╝.....╚═╝╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═══╝╚══════╝
+//  ..........................................................................................................................
+
+@use '../../foundations/layout-foundations.scss' as *;
+@use './breakpoints-mixins.scss' as *;
+@use '../../configuration.scss' as *;
+
+$class: (flex-start, flex-end, center, baseline, stretch) !default;
+
+@mixin generate-alignment($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+      @each $i in $class {
+        .#{$prefix-lib}-align-items#{$infix}-#{$i} {
+          align-items: $i;
+        }
+        @if ($breakpoint == xs) {
+          @media ($max-width: $max-xs) {
+            .#{$prefix-lib}-align-items-#{$breakpoint}-#{$i} {
+              align-items: $i;
+            }
+          }
+        }
+      }
+
+      @each $i in $class {
+        .#{$prefix-lib}-align-self#{$infix}-#{$i} {
+          align-items: $i;
+        }
+        @if ($breakpoint == xs) {
+          @media ($max-width: $max-xs) {
+            .#{$prefix-lib}-align-self-#{$breakpoint}-#{$i} {
+              align-items: $i;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// @include generate-alignment();

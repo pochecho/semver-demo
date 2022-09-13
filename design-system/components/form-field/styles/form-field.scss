@@ -1,0 +1,30 @@
+//  ███████╗.██████╗.██████╗.███╗...███╗......███████╗██╗███████╗██╗.....██████╗.
+//  ██╔════╝██╔═══██╗██╔══██╗████╗.████║......██╔════╝██║██╔════╝██║.....██╔══██╗
+//  █████╗..██║...██║██████╔╝██╔████╔██║█████╗█████╗..██║█████╗..██║.....██║..██║
+//  ██╔══╝..██║...██║██╔══██╗██║╚██╔╝██║╚════╝██╔══╝..██║██╔══╝..██║.....██║..██║
+//  ██║.....╚██████╔╝██║..██║██║.╚═╝.██║......██║.....██║███████╗███████╗██████╔╝
+//  ╚═╝......╚═════╝.╚═╝..╚═╝╚═╝.....╚═╝......╚═╝.....╚═╝╚══════╝╚══════╝╚═════╝.
+//  .............................................................................
+
+@use '../../../core/foundations/input-foundations.scss' as *;
+@use '../../../core/mixins/common-mixins.scss' as *;
+@use '../../../core/mixins/form-field-mixins.scss' as *;
+@use '../../../core/foundations/form-field-foundations.scss' as *;
+@use '../../../core/configuration.scss' as *;
+@use '../../icon/styles/icon.scss' as *;
+
+$form-field-name: 'form-field';
+$form-field-namespace: #{$prefix-lib}-#{$form-field-name};
+
+.#{$form-field-namespace} {
+  width: 100%;
+  @media screen and (max-width: 975px) {
+    margin-bottom: 15px;
+  }
+  margin-top: 20px;
+  @include data-input-container {
+  }
+}
+#{$form-field-namespace}[disabled] {
+  @include data-input-container-disabled;  
+}

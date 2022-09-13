@@ -1,0 +1,15 @@
+@use "./input.foundation.scss" as *;
+@use "../../../core/configuration.scss" as *;
+
+$input-name: "input";
+$input-namespace: #{$prefix-lib}-#{$input-name};
+
+%input-template {
+  height: 26px;
+  border-color: $input-base-border-color;
+  border-radius: $input-border-radius;
+}
+
+.#{$input-namespace} {
+  @extend %input-template;
+}

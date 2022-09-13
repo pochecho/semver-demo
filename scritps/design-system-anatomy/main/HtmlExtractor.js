@@ -7,43 +7,69 @@ class HtmlExtractor {
   }
   extract() {
     const COMPONENTS_FOLDER_PATH = this.configuration["components-folder-path"];
+
+    const DEPENDENCY_FOLDERS = this.configuration["dependency-folders"];
+
     const TEMPLATE_FOLDER_PATTERN = "templates";
     const COMPONENT_IDENTIFIER_NAME =
       this.configuration["component-identifier"];
     //  /<{prefix}-([a-zA-Z\-]+)>/gm;
+    // const componentsFolders = this.listComponentsNames(COMPONENTS_FOLDER_PATH);
 
-    const componentsFolders = this.listComponentsNames(COMPONENTS_FOLDER_PATH);
-    const componentsTemplates = componentsFolders.map((componentFolder) => {
-      return {
-        name: componentFolder,
-        level: 0,
-        path: `${COMPONENTS_FOLDER_PATH}/${componentFolder}`,
-        templates: [
-          ...this.getAllTemplatesByComponent(
-            COMPONENTS_FOLDER_PATH,
-            componentFolder,
-            TEMPLATE_FOLDER_PATTERN
-          ).map((templateName) => {
-            return {
-              template: templateName,
-              components: [],
-            };
-          }),
-        ],
-      };
-    });
-    const COMPONENTS_DATA = componentsTemplates.map((component) => {
-      return {
-        ...component,
-        components: this.getComponentsInsideTemplate(
-          component.path,
-          component.templates,
-          TEMPLATE_FOLDER_PATTERN,
-          COMPONENT_IDENTIFIER_NAME
-        ),
-      };
-    });
-    return COMPONENTS_DATA;
+    const componentsTemplates = this.listComponentsNames(COMPONENTS_FOLDER_PATH)
+      .map((componentFolder) => {
+        return {
+          name: componentFolder,
+          level: 0,
+          path: `${COMPONENTS_FOLDER_PATH}/${componentFolder}`,
+        };
+      })
+      .map((x) => {
+        const data = {};
+        for (const config of DEPENDENCY_FOLDERS) {
+          data[config["folder"]] = [
+            ...this.getAllTemplatesByComponent(
+              COMPONENTS_FOLDER_PATH,
+              x.name,
+              config["folder"]
+            ).map((templateName) => {
+              return {
+                file: templateName,
+                components: this.getComponentsInsideTemplate(
+                  x.path,
+                  templateName,
+                  config["folder"],
+                  config["patterns"]
+                ),
+              };
+            }),
+          ];
+        }
+
+        return { ...x, ...data };
+      })
+      .map((x) => {
+        const toDelete = ["name", "level", "path"];
+        const temp = { ...x };
+        for (const to of toDelete) {
+          delete temp[to];
+        }
+        const allComponents = [];
+        for (const folder in temp) {
+          if (Object.hasOwnProperty.call(temp, folder)) {
+            const files = temp[folder];
+            for (const fi of files) {
+              allComponents.push(...fi["components"]);
+            }
+          }
+        }
+        return {
+          ...x,
+          components: Array.from(new Set(allComponents)),
+        };
+      });
+
+    return [...componentsTemplates];
   }
 
   listComponentsNames(componentsPath) {
@@ -65,35 +91,32 @@ class HtmlExtractor {
 
   getComponentsInsideTemplate(
     componentPath,
-    templates,
+    templateName,
     templateFolderName,
-    componentIdentifierPattern
+    componentIdentifierPatterns
   ) {
-    const REGEX = new RegExp(componentIdentifierPattern, "gm");
+    const path = `${componentPath}/${templateFolderName}/${templateName}`;
+    return Array.from(
+      componentIdentifierPatterns
+        .map((componentIdentifierPattern) => {
+          const REGEX = new RegExp(componentIdentifierPattern, "gm");
+          const TEMPLATE_CONTENT = fs.readFileSync(path);
+          const COMPONENTS = new Set();
+          let temp = REGEX.exec(TEMPLATE_CONTENT);
+          while (!!temp) {
+            COMPONENTS.add(temp[1]);
+            temp = REGEX.exec(TEMPLATE_CONTENT);
+          }
 
-    const TEMPLATES_CONTENTS = templates.map((templateObj) => {
-      const PATH = `${componentPath}/${templateFolderName}/${templateObj.template}`;
-      const TEMPLATE_CONTENT = fs.readFileSync(PATH);
-
-      const COMPONENTS = new Set();
-
-      let temp = REGEX.exec(TEMPLATE_CONTENT);
-      while (!!temp) {
-        COMPONENTS.add(temp[1]);
-        temp = REGEX.exec(TEMPLATE_CONTENT);
-      }
-      console.log(COMPONENTS, 123);
-
-      return COMPONENTS;
-    });
-    const ALL_COMPONENTS = TEMPLATES_CONTENTS.reduce((prev, curre) => {
-      if (!!curre) {
-        prev.push(...Array.from(curre));
-      }
-      return prev;
-    }, []);
-
-    return ALL_COMPONENTS;
+          return COMPONENTS;
+        })
+        .reduce((prev, curre) => {
+          if (curre.size > 0) {
+            prev.add(...curre);
+          }
+          return prev;
+        })
+    );
   }
 }
 exports.HtmlExtractor = HtmlExtractor;

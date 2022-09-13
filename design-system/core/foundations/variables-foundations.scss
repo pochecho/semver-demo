@@ -1,0 +1,106 @@
+//  ██╗...██╗.█████╗.██████╗.██╗.█████╗.██████╗.██╗.....███████╗███████╗......███████╗.██████╗.██╗...██╗███╗...██╗██████╗..█████╗.████████╗██╗.██████╗.███╗...██╗███████╗
+//  ██║...██║██╔══██╗██╔══██╗██║██╔══██╗██╔══██╗██║.....██╔════╝██╔════╝......██╔════╝██╔═══██╗██║...██║████╗..██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗..██║██╔════╝
+//  ██║...██║███████║██████╔╝██║███████║██████╔╝██║.....█████╗..███████╗█████╗█████╗..██║...██║██║...██║██╔██╗.██║██║..██║███████║...██║...██║██║...██║██╔██╗.██║███████╗
+//  ╚██╗.██╔╝██╔══██║██╔══██╗██║██╔══██║██╔══██╗██║.....██╔══╝..╚════██║╚════╝██╔══╝..██║...██║██║...██║██║╚██╗██║██║..██║██╔══██║...██║...██║██║...██║██║╚██╗██║╚════██║
+//  .╚████╔╝.██║..██║██║..██║██║██║..██║██████╔╝███████╗███████╗███████║......██║.....╚██████╔╝╚██████╔╝██║.╚████║██████╔╝██║..██║...██║...██║╚██████╔╝██║.╚████║███████║
+//  ..╚═══╝..╚═╝..╚═╝╚═╝..╚═╝╚═╝╚═╝..╚═╝╚═════╝.╚══════╝╚══════╝╚══════╝......╚═╝......╚═════╝..╚═════╝.╚═╝..╚═══╝╚═════╝.╚═╝..╚═╝...╚═╝...╚═╝.╚═════╝.╚═╝..╚═══╝╚══════╝
+//  .....................................................................................................................................................................
+
+/** Indica qué enfoque que se utilizará al formar la media queries - mobile o desktop */
+$mobile: false !default;
+
+/**
+  * Retorna min o max, que se usará para formar todas las media queries -
+  * min-width 0 max-width
+  */
+@function query-direction() {
+  @if ($mobile) {
+    @return min;
+  } @else {
+    @return max;
+  }
+}
+
+$media-query: query-direction();
+
+$enable-grid-classes: true !default;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440px,
+) !default;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+) !default;
+
+$grid-configuration:(
+  xs: (
+    viewport-min-width: 0,
+    viewport-max-width: 575px,
+    columns: 6,
+    gutter: (8),
+    margin: 16,
+    container-max-width: auto,
+  ),
+  sm: (
+    viewport-min-width: 576px,
+    viewport-max-width: 575px,
+    columns: 12,
+    gutter: (8),
+    margin: auto,
+    container-max-width: 540px,
+  ),
+  md: (
+    viewport-min-width: 768px,
+    viewport-max-width: 991px,
+    columns: 12,
+    gutter: (16,24,32),
+    margin: auto,
+    container-max-width: 720px,
+  ),
+  lg: (
+    viewport-min-width: 992px,
+    viewport-max-width: 1199px,
+    columns: 12,
+    gutter: (16,24,32),
+    margin: auto,
+    container-max-width: 960px,
+  ),
+  xl: (
+    viewport-min-width: 1200px,
+    viewport-max-width: 1439px,
+    columns: 12,
+    gutter: (16,24,32),
+    margin: auto,
+    container-max-width: 1140px,
+  ),
+  xxl: (
+    viewport-min-width: 1440px,
+    viewport-max-width: 9999px,
+    columns: 12,
+    gutter: (16,24,32),
+    margin: auto,
+    container-max-width: 1320px,
+  ),
+) !default;
+
+
+$grid-columns: 12 !default;
+$margin-container: 32px !default;
+$grid-gutter-xs: 12 !default;
+$max-width: max-width;
+$max-xs: 575px;
+$values: (1, 2, 3, 4, 5, 6, 7, 8) !default;
+$types: (top, right, bottom, left) !default;
+
+$displays: none, inline, inline-block, block, table, table-row, table-cell, flex,
+  inline-flex !default;
