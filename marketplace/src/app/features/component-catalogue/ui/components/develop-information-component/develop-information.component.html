@@ -1,0 +1,740 @@
+<!-- <div class="bc-row bc-justify-content-center bc-mt-4">
+  <div class="bc-col-lg-8">
+    <div class="bc-row bc-py-3 bc-align-items-center">
+      <div class="bc-col">
+        <app-technologies-bullet
+          *ngIf="technologies"
+          [technologies]="technologies"
+          (onSelectTech)="onSelectTech($event)"
+        ></app-technologies-bullet>
+      </div>
+      <div class="bc-col">
+        <bc-input-select
+          #versionsSelect
+          label="Versión"
+          (valueOutput)="onSelectVersion($event)"
+          [values]="availableVersionsByTech"
+        ></bc-input-select>
+      </div>
+    </div>
+    <ng-container *ngIf="status == 'Loaded'">
+      <ng-container *ngIf="currentImplementation; else noContent">
+        <div class="bc-row bc-justify-content-center">
+          <section
+            *ngIf="currentImplementation.import"
+            class="bc-col-11 bc-py-3 bc-px-3 bc-my-3 bc-mx-5 bc-border-2 bc-bg-white"
+          >
+            <h5>
+              {{ currentImplementation.import }}
+            </h5>
+          </section>
+          <section class="bc-col-12 bc-px-5">
+            <bc-accordions-group
+              class="bc-mt-3"
+              *ngIf="
+                currentImplementation['components'] &&
+                currentImplementation['components'].length > 0
+              "
+            >
+              <h2 class="bc-mx-2 bc-my-2">Componentes</h2>
+              <bc-accordion
+                *ngFor="
+                  let component of currentImplementation['components'];
+                  let i = index
+                "
+                [active]="i == 0"
+              >
+                <bc-accordion-header
+                  title="{{ component.name }}"
+                ></bc-accordion-header>
+                <bc-accordion-content class="bc-pt-4">
+                  <div class="bc-mx-4">
+                    <p class="bc-my-2">
+                      Selector:
+                      <strong>{{ component.selector }}</strong>
+                    </p>
+
+                    <div *ngIf="component.description !== ''">
+                      <p [innerHTML]="component.description"></p>
+                    </div>
+                    <div class="bc-my-2" *ngIf="component.description == ''">
+                      <p>Sin descripción definida</p>
+                    </div>
+
+                    <div
+                      class="bc-border-light bc-py-4 bc-px-3 bc-py-4 bc-px-3"
+                      *ngIf="
+                        component.inputsClass &&
+                        component.inputsClass.length > 0
+                      "
+                    >
+                      <h4 class="bc-my-2 bc-mx-2">Inputs class</h4>
+                      <bc-table-container
+                        id="table-{{ component.name }}"
+                        class="bc-col-xs-6 bc-col-sm-12 bc-col-md-12 bc-col-lg-12 bc-col-xl-12"
+                        [dataTable]="component.inputsClass"
+                      >
+                        <bc-table-content>
+                          <table bc-table type="selection">
+                            <caption>Inputs del componente</caption>
+                            <thead>
+                              <tr>
+                                <th scope="row" bc-cell>Name</th>
+                                <th scope="row" bc-cell>Description</th>
+                                <th scope="row" bc-cell>Type</th>
+                                <th scope="row" bc-cell>Default value</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="let inputClass of component.inputsClass"
+                              >
+                                <td bc-cell>{{ inputClass.name }}</td>
+                                <td
+                                  bc-cell
+                                  [innerHTML]="inputClass.description"
+                                ></td>
+                                <td bc-cell>{{ inputClass.type }}</td>
+                                <td bc-cell>{{ inputClass.defaultValue }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </bc-table-content>
+                      </bc-table-container>
+                    </div>
+
+                    <div
+                      class="bc-border-light bc-py-4 bc-mt-3 bc-px-3 bc-py-4 bc-px-3"
+                      *ngIf="
+                        component.outputsClass &&
+                        component.outputsClass.length > 0
+                      "
+                    >
+                      <h4 class="bc-my-2 bc-mx-2">Outputs class</h4>
+                      <bc-table-container
+                        id="table-outputs-{{ component.name }}"
+                        class="bc-col-xs-6 bc-col-sm-12 bc-col-md-12 bc-col-lg-12 bc-col-xl-12"
+                        [dataTable]="component.outputsClass"
+                      >
+                        <bc-table-content>
+                          <table bc-table type="selection">
+                            <caption>Outputs del componente</caption>
+
+                            <thead>
+                              <tr>
+                                <th scope="row" bc-cell>Name</th>
+                                <th scope="row" bc-cell>Description</th>
+                                <th scope="row" bc-cell>Type</th>
+                                <th scope="row" bc-cell>Default value</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="
+                                  let outputsClass of component.outputsClass
+                                "
+                              >
+                                <td bc-cell>{{ outputsClass.name }}</td>
+                                <td
+                                  bc-cell
+                                  [innerHTML]="outputsClass.description"
+                                ></td>
+                                <td bc-cell>{{ outputsClass.type }}</td>
+                                <td bc-cell>{{ outputsClass.defaultValue }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </bc-table-content>
+                      </bc-table-container>
+                    </div>
+
+                    <div
+                      class="bc-border-light bc-py-4 bc-mt-3 bc-px-3 bc-py-4 bc-px-3"
+                      *ngIf="
+                        component.methodsClass &&
+                        component.methodsClass.length > 0
+                      "
+                    >
+                      <h4 class="bc-my-2 bc-mx-2">Methods class</h4>
+                      <bc-table-container
+                        id="table-methods-{{ component.name }}"
+                        class="bc-col-xs-6 bc-col-sm-12 bc-col-md-12 bc-col-lg-12 bc-col-xl-12"
+                        [dataTable]="component.methodsClass"
+                      >
+                        <bc-table-content>
+                          <table bc-table type="selection">
+                            <caption>Métodos del componente</caption>
+
+                            <thead>
+                              <tr>
+                                <th scope="row" bc-cell>Name</th>
+                                <th scope="row" bc-cell>Description</th>
+                                <th scope="row" bc-cell>Optional</th>
+                                <th scope="row" bc-cell>Type parameters</th>
+                                <th scope="row" bc-cell>Args</th>
+                                <th scope="row" bc-cell>Return type</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="
+                                  let methodsClass of component.methodsClass
+                                "
+                              >
+                                <td bc-cell>{{ methodsClass.name }}</td>
+                                <td
+                                  bc-cell
+                                  [innerHTML]="methodsClass.description"
+                                ></td>
+                                <td bc-cell>{{ methodsClass.optional }}</td>
+                                <td bc-cell>
+                                  {{ methodsClass.typeParameters }}
+                                </td>
+                                <td bc-cell>
+                                  <p *ngFor="let arg of methodsClass.args">
+                                    {{ arg.name }} - {{ arg.type }}
+                                  </p>
+                                </td>
+                                <td bc-cell>{{ methodsClass.returnType }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </bc-table-content>
+                      </bc-table-container>
+                    </div>
+                  </div>
+                </bc-accordion-content>
+              </bc-accordion>
+            </bc-accordions-group>
+            <bc-accordions-group
+              class="bc-mt-3"
+              *ngIf="
+                currentImplementation['directives'] &&
+                currentImplementation['directives'].length > 0
+              "
+            >
+              <h2 class="bc-my-2 bc-mx-2">Directivas</h2>
+
+              <bc-accordion
+                *ngFor="let directive of currentImplementation['directives']"
+              >
+                <bc-accordion-header
+                  title="{{ directive.name }}"
+                ></bc-accordion-header>
+                <bc-accordion-content class="bc-pt-4">
+                  <div class="bc-mx-4">
+                    <p>
+                      Selector:
+                      <strong>{{ directive.selector }}</strong>
+                    </p>
+
+                    <div *ngIf="directive.description !== ''">
+                      <p [innerHTML]="directive.description"></p>
+                    </div>
+                    <div *ngIf="directive.description == ''">
+                      <p>Sin descripción</p>
+                    </div>
+
+                    <div
+                      class="bc-border-light bc-py-4 bc-px-3"
+                      *ngIf="
+                        directive.inputsClass &&
+                        directive.inputsClass.length > 0
+                      "
+                    >
+                      <h4 class="bc-my-2 bc-mx-2">Inputs class</h4>
+                      <bc-table-container
+                        id="table-inputs-{{ directive.name }}"
+                        class="bc-col-xs-6 bc-col-sm-12 bc-col-md-12 bc-col-lg-12 bc-col-xl-12"
+                        [dataTable]="directive.inputsClass"
+                      >
+                        <bc-table-content>
+                          <table bc-table type="selection">
+                            <caption>Inputs del componente</caption>
+
+                            <thead>
+                              <tr>
+                                <th scope="row" bc-cell>Name</th>
+                                <th scope="row" bc-cell>Description</th>
+                                <th scope="row" bc-cell>Type</th>
+                                <th scope="row" bc-cell>Default value</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="let inputClass of directive.inputsClass"
+                              >
+                                <td bc-cell>{{ inputClass.name }}</td>
+                                <td
+                                  bc-cell
+                                  [innerHTML]="inputClass.description"
+                                ></td>
+                                <td bc-cell>{{ inputClass.type }}</td>
+                                <td bc-cell>{{ inputClass.defaultValue }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </bc-table-content>
+                      </bc-table-container>
+                    </div>
+
+                    <div
+                      class="bc-border-light bc-py-4 bc-px-3"
+                      *ngIf="
+                        directive.outputsClass &&
+                        directive.outputsClass.length > 0
+                      "
+                    >
+                      <h4 class="bc-my-2 bc-mx-2">Outputs class</h4>
+                      <bc-table-container
+                        id="table-outputs-{{ directive.name }}"
+                        class="bc-col-xs-6 bc-col-sm-12 bc-col-md-12 bc-col-lg-12 bc-col-xl-12"
+                        [dataTable]="directive.outputsClass"
+                      >
+                        <bc-table-content>
+                          <table bc-table type="selection">
+                            <caption>Outputs del componente</caption>
+
+                            <thead>
+                              <tr>
+                                <th scope="row" bc-cell>Name</th>
+                                <th scope="row" bc-cell>Description</th>
+                                <th scope="row" bc-cell>Type</th>
+                                <th scope="row" bc-cell>Default value</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="
+                                  let outputsClass of directive.outputsClass
+                                "
+                              >
+                                <td bc-cell>{{ outputsClass.name }}</td>
+                                <td
+                                  bc-cell
+                                  [innerHTML]="outputsClass.description"
+                                ></td>
+                                <td bc-cell>{{ outputsClass.type }}</td>
+                                <td bc-cell>{{ outputsClass.defaultValue }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </bc-table-content>
+                      </bc-table-container>
+                    </div>
+
+                    <div
+                      class="bc-border-light bc-py-4 bc-px-3"
+                      *ngIf="
+                        directive.methodsClass &&
+                        directive.methodsClass.length > 0
+                      "
+                    >
+                      <h4 class="bc-my-2 bc-mx-2">Methods class</h4>
+                      <bc-table-container
+                        id="table-methods-{{ directive.name }}"
+                        class="bc-col-xs-6 bc-col-sm-12 bc-col-md-12 bc-col-lg-12 bc-col-xl-12"
+                        [dataTable]="directive.methodsClass"
+                      >
+                        <bc-table-content>
+                          <table bc-table type="selection">
+                            <caption>Métodos del componente</caption>
+
+                            <thead>
+                              <tr>
+                                <th scope="row" bc-cell>Name</th>
+                                <th scope="row" bc-cell>Description</th>
+                                <th scope="row" bc-cell>Optional</th>
+                                <th scope="row" bc-cell>Type parameters</th>
+                                <th scope="row" bc-cell>Args</th>
+                                <th scope="row" bc-cell>Return type</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="
+                                  let methodsClass of directive.methodsClass
+                                "
+                              >
+                                <td bc-cell>{{ methodsClass.name }}</td>
+                                <td
+                                  bc-cell
+                                  [innerHTML]="methodsClass.description"
+                                ></td>
+                                <td bc-cell>{{ methodsClass.optional }}</td>
+                                <td bc-cell>
+                                  {{ methodsClass.typeParameters }}
+                                </td>
+                                <td bc-cell>
+                                  <p *ngFor="let arg of methodsClass.args">
+                                    {{ arg.name }} - {{ arg.type }}
+                                  </p>
+                                </td>
+                                <td bc-cell>{{ methodsClass.returnType }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </bc-table-content>
+                      </bc-table-container>
+                    </div>
+                  </div>
+                </bc-accordion-content>
+              </bc-accordion>
+            </bc-accordions-group>
+            <bc-accordions-group
+              class="bc-mt-3"
+              *ngIf="
+                currentImplementation['methods'] &&
+                currentImplementation['methods'].length > 0
+              "
+            >
+              <h2 class="bc-my-2 bc-mx-2">Métodos</h2>
+
+              <bc-accordion
+                *ngFor="let methods of currentImplementation['methods']"
+              >
+                <bc-accordion-header
+                  title="{{ methods.name }}"
+                ></bc-accordion-header>
+                <bc-accordion-content class="bc-pt-4">
+                  <div class="bc-mx-4">
+                    <h3 class="bc-my-2 bc-mx-2">
+                      {{ methods.name }} - {{ methods.returnType }}
+                      <p *ngIf="methods.optional">*</p>
+                    </h3>
+
+                    <div *ngIf="methods.description !== ''">
+                      <p [innerHTML]="methods.description"></p>
+                    </div>
+                    <div *ngIf="methods.description == ''">
+                      <p>Sin descripción</p>
+                    </div>
+
+                    <div
+                      class="bc-border-light bc-py-4 bc-px-3"
+                      *ngIf="methods.args && methods.args.length > 0"
+                    >
+                      <h4 class="bc-my-2 bc-mx-2">Args</h4>
+                      <bc-table-container
+                        id="table-arg-{{ methods.name }}"
+                        class="bc-col-xs-6 bc-col-sm-12 bc-col-md-12 bc-col-lg-12 bc-col-xl-12"
+                        [dataTable]="methods.args"
+                      >
+                        <bc-table-content>
+                          <table bc-table type="selection">
+                            <caption>Argumentos del método</caption>
+
+                            <thead>
+                              <tr>
+                                <th scope="row" bc-cell>Name</th>
+                                <th scope="row" bc-cell>Type</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let arg of methods.args">
+                                <td bc-cell>{{ arg.name }}</td>
+                                <td bc-cell>{{ arg.type }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </bc-table-content>
+                      </bc-table-container>
+                    </div>
+                  </div>
+                </bc-accordion-content>
+              </bc-accordion>
+            </bc-accordions-group>
+            <bc-accordions-group
+              class="bc-mt-3"
+              *ngIf="
+                currentImplementation['properties'] &&
+                currentImplementation['properties'].length > 0
+              "
+            >
+              <h2 class="bc-my-2 bc-mx-2">Propiedades</h2>
+
+              <bc-accordion
+                *ngFor="let properties of currentImplementation['properties']"
+              >
+                <bc-accordion-header
+                  title="{{ properties.name }}"
+                ></bc-accordion-header>
+                <bc-accordion-content class="bc-pt-4">
+                  <div class="bc-mx-4">
+                    <h3 class="bc-my-2 bc-mx-2">
+                      {{ properties.name }} - {{ properties.type }}
+                      <p *ngIf="properties.optional">*</p>
+                    </h3>
+
+                    <div
+                      *ngIf="
+                        properties.description !== '' ||
+                        properties.description !== undefined
+                      "
+                    >
+                      <p [innerHTML]="properties.description"></p>
+                    </div>
+                    <div *ngIf="properties.description == ''">
+                      <p>Sin descripción</p>
+                    </div>
+
+                    <div
+                      class="bc-border-light bc-py-4 bc-px-3"
+                      *ngIf="properties.inheritance"
+                    >
+                      <h4>Inheritance</h4>
+                      <p *ngFor="let item of properties.inheritance | keyvalue">
+                        {{ item.key }}: {{ item.value }}
+                      </p>
+                    </div>
+                  </div>
+                </bc-accordion-content>
+              </bc-accordion>
+            </bc-accordions-group>
+            <bc-accordions-group
+              class="bc-mt-3"
+              *ngIf="
+                currentImplementation['parameters'] &&
+                currentImplementation['parameters'].length > 0
+              "
+            >
+              <h2 class="bc-my-2 bc-mx-2">Parametros</h2>
+
+              <bc-accordion
+                *ngFor="let parameter of currentImplementation['parameters']"
+              >
+                <bc-accordion-header
+                  title="{{ parameter.name }}"
+                ></bc-accordion-header>
+                <bc-accordion-content class="bc-pt-4">
+                  <div class="bc-mx-4">
+                    <h3 class="bc-my-2 bc-mx-2">
+                      {{ parameter.name }} - {{ parameter.type }}
+                      <p *ngIf="parameter.optional">*</p>
+                    </h3>
+
+                    <div *ngIf="parameter.description !== ''">
+                      <p [innerHTML]="parameter.description"></p>
+                    </div>
+                    <div *ngIf="parameter.description == ''">
+                      <p>Sin descripción</p>
+                    </div>
+                  </div>
+                </bc-accordion-content>
+              </bc-accordion>
+            </bc-accordions-group>
+            <bc-accordions-group
+              class="bc-mt-3"
+              *ngIf="
+                currentImplementation['interfaces'] &&
+                currentImplementation['interfaces'].length > 0
+              "
+            >
+              <h2 class="bc-my-2 bc-mx-2">Interfaces</h2>
+
+              <bc-accordion
+                *ngFor="let interfaces of currentImplementation['interfaces']"
+              >
+                <bc-accordion-header
+                  title="{{ interfaces.name }}"
+                ></bc-accordion-header>
+                <bc-accordion-content class="bc-pt-4">
+                  <div class="bc-mx-4">
+                    <div
+                      class="bc-border-light bc-py-4 bc-px-3"
+                      *ngIf="
+                        interfaces.properties &&
+                        interfaces.properties.length > 0
+                      "
+                    >
+                      <h4 class="bc-my-2 bc-mx-2">Args</h4>
+                      <bc-table-container
+                        id="table-arg-{{ interfaces.name }}"
+                        class="bc-col-xs-6 bc-col-sm-12 bc-col-md-12 bc-col-lg-12 bc-col-xl-12"
+                        [dataTable]="interfaces.properties"
+                      >
+                        <bc-table-content>
+                          <table bc-table type="selection">
+                            <caption>Argumentos del método</caption>
+
+                            <thead>
+                              <tr>
+                                <th scope="row" bc-cell>Name</th>
+                                <th scope="row" bc-cell>Type</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let arg of interfaces.properties">
+                                <td bc-cell>{{ arg.name }}</td>
+                                <td bc-cell>{{ arg.type }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </bc-table-content>
+                      </bc-table-container>
+                    </div>
+                  </div>
+                </bc-accordion-content>
+              </bc-accordion>
+            </bc-accordions-group>
+            <bc-accordions-group
+              class="bc-mt-3"
+              *ngIf="
+                currentImplementation['injectables'] &&
+                currentImplementation['injectables'].length > 0
+              "
+            >
+              <h2 class="bc-my-2 bc-mx-2">Injectables</h2>
+
+              <bc-accordion
+                *ngFor="let injectables of currentImplementation['injectables']"
+              >
+                <bc-accordion-header
+                  title="{{ injectables.name }}"
+                ></bc-accordion-header>
+                <bc-accordion-content class="bc-pt-4">
+                  <div class="bc-mx-4">
+                    <div
+                      class="bc-border-light bc-py-4 bc-px-3"
+                      *ngIf="
+                        injectables.methods && injectables.methods.length > 0
+                      "
+                    >
+                      <h4 class="bc-my-2 bc-mx-2">Methods</h4>
+                      <bc-table-container
+                        id="table-methods-{{ injectables.name }}"
+                        class="bc-col-xs-6 bc-col-sm-12 bc-col-md-12 bc-col-lg-12 bc-col-xl-12"
+                        [dataTable]="injectables.methods"
+                      >
+                        <bc-table-content>
+                          <table bc-table type="selection">
+                            <caption>Métodos del componente</caption>
+
+                            <thead>
+                              <tr>
+                                <th scope="row" bc-cell>Name</th>
+                                <th scope="row" bc-cell>Type</th>
+                                <th scope="row" bc-cell>Return type</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let method of injectables.methods">
+                                <td bc-cell>{{ method.name }}</td>
+                                <td bc-cell>
+                                  <p *ngFor="let arg of method.args">
+                                    {{ arg.name }} - {{ arg.type }}
+                                  </p>
+                                </td>
+                                <td bc-cell>{{ method.returnType }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </bc-table-content>
+                      </bc-table-container>
+                    </div>
+                  </div>
+                </bc-accordion-content>
+              </bc-accordion>
+            </bc-accordions-group>
+            <bc-accordions-group
+              class="bc-mt-3"
+              *ngIf="
+                currentImplementation['classes'] &&
+                currentImplementation['classes'].length > 0
+              "
+            >
+              <h2 class="bc-my-2 bc-mx-2">Clases</h2>
+
+              <bc-accordion
+                *ngFor="let classes of currentImplementation['classes']"
+              >
+                <bc-accordion-header
+                  title="{{ classes.name }}"
+                ></bc-accordion-header>
+                <bc-accordion-content class="bc-pt-4">
+                  <div class="bc-mx-4">
+                    <div
+                      class="bc-border-light bc-py-4 bc-px-3"
+                      *ngIf="classes.methods && classes.methods.length > 0"
+                    >
+                      <h4 class="bc-my-2 bc-mx-2">Methods</h4>
+                      <bc-table-container
+                        id="table-methods-{{ classes.name }}"
+                        class="bc-col-xs-6 bc-col-sm-12 bc-col-md-12 bc-col-lg-12 bc-col-xl-12"
+                        [dataTable]="classes.methods"
+                      >
+                        <bc-table-content>
+                          <table bc-table type="selection">
+                            <caption>Métodos del componente</caption>
+
+                            <thead>
+                              <tr>
+                                <th scope="row" bc-cell>Name</th>
+                                <th scope="row" bc-cell>Type</th>
+                                <th scope="row" bc-cell>Return type</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let method of classes.methods">
+                                <td bc-cell>{{ method.name }}</td>
+                                <td bc-cell>
+                                  <p *ngFor="let arg of method.args">
+                                    {{ arg.name }} - {{ arg.type }}
+                                  </p>
+                                </td>
+                                <td bc-cell>{{ method.returnType }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </bc-table-content>
+                      </bc-table-container>
+                    </div>
+                  </div>
+                </bc-accordion-content>
+              </bc-accordion>
+            </bc-accordions-group>
+
+            <bc-accordions-group
+              class="bc-mt-3"
+              *ngIf="
+                currentImplementation['implementationSteps'] &&
+                currentImplementation['implementationSteps'].length > 0
+              "
+            >
+              <h2 class="bc-my-2 bc-mx-2">Implementaciones</h2>
+
+              <bc-accordion
+                *ngFor="
+                  let implementationStep of currentImplementation[
+                    'implementationSteps'
+                  ]
+                "
+              >
+                <bc-accordion-header
+                  title="{{ implementationStep.title }}"
+                ></bc-accordion-header>
+                <bc-accordion-content class="bc-pt-4">
+                  <div class="bc-mx-4">
+                    <div class="bc-border-light bc-py-4 bc-px-3">
+                      <div [innerHTML]="implementationStep.description"></div>
+                    </div>
+                  </div>
+                </bc-accordion-content>
+              </bc-accordion>
+            </bc-accordions-group>
+          </section>
+        </div>
+      </ng-container>
+      <ng-template #noContent>
+        <app-lost-content></app-lost-content>
+      </ng-template>
+    </ng-container>
+  </div>
+
+  <div
+    class="bc-col-xs-6 bc-col-sm-12 bc-col-md-8 bc-col-lg-4 bc-col-xl-3 aporteCard"
+  >
+    <app-promotional-banner></app-promotional-banner>
+  </div>
+</div>
+<app-not-allowed *ngIf="status == 'Not Allowed'"></app-not-allowed> -->

@@ -1,0 +1,228 @@
+<!-- <header class="bc-bg-primary bc-text-white bc-py-2 bc-px-4">
+  <div id="width70">
+    <p id="breadcrumb">
+      <span routerLink="../../home">Inicio</span>
+      >
+      <span routerLink="../../develop">Desarrolladores</span>
+    </p>
+    <h3 id="titleComponentes">{{ configurationTabs.title }}</h3>
+    <p id="descriptionComponents">
+      {{ configurationTabs.description }}
+    </p>
+    <section id="searchComponents">
+      <input
+        [(ngModel)]="searchText"
+        id="inputSearch"
+        placeholder="Busca un componente"
+        type="text"
+      />
+      <div id="buttonSearch">
+        <bc-icon aria-label="Botón de búsqueda">search</bc-icon>
+      </div>
+    </section>
+    <br />
+    <div
+      identifier="component-catalogue|register-component|ui"
+      appValidatePermission
+    >
+      <button
+        class="bc-offsset-1"
+        bc-button
+        (click)="navigateToUploadComponent()"
+      >
+        Agregar componente
+      </button>
+    </div>
+  </div>
+</header>
+<section id="filterType" class="sticky">
+  <div class="bc-tabs-group">
+    <div class="bc-tab-header">
+      <div class="bc-tabs left">
+        <div
+          *ngFor="let tab of configurationTabs.mainTabs; let i = index"
+          class="bc-tab"
+          [id]="tab.idParent"
+          (click)="filter = tab.category"
+          (click)="onChangeCurrentPage()"
+          [class.active]="filter == tab.category"
+        >
+          <span [id]="tab.id">{{ tab.tag }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="bc-container">
+  <div id="width75">
+    <header
+      id="countingLength"
+      
+    >
+      Hay
+      {{ getAllItemsByFilter(filter) }}
+      {{ filter }}s
+    </header>
+    <div id="iconsStyleCards">
+      <bc-icon
+        (click)="styleCards = 'square'"
+        [class.active]="styleCards === 'square'"
+        aria-label="Vista en cuadrícula"
+      >
+        square
+      </bc-icon>
+
+      <bc-icon
+        (click)="styleCards = 'list'"
+        [class.active]="styleCards === 'list'"
+        aria-label="Vista en lista"
+      >
+        menu
+      </bc-icon>
+    </div>
+  </div>
+  <div class="bc-row bc-mt-3 bc-m-0">
+    <div class="bc-col-sm-9">
+      <ng-container *ngIf="status == 'Loaded'">
+        <ng-container>
+          <div
+            *ngIf="masterArray[filter]"
+            id="rowGrid"
+            [ngClass]="styleCards === 'square' ? 'rowGrid' : 'rowGridOne'"
+          >
+            <ng-container
+              *ngFor="let component of masterArray[filter][currentPage]"
+            >
+              <ng-container *ngIf="styleCards === 'square'">
+                <div
+                  id="listComponents"
+                  *ngIf="
+                    component.nameComponent
+                      .toLowerCase()
+                      .includes(searchText.toLowerCase())
+                  "
+                  bc-card
+                  (click)="goToItems(component.id, filter)"
+                >
+                  <figure class="image" *ngIf="component.images.preview">
+                    <img
+                      alt=""
+                      onError="component.images.preview = '../assets/temporal/not_found.png'"
+                      [src]="component.images.preview"
+                      width="100%"
+                    />
+                  </figure>
+                  <div class="image" *ngIf="!component.images.preview">
+                    <img
+                      alt=""
+                      src="../assets/temporal/not_found.png"
+                      width="100%"
+                    />
+                  </div>
+                  <div id="nameC" class="bc-row">
+                    <div class="bc-col-8">{{ component.nameComponent }}</div>
+                    <div class="bc-col-4">
+                      <bc-icon
+                        *ngIf="component.tags.includes('Mobile')"
+                        class="icon-component"
+                        aria-hidden="true"
+                        aria-label="prueba"
+                        name="smartphone"
+                      ></bc-icon>
+                      <bc-icon
+                        *ngIf="component.tags.includes('Web')"
+                        class="icon-component"
+                        aria-hidden="true"
+                        aria-label="prueba"
+                        name="laptop"
+                      ></bc-icon>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="styleCards === 'list'">
+                <div
+                  id="listCards"
+                  *ngIf="
+                    component.nameComponent
+                      .toLowerCase()
+                      .includes(searchText.toLowerCase())
+                  "
+                  bc-card
+                  (click)="goToItems(component.nameComponent)"
+                >
+                  <div class="bc-card-body" *ngIf="styleCards === 'list'">
+                    <div class="bc-row">
+                      <div
+                        class="bc-col-4 previewImage"
+                        *ngIf="component.images.preview"
+                      >
+                        <img
+                          alt=""
+                          [src]="component.images.preview"
+                          width="100%"
+                        />
+                      </div>
+                      <div
+                        class="bc-col-4 previewImage"
+                        *ngIf="!component.images.preview"
+                      >
+                        <img
+                          alt=""
+                          src="../assets/temporal/not_found.png"
+                          width="100%"
+                        />
+                      </div>
+                      <div class="bc-col-6 descriptionC">
+                        <h5>{{ component.nameComponent }}</h5>
+                        {{ component.description }}
+                      </div>
+                      <div class="bc-col-2 iconsComponents">
+                        <bc-icon
+                          *ngIf="component.tags.includes('Mobile')"
+                          class="icon-component"
+                          aria-hidden="true"
+                          aria-label="prueba"
+                          name="smartphone"
+                        ></bc-icon>
+                        <bc-icon
+                          *ngIf="component.tags.includes('Web')"
+                          class="icon-component"
+                          aria-hidden="true"
+                          aria-label="prueba"
+                          name="laptop"
+                        ></bc-icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </ng-container>
+
+        <bc-paginator
+          [type]="'basic'"
+          [totalRegisters]="getAllItemsByFilter(filter)"
+          [perPage]="itemsPerPage"
+          (onChangePage)="currentPage = $event.CurrentPage - 1"
+          *ngIf="masterArray && masterArray[filter]"
+          class="component-paginator"
+        ></bc-paginator>
+      </ng-container>
+
+      <app-not-allowed *ngIf="status == 'Not Allowed'"></app-not-allowed>
+      <ng-container *ngIf="status == 'Pending'">
+        <div class="bc-row bc-justify-content-space-around">
+          <bc-preloader type="square" width="280" height="190"></bc-preloader>
+          <bc-preloader type="square" width="280" height="190"></bc-preloader>
+          <bc-preloader type="square" width="280" height="190"></bc-preloader>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="bc-col-xs-6 bc-col-lg-3 aporteCard bc-mt-2">
+      <app-promotional-banner></app-promotional-banner>
+    </div>
+  </div>
+</div> -->

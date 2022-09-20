@@ -1,0 +1,12 @@
+#update-component-img {
+    width: 100vw;
+    height: 50vh;
+    top: -18%;
+    left : -4%;
+    position: absolute;
+    object-fit: cover;
+}
+#update-component{
+    position: relative;
+    padding: 64px;
+}

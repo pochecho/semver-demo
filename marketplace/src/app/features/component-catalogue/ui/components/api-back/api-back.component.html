@@ -1,0 +1,37 @@
+<section class="space_6_padding">
+    <div class="bc-row bc-py-3 bc-align-items-center">
+
+        <div class="bc-col">
+            <app-technologies-bullet
+            *ngIf="technologies"
+            [technologies]="technologies"
+            (onSelectTech)="onSelectTech($event)"
+            ></app-technologies-bullet>
+        </div>
+        <div class="bc-col">
+            <bc-input-select
+            #versionsSelect
+            label="Versión"
+            (valueOutput)="onSelectVersion($event)"
+            [values]="availableVersionsByTech"
+            ></bc-input-select>
+        </div>
+    </div>
+
+  <button bc-button (click)="toggleValues($event)">
+    {{ showUploader == true ? "Volver a vista del Swagger" : "Subir Swagger" }}
+  </button>
+
+  <h3 class="space_4_top">API</h3>
+  <ng-container *ngIf="currentImplementation">
+
+      <swagger-reader
+      *ngIf="!showUploader"
+      [urlSwagger]="currentUrl"
+      ></swagger-reader>
+    </ng-container>
+    <app-upload-implementation-back
+    *ngIf="showUploader"
+    [data]="data"
+    ></app-upload-implementation-back>
+</section>

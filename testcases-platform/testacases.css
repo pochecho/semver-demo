@@ -1,0 +1,19 @@
+main {
+  height: 100vh;
+  background-image: url('./background.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* opacity: 0.8; */
+}
+main > * {
+  background-color: white;
+  box-shadow: 0 0 25px 5px rgb(213, 210, 210);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

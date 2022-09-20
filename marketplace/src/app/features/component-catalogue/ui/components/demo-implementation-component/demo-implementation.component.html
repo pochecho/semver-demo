@@ -1,0 +1,55 @@
+<app-technologies-bullet
+  [technologies]="technologies"
+  (onSelectTech)="onSelectTech($event)"
+></app-technologies-bullet>
+<div class="bc-row bc-justify-content-center bc-bg-light">
+  <div
+    class="bc-justify-content-center"
+    [ngClass]="{
+      'bc-col-lg-11 bc-mb-5': inDemoView,
+      'bc-col-xs-6 bc-col-sm-12 bc-col-md-7 bc-col-lg-7 bc-col-xl-7 bc-px-5':
+        !inDemoView
+    }"
+  >
+    <ng-template adHost></ng-template>
+    <ng-container *ngIf="!existsImplementation() && currentTech != 'flutter'">
+      <app-lost-content
+        message="Este componente no tiene un preview disponible."
+        icon="il-networking"
+      ></app-lost-content>
+    </ng-container>
+  </div>
+
+  <div
+    class="code-snippet bc-flex bc-flex-column  
+    bc-col-xs-6 bc-col-sm-12 bc-col-md-4 bc-col-lg-4 
+    bc-col-xl-4 bc-bg-light"
+    *ngIf="examples"
+  >
+      <bc-accordions-group>
+        <bc-accordion *ngFor="let example of examples">
+          <bc-accordion-header
+            title="{{ example.description }}"
+          ></bc-accordion-header>
+          <bc-accordion-content>
+            <bc-tabs-group>
+              <bc-tab label="{{ example.code.visual.language | uppercase }}">
+                <pre><code>{{example.code.visual.data}}</code></pre>
+              </bc-tab>
+              <bc-tab
+                *ngIf="!(example.code.script.language === 'dart')"
+                label="{{ example.code.script.language | uppercase }}"
+              >
+                <pre *ngIf="example.code.script.data === ''">
+No necesita configuración
+                </pre>
+                <pre
+                  *ngIf="example.code.script.data !== ''"
+                ><code>{{example.code.script.data}}</code></pre>
+              </bc-tab>
+            </bc-tabs-group>
+          </bc-accordion-content>
+        </bc-accordion>
+      </bc-accordions-group>
+  </div>
+</div>

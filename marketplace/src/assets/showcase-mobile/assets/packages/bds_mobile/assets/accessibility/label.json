@@ -1,0 +1,34 @@
+{
+    "es": {
+        "acordeon": {
+            "name": "Accordion",
+            "expanded": "expanded",
+            "contracted": "contracted"
+        },
+        "alert-inline": {
+            "name": "Alert."
+        },
+        "link": {
+            "name": "Link."
+        },
+        "button": {
+            "name": "Button."
+        }
+    },
+    "en": {
+        "acordeon": {
+            "name": "Accordion",
+            "expanded": "expanded",
+            "contracted": "contracted"
+        },
+        "alert-inline": {
+            "name": "Alert."
+        },
+        "link": {
+            "name": "Link."
+        },
+        "button": {
+            "name": "Button."
+        }
+    }
+}

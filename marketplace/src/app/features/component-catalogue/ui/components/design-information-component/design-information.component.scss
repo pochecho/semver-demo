@@ -1,0 +1,22 @@
+:host {
+  .shortcut {
+    cursor: pointer;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+  #list {
+    border-left: 1px solid #cccccc;
+    padding-left: 1pc;
+    margin-top: 1pc;
+    margin-bottom: 1pc;
+  }
+
+  .btn-float {
+    border-radius: 0;
+    background-color: #fdda24;
+  }
+  ::ng-deep .bc-resize {
+    width: 80%;
+  }
+}

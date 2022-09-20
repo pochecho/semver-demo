@@ -1,0 +1,83 @@
+<!-- <img id="update-component-img" src="assets/icons/strokes/11.svg" alt="">
+<section id="update-component"  >
+    <h3 >Formulario de registro de componentes<bc-icon
+        name="il-wallet-activation-1" height="30px"
+        aria-hidden="true" aria-label="imagen de celular y varios componentes"></bc-icon> </h3>
+    <br>
+
+
+
+    <br>
+    <form [formGroup]="componentForm" (ngSubmit)="onSubmit()">
+        <bc-input-select componentId="category-select" [formatType]="formatType"
+            [values]="values"
+            class="bc-col-xs-6 bc-col-md-5 bc-pt-4"
+            [status]="status"
+            label="Categoria componente"
+            (valueOutput)="showSelectedValueCategory($event)"
+            formControlName="category" required>
+        </bc-input-select>
+        <bc-input-select componentId="tag-select" [formatType]="formatType"
+            [values]="componentTags"
+            [multiple] = "true"
+            class="bc-col-xs-6 bc-col-md-5 bc-pt-4"
+            [status]="status"
+            label="Tag del componente"
+            (valueOutput)="showSelectedValueTags($event)"
+            formControlName="component" required>
+        </bc-input-select>
+        <bc-input-select *ngIf= "deviceTags" componentId="device-select" [formatType]="formatType"
+            [values]="deviceTags"
+            [multiple] = "true"
+            class="bc-col-xs-6 bc-col-md-5 bc-pt-4"
+            [status]="status"
+            label="Tecnología"
+            (valueOutput)="showSelectedValueTechTags($event)"
+            formControlName="component" required>
+        </bc-input-select>
+
+        <bc-form-field class="bc_space_1_left bc-col-xs-6 bc-col-md-5">
+            <input bc-input aria-label="input"
+                type="text"
+                placeholder="Ingresa el nombre del componente "
+                value=""
+                formControlName = "name"
+                required />
+            <span>Nombre de Componente</span>
+        </bc-form-field>
+        <bc-form-field class="bc_space_1_left bc-col-xs-6 bc-col-md-5">
+            <input bc-input aria-label="input" type="text"
+            formControlName = "description"
+            placeholder="Descripción" value="" required />
+            <span>Descripción del componente</span>
+        </bc-form-field>
+        <bc-form-field class="bc_space_1_left bc-col-xs-6 bc-col-md-5">
+            <input bc-input aria-label="input"
+                type="text"
+                placeholder="Ingresa el estado "
+                value=""
+                formControlName = "status"
+            />
+            <span>Estado del Componente</span>
+        </bc-form-field>
+        <bc-form-field class="bc_space_1_left bc-col-xs-6 bc-col-md-5">
+            <input bc-input aria-label="input" type="text"
+            formControlName = "brand"
+            placeholder="ingresa la marca" value=""  />
+            <span>Marca del componente</span>
+        </bc-form-field>
+        <bc-icon  name="il-explore-items" height="80px" aria-hidden="true" aria-label="imagen de celular y varios componentes"></bc-icon>
+        <br>
+        <button bc-button class="bc_space_1_top" type="submit" [disabled]="!componentForm.valid">Subir componente</button>
+    </form>
+    <bc-input-file title="Imagen Portada componente"
+        class="bc_space_8_top bc-col-12 bc-xs-col-12"
+        [description]="'Ingrese por favor una imagen de portada que describa al componente y cuyo peso no sea elevado'"
+        [dropArea]=true
+        (getFilesAdded)='getImage($event)'
+        [multipleFiles]=false
+        [validType]='["jpg"]'
+        [buttonLabel]="'Sube el archivo para la portada'"
+        componentId="InputConDropAreaasd">
+    </bc-input-file>
+</section> -->

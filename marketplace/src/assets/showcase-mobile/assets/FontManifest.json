@@ -1,0 +1,58 @@
+[
+    {
+      "family": "MaterialIcons",
+      "fonts": [
+        {
+          "asset": "showcase-mobile/assets/fonts/MaterialIcons-Regular.otf"
+        }
+      ]
+    },
+    {
+      "family": "packages/bds_mobile/bc-icons",
+      "fonts": [
+        {
+          "asset": "showcase-mobile/assets/packages/bds_mobile/assets/icons/functional/bancolombia-iconos-funcionales.ttf"
+        }
+      ]
+    },
+    {
+      "family": "packages/bds_mobile/CIBFontSans-Bold",
+      "fonts": [
+        {
+          "asset": "showcase-mobile/assets/packages/bds_mobile/lib/tokens/fonts/CIB_Font_Serif/CIBFontSans-Bold.ttf"
+        }
+      ]
+    },
+    {
+      "family": "packages/bds_mobile/CIBFontSans-Light",
+      "fonts": [
+        {
+          "asset": "showcase-mobile/assets/packages/bds_mobile/lib/tokens/fonts/CIB_Font_Serif/CIBFontSans-Light.ttf"
+        }
+      ]
+    },
+    {
+      "family": "packages/bds_mobile/CIBFontSerif-Bold",
+      "fonts": [
+        {
+          "asset": "showcase-mobile/assets/packages/bds_mobile/lib/tokens/fonts/CIB_Font_Serif/CIBFontSerif-Bold.ttf"
+        }
+      ]
+    },
+    {
+      "family": "packages/bds_mobile/OpenSans-Regular",
+      "fonts": [
+        {
+          "asset": "showcase-mobile/assets/packages/bds_mobile/lib/tokens/fonts/Open_Sans/OpenSans-Regular.ttf"
+        }
+      ]
+    },
+    {
+      "family": "packages/bds_mobile/OpenSans-SemiBold",
+      "fonts": [
+        {
+          "asset": "showcase-mobile/assets/packages/bds_mobile/lib/tokens/fonts/Open_Sans/OpenSans-SemiBold.ttf"
+        }
+      ]
+    }
+  ]

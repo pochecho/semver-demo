@@ -3,28 +3,56 @@
   {
     "name": "accordion",
     "level": 1,
-    "path": "../../src/components/accordion",
-    "styles": [],
+    "path": "../../../design-system/src/components/accordion",
+    "styles": [
+      {
+        "file": "accordion.configuration.scss",
+        "components": []
+      },
+      {
+        "file": "accordion.scss",
+        "components": [
+          "icon"
+        ]
+      }
+    ],
     "templates": [
       {
-        "file": "base.html",
+        "file": "accordion.template.html",
         "components": [
-          "icon",
-          "label",
-          "tooltip"
+          "icon"
         ]
       }
     ],
     "components": [
-      "icon",
-      "label",
-      "tooltip"
+      "icon"
+    ]
+  },
+  {
+    "name": "accordions-group",
+    "level": 2,
+    "path": "../../../design-system/src/components/accordions-group",
+    "styles": [
+      {
+        "file": "accordions-group.configuration.scss",
+        "components": [
+          "accordion"
+        ]
+      },
+      {
+        "file": "accordions-group.styles.scss",
+        "components": []
+      }
+    ],
+    "templates": [],
+    "components": [
+      "accordion"
     ]
   },
   {
     "name": "button",
     "level": 0,
-    "path": "../../src/components/button",
+    "path": "../../../design-system/src/components/button",
     "styles": [
       {
         "file": "button.scss",
@@ -37,7 +65,7 @@
   {
     "name": "complex-input",
     "level": 2,
-    "path": "../../src/components/complex-input",
+    "path": "../../../design-system/src/components/complex-input",
     "styles": [
       {
         "file": "complex-input.scss",
@@ -65,7 +93,7 @@
   {
     "name": "form-field",
     "level": 1,
-    "path": "../../src/components/form-field",
+    "path": "../../../design-system/src/components/form-field",
     "styles": [
       {
         "file": "form-field.scss",
@@ -87,7 +115,7 @@
   {
     "name": "full-input-select",
     "level": 4,
-    "path": "../../src/components/full-input-select",
+    "path": "../../../design-system/src/components/full-input-select",
     "styles": [],
     "templates": [
       {
@@ -104,8 +132,12 @@
   {
     "name": "icon",
     "level": 0,
-    "path": "../../src/components/icon",
+    "path": "../../../design-system/src/components/icon",
     "styles": [
+      {
+        "file": "icon-foun.scss",
+        "components": []
+      },
       {
         "file": "icon.scss",
         "components": []
@@ -122,7 +154,7 @@
   {
     "name": "input",
     "level": 0,
-    "path": "../../src/components/input",
+    "path": "../../../design-system/src/components/input",
     "styles": [
       {
         "file": "input.foundation.scss",
@@ -139,7 +171,7 @@
   {
     "name": "input-select",
     "level": 3,
-    "path": "../../src/components/input-select",
+    "path": "../../../design-system/src/components/input-select",
     "styles": [
       {
         "file": "input-select.scss",
@@ -167,7 +199,7 @@
   {
     "name": "label",
     "level": 0,
-    "path": "../../src/components/label",
+    "path": "../../../design-system/src/components/label",
     "styles": [],
     "templates": [],
     "components": []
@@ -175,7 +207,7 @@
   {
     "name": "re-full-input-select",
     "level": 5,
-    "path": "../../src/components/re-full-input-select",
+    "path": "../../../design-system/src/components/re-full-input-select",
     "styles": [],
     "templates": [
       {
@@ -194,7 +226,7 @@
   {
     "name": "tooltip",
     "level": 0,
-    "path": "../../src/components/tooltip",
+    "path": "../../../design-system/src/components/tooltip",
     "styles": [],
     "templates": [],
     "components": []

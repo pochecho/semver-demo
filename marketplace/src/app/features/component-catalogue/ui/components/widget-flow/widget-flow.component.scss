@@ -1,0 +1,19 @@
+.flow-visualizer {
+  width: 100%;
+  overflow-x: auto;
+  max-height: 450px;
+  img {
+    height: 400px;
+  }
+}
+
+.phone-visualizer {
+  width: 100%;
+  img{
+      width: 98%;
+  }
+}
+.size-iframe{
+  min-height: 60vh;
+  width: 100%;
+}

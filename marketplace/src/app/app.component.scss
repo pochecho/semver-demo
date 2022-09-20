@@ -1,0 +1,69 @@
+div.child {
+  height: 80px;
+  width: 120px;
+  text-align: center;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 20px;
+}
+
+.title {
+  display: inline-block;
+}
+.title-button {
+  float: right;
+}
+.containers .child {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+pre {
+  background: #4e4d4d;
+  border: 1px solid #ddd;
+  border-left: 3px solid #69f333;
+  color: #fff;
+  page-break-inside: avoid;
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1em 1.5em;
+  display: block;
+  word-wrap: break-word;
+}
+
+.containers {
+  font-family: "Nunito Bold";
+  margin-block-start: 100px;
+  margin-left: 8%;
+  margin-right: 8%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.set_chk h3 {
+  display: inline-block;
+}
+
+.set_rdo h3 {
+  display: inline-block;
+}
+
+.figure {
+  &__img {
+    width: 100%;
+  }
+}
+
+.app-container {
+  background-color: #f7f7f7;
+  .row > div {
+    background-color: white;
+  }
+}
+
+

@@ -1,0 +1,125 @@
+<main class="">
+  <div id="topContent" class="bc-bg-dark bc-text-light bc-w-100">
+    <img
+      alt="header-top"
+      src="assets/temporal/headerTopHome.svg"
+      id="imageTop"
+    />
+    <div class="bc-container">
+      <div class="bc-col-md-8 bc-col-lg-6">
+        <div id="homeBoxTop">
+          <strong style="tabindex: 0">
+            Te damos la bienvenida a nuestra
+          </strong>
+          <h1 id="textPlataform" class="firstText">Plataforma</h1>
+          <br />
+          <br />
+          <h1 id="textBank" class="firstText">Bancolombia</h1>
+          <strong>
+            Una herramienta que nos ayuda a co crear experiencias digitales
+            transversales, consistentes y de alta calidad en Bancolombia.
+          </strong>
+        </div>
+      </div>
+      <div class="bc-col-md-8 bc-col-lg-6 bc_space_2_top bc_space_2_bottom">
+        <div id="modalVideo">
+          <img
+            src="assets/temporal/VideoHome.png"
+            alt="video imagen"
+            (click)="modalComponent.openModal()"
+            id="imageVideo"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <bc-modal
+    #modalComponent
+    title="Sistema de Diseño Bancolombia"
+    [typeIcon]="typeIcon"
+    [customWidth]="customWidth"
+    [titleAlign]="titleAlign"
+    [isCancellable]="action"
+    [subTitle]="subTitle"
+    textBtnLeft="No"
+    typeNotify="success"
+    (stateClick)="onPressButton($event['value'])"
+  >
+    <div illustration>
+      <bc-icon
+        aria-hidden="true"
+        name="inscribir_factura_01"
+        aria-label="prueba"
+        role="img"
+        width="150px"
+        class="bc-sm"
+      ></bc-icon>
+    </div>
+    <div modalContent>
+      <video controls>
+        <source src="assets/temporal/home/Bancolombia_video.mp4" />
+      </video>
+      <p id="descriptionSBD">
+        El sistema de diseño Bancolombia (BDS) es una colección de recursos y
+        componentes re-utilizables que se reúnen bajo una serie de lineamientos
+        claros, con el fin de ayudar a agilizar el desarrollo y que la identidad
+        corporativa se mantenga siempre fial a sus principios.
+      </p>
+    </div>
+  </bc-modal>
+
+  <div id="designDevelop" class="bc-container">
+    <div class="bc-row">
+      <div class="bc-col-md-6 bc-col-lg-6 pointer" routerLink="/home/design">
+        <div bc-card typeCard="image" #cardDesign id="cardDesign">
+          <div class="bc-card-picture" id="cardPictureDesign">
+            <img alt="design image" src="assets/temporal/home/Design.png" />
+            <div
+              class="bc-card-floating-button"
+              id="designIcon"
+              [ngStyle]="{
+                'width.px': (cardDesign.offsetWidth / 100) * 15,
+                'height.px': (cardDesign.offsetWidth / 100) * 15
+              }"
+            >
+              <img
+                src="assets/temporal/home/designIcon.svg"
+                alt="design icon"
+              />
+            </div>
+          </div>
+          <div class="bc-card-content" id="cardContentDesign">
+            <p class="bc-card-subtitle bc-align-left" id="textDesign">Diseño</p>
+          </div>
+        </div>
+      </div>
+      <div class="bc-col-md-6 bc-col-lg-6 pointer" routerLink="/home/develop">
+        <div bc-card id="options" typeCard="image" #cardDevelop>
+          <div class="bc-card-picture" id="cardPictureDevelop">
+            <img alt="random-image" src="assets/temporal/home/develop.png" />
+            <div
+              class="bc-card-floating-button"
+              id="developIcon"
+              [ngStyle]="{
+                'width.px': (cardDevelop.offsetWidth / 100) * 15,
+                'height.px': (cardDevelop.offsetWidth / 100) * 15
+              }"
+            >
+              <img
+                src="assets/temporal/home/developIcon.svg"
+                alt="image develop"
+              />
+            </div>
+          </div>
+          <div class="bc-card-content" id="cardContentDevelop">
+            <p class="bc-card-subtitle bc-align-left" id="textDevelop">
+              Desarrollo
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <community-banner-component></community-banner-component>
+</main>

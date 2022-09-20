@@ -1,0 +1,12 @@
+<div class="bc-row">
+  <div class="bc-col-xs-6 bc-col-sm-12 bc-col-md-9 bc-col-lg-9 bc-col-xl-9 bc-mt-3">
+    <button
+      *ngFor="let tech of technologies"
+      (click)="selectBullet( tech)"
+      class="tagButton bc-py-2 bc-px-3"
+      [class.active]="selectedTechnology == tech"
+    >
+      {{ technologyMapper[tech] }}
+    </button>
+  </div>
+</div>

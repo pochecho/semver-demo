@@ -1,0 +1,77 @@
+<!-- <div
+  *ngIf="inDemoView"
+  id="demoHeader"
+  class="bc-d-flex bc-padding-top-5 bc-padding-left-3"
+>
+  <bc-icon
+    id="emName"
+    *ngIf="data['nameComponent']"
+    class="bc-margin-right-2"
+    aria-hidden="true"
+    (click)="inDemoView = false; renderSection('Flujo')"
+  >
+    arrow-left
+  </bc-icon>
+  <h2 id="hName" *ngIf="inDemoView">
+    {{ data["nameComponent"] }}
+  </h2>
+</div>
+<div id="header" *ngIf="!inDemoView">
+  <div class="bc-row">
+    <div class="bc-col-xs-6 bc-col-sm-9 bc-col-md-9 bc-col-lg-9 bc-col-xl-9">
+      <div id="hDev">
+        <p id="breadcrumb">
+          <span class="link" routerLink="../../../home">Inicio</span>
+          >
+          <span class="link" routerLink="../../../home/develop">
+            Desarrolladores
+          </span>
+          >
+          <span class="link" routerLink="..">
+            {{
+              category === "widgets" ? "Flujos transversales" : "Componentes"
+            }}
+          </span>
+        </p>
+        <h3 id="hName">
+          <a id="aName" class="link" routerLink="../..">
+            <bc-icon
+              id="emName"
+              *ngIf="data['nameComponent']"
+              class="bc-margin-right-2"
+              aria-hidden="true"
+            >
+              arrow-left
+            </bc-icon>
+          </a>
+          {{ data["nameComponent"] }}
+        </h3>
+        <p id="pDescription" *ngIf="data['description']">
+          {{ data["description"] }}
+        </p>
+      </div>
+      <div class="bc-tabs-group">
+        <div class="bc-tab-header">
+          <div class="bc-tabs left">
+            <div
+              *ngFor="let tab of tabs; let i = index"
+              class="bc-tab"
+              (click)="selectTab(tab)"
+              [class.active]="selectedTab == tab"
+              [style.display]="
+                category === 'widgets' && tab === 'Ejemplo' ? 'none' : 'auto'
+              "
+            >
+              <span>{{ tab }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bc-col-xs-2 bc-col-sm-3 bc-col-md-3 bc-col-lg-3 bc-col-xl-3 display-colab"
+    ></div>
+  </div>
+</div>
+<div adHost></div>
+<app-not-allowed *ngIf="status == 'Not Allowed'"></app-not-allowed> -->

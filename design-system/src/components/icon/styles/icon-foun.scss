@@ -1,0 +1,6 @@
+@use "../../../core/configuration.scss" as *;
+
+
+$icon-name: "icon";
+$icon-namespace: #{$prefix-lib}-#{$icon-name};
+

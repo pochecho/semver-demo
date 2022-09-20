@@ -1,0 +1,75 @@
+pre {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-left: 3px solid #00448d;
+  color: #666;
+  page-break-inside: avoid;
+  font-family: monospace;
+  font-size: 15px;
+  max-width: 100%;
+  overflow: auto;
+  padding: 5px 2px;
+  margin: 4px 0;
+  display: block;
+  word-wrap: break-word;
+}
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.example {
+  color: #292929;
+  text-align: center;
+  height: 40px;
+  background: #e6e7e8;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+  padding-top: 8px;
+}
+
+.color-code {
+  color: rgb(194, 43, 43);
+}
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+*::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #a8a8a8;
+  border-radius: 10px;
+}
+*::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.bc-carousel-arrow {
+  padding: 1rem !important;
+}
+
+li {
+  list-style: none !important;
+}
+
+ol {
+  list-style-type: none;
+}
+
+.disabled-feature{
+  display: none;
+  width: 0;
+  height: 0;
+  font-size: 0;
+}

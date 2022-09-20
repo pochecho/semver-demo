@@ -1,0 +1,41 @@
+<!-- <div>
+  <button
+    *ngIf="canEdit"
+    bc-button
+    sizeButton="small"
+    class="bc-col-3"
+    (click)="toggleValues()"
+    typeButton="secondary"
+    [style.display]="canEdit && hide ? 'block' : 'none'"
+  >
+    Editar
+  </button>
+</div>
+<div>
+  <form
+    [formGroup]="form"
+    id="current-editor"
+    [style.display]="hide ? 'none' : 'flex'"
+    class="bc-flex bc-direction-column"
+  >
+    <section>
+      <button bc-button class="bc-col-3" (click)="updateData()">Guardar</button>
+      <button
+        bc-button
+        class="bc-col-3"
+        typeButton="secondary"
+        (click)="hide = true"
+      >
+        Cancelar
+      </button>
+    </section>
+    <section class="bc-mt-3">
+      <quill-editor formControlName="editor"></quill-editor>
+    </section>
+  </form>
+</div>
+<section
+  id="current-info-doc"
+  [innerHTML]="safeHtml"
+  [style.display]="!hide ? 'none' : 'block'"
+></section> -->

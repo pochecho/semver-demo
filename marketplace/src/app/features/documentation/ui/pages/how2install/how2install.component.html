@@ -1,0 +1,171 @@
+<section class="bc-mt-3" id="how-install">
+    <div class="bc-offset-lg-3 bc_space_5_padding">
+        <h2 class="">Cómo instalar la librería del Sistema de Diseño</h2>
+        <br>
+        <div id="intro-instalación" class="bc-col-12">
+            <div class="bc-col bc-col-sm-8 ">
+                <p>En esta sección te daremos una guía práctica, referente a como instalar la librería. Lo primero a
+                    tener presente es que tipo de tecnología estas empleando sea web o mobile. A continuación
+                    expondremos como puedes proceder en cada uno de los escenarios.</p>
+            </div>
+            <br>
+            <figure>
+                <img id="int-img" class="bc-offset-md-1" src="assets/temporal/dev-home/info-img.png" alt="imagen de personas felices">
+            </figure>
+        </div>
+        <div id="doc-angular" class="bc-row ">
+            <div class="bc-col">
+                <h3>
+                    Desarrolladores web en angular
+                </h3>
+                <div class="bc-col-sm-8">
+                    <p>
+                        Primero debes crear en la raíz del proyecto del archivo .npmrc y en el archivo hacer referencia
+                        al
+                        registry de Bancolombia
+                    </p>
+                    <p class="bc-bg-dark bc-text-secondary show-urls">
+                        registry=https://artifactory.apps.bancolombia.com/api/npm/npm-bancolombia/
+                    </p>
+                    <p>
+                        luego debemos agregar la dependencia mediante npm
+                    </p>
+                    <p class="bc-bg-dark bc-text-secondary show-urls">
+                        npm install @bancolombia/design-system-web.
+                    </p>
+                    <p>
+                        En el archivo angular.json agregar las siguiente configuración en las secciones respectivas:
+                    </p>
+                    <pre>
+                            <code>
+    "styles" : [
+                "src/styles.css",
+                "node_modules/@bancolombia/design-system-web/bds.min.css"
+                ],
+    "scripts": [
+                "node_modules/@bancolombia/design-system-web/bds.min.js"
+                ]</code>
+                        </pre>
+                    <p>
+                        Esta Librería cuenta con distintos módulos, a medida que el proyecto requiera debe hacer las
+                        importaciones respectivas en el módulo de angular que lo necesite. En el <a
+                            routerLink="/component-catalogue/components">catalogo de componentes </a> puede encontrar
+                        mas información para implementar el elemento que desees.
+                    </p>
+                </div>
+                <figure class="bc-col-sm-12 bc-col-md-3">
+                    <img id="ang-img" class="bc-offset-md-5" src="assets/temporal/dev-home/angular.png" alt="imágen de logo de angular">
+                </figure>
+            </div>
+            <br>
+        </div>
+        <br>
+        <div id="doc-web-otros-fw" class="bc-row ">
+            <div class="bc-col">
+                <h3>
+                    Desarrolladores web en otros frameworks
+                </h3>
+                <div class="bc-col-sm-8">
+                    <p>
+                        En Bancolombia, nuestra herramienta principal de desarrolo web es Angular. Sin embargo, algunos
+                        proyectos pueden necesitar que su solución sea desarrollada en otra tecnología de desarrollo
+                        web. Si este es tu escenario, a continuación expondremos como podemos instalar nuestra librería
+                        en una plantilla HTML normal.
+                    </p>
+                    <br>
+                    <h4>Primer paso: Importar minificados de estilos</h4>
+                    <p>En la cabercera de tu html te debes traer la versión del sistema de diseño que desees utilizar,
+                        de la siguiente forma</p>
+                    <pre>
+                        <code>
+    <&zwj;head> 
+        ...
+        <&zwj;link rel="stylesheet" href="https://library-sdb.apps.bancolombia.com/bds/2.1.2/bds.min.css" />
+    <&zwj;/head></code>
+                    </pre>
+                    <p>
+                        Si su componente no requiere de comportamientos y lo que necesitas es únicamente los estilos,
+                        con la configuración anterior ya tienes todo listo. Recomendamos fuertemente apuntar a una
+                        versión específica del BDS.
+                    </p>
+                    <br>
+                    <h4>Segundo paso: Importar minificados de comportamientos</h4>
+                    <p>En una etiqueta tipo script o según la configuración del framework debe importarse la versión
+                        específica del minificado JavaScript.</p>
+                    <pre>
+                        <code>
+    <&zwj;script src="https://library-sdb.apps.bancolombia.com/2.0.20/js/bds.min.js"><&zwj;/script></code>
+                    </pre>
+                    <p>
+                        Esta Librería cuenta con distintos métodos, que debe ejecutar para la correctar configuración de
+                        sus componentes. En el <a routerLink="/component-catalogue/components">catalogo de componentes
+                        </a> puede encontrar
+                        mas información para implementar el elemento que necesite.
+                    </p>
+                </div>
+                <figure class="bc-col-sm-12 bc-col-md-3">
+                    <img id="ang-img" class="bc-offset-md-5" src="assets/temporal/dev-home/frameworks.png" alt="imágen logo de frameworks web">
+                </figure>
+            </div>
+            <br>
+        </div>
+        <br>
+        <div id="doc-mobile-flutter" class="bc-row ">
+            <div class="bc-col">
+                <h3>
+                    Desarrolladores Flutter
+                </h3>
+                <div class="bc-col-sm-8">
+                    <p>
+                        En Bancolombia, nuestra herramienta principal de desarrolo mobile es Flutter. Para instalar la
+                        librería en Flutter debes seguir los siguientes pasos.
+                    </p>
+                    <br>
+                    <h4>Primer paso: Importar librería </h4>
+                    <p>En en tu pubspec.yaml debes importar la librería de la siguiente forma:</p>
+                    <pre>
+                        <code>
+    provider: ^6.0.1
+    bancolombia_foundations:
+      git:
+        url: https://grupobancolombia.visualstudio.com/Vicepresidencia%20Servicios%20de%20Tecnolog%C3%ADa/_git/NU0066001_BDS_MOBILE_MR
+        path: bancolombia_foundations/
+        ref: 3.2.0
+    bds_mobile:
+      git:
+        url: https://grupobancolombia.visualstudio.com/Vicepresidencia%20Servicios%20de%20Tecnolog%C3%ADa/_git/NU0066001_BDS_MOBILE_MR
+        path: bds_mobile/
+        ref: 3.2.0</code>
+                    </pre>
+                    <p>
+                        Cuando artifactory sea compatible con Flutter podrás tener esta instalación utilizando la forma
+                        tradicional. Por ahora debes apuntar al repo y al versión específica que deseas.
+                    </p>
+                    <br>
+                    <h4>Segundo paso: Configura el provider</h4>
+                    <p>Dado que tenemos soporte a multimarca en el MultiProvider de tu app debes especificar que tema
+                        vas a utilizar como se ve en el siquiente ejemplo :</p>
+                    <pre>
+                        <code>
+    return MultiProvider(
+        providers: [
+            ...BancolombiaFoundations.themeProvider
+        ]
+        </code>
+                    </pre>
+                    <p>Con esto ya está listo para utilizar la librería de Flutter.</p>
+                    <br>
+                    <p>
+                        Para ver el detalle de como utilizar algún componente puede dirigirse all <a
+                            routerLink="/component-catalogue/components">catalogo de componentes </a> donde encontrar
+                        mas información.
+                    </p>
+                </div>
+                <figure class="bc-col-sm-12 bc-col-md-3">
+                    <img id="ang-img" class="bc-offset-md-5" src="assets/temporal/dev-home/Flutter.png" alt="logo Flutter">
+                </figure>
+            </div>
+            <br>
+        </div>
+    </div>
+</section>

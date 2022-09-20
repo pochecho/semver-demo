@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>BALM CAPTCHA V3</title>
+    <meta content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render={{ENVIROMENT_KEY}}"></script>
+    <script type="text/javascript">
+        var Token = '';
+        
+        $( document ).ready(function() {
+            getReCaptcha();
+        });
+        
+        function getReCaptcha() {
+            grecaptcha.ready(function() {
+                grecaptcha.execute('{{ENVIROMENT_KEY}}', {action: 'login'}).then(function(token) {
+                    document.getElementById("divToken").innerHTML = token;
+                    $('#recaptcha-response').val(token);
+                });
+            });
+        }
+        
+        function getToken() {
+           return $('#recaptcha-response').val();
+        }
+        
+    </script>
+  </head>
+  <body>
+    
+    <br>
+    <form id='captcha-form' action="?" method="POST">
+        <input type="hidden" id="recaptcha-response">
+    </form>
+    <div id="divToken" style="display:none">
+    
+    </div>
+    
+  </body>
+</html>

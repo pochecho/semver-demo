@@ -1,0 +1,30 @@
+<div class="bc-row bc-mx-3 bc-mt-3" id="row-padre">
+  <div class="bc-col-xs-12 bc-col-sm-12 bc-col-md-9 bc-col-lg-8 bc-col-xl-8">
+    <div bc-card>
+      <div class="bc-card-body">
+        <div class="bc-card-info bc-align-right">
+          <div>
+            <iframe
+              title="iframeFigma"
+              id="iframe_flujo"
+              [src]="urlFigma"
+              allowfullscreen
+              class='size-iframe'
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bc-col-xs-12 bc-col-sm-12 bc-col-md-3 bc-col-lg-4 bc-col-xl-3">
+    <app-embed-flutter-visualizator
+      *ngIf="!isWeb"
+      [base-url]="baseUrl"
+      [path]="path"
+    ></app-embed-flutter-visualizator>
+    <div *ngIf="isWeb" class="bc-text-center bc-pt-3">
+      <img src="assets/images/macbook.png" alt="Widget Demo">
+      <button bc-button typeButton="primary" (click)="viewDemo()" class="bc-margin-top-5">Ver widget</button>
+    </div>
+  </div>
+</div>

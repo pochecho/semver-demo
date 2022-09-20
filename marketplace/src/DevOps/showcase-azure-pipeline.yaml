@@ -1,0 +1,131 @@
+name: $(Build.SourceBranchName).$(date:yyyyMMdd)$(rev:.r)
+
+variables:
+  - name: componentDirectoryName
+    value: ng_bancolombiaDesignSystem
+  - name: minDirectoryName
+    value: bancolombiaDesignSystem/scss/ds-builder
+  - name: bancolombiaDesignSystem
+    value: bancolombiaDesignSystem
+  - name: projectName
+    value: ng_bancolombiaDesignSystem
+  - name: pathLinked
+    value: projects/ng_bds/dist
+
+resources:
+  - repo: self
+
+trigger:
+  branches:
+    include:
+      - trunk
+      - feature/*
+  paths:
+    include:
+      - 'ng_bancolombiaDesignSystem/*'
+
+jobs:
+  - job: Build
+    pool:
+      name: Azure Pipelines
+      vmImage: 'ubuntu-22.04'
+      demands:
+        - npm
+        - java
+
+    steps:
+      - task: DevopsExtensionsBancolombia.devops-hosted-agentpdn.hosted-agent-tunnel.connect-agent@2
+        displayName: 'Hosted agent'
+        inputs:
+          hostedAgentService: hosted-agent-cnx
+      - task: NodeTool@0 
+        displayName: 'Change version NodeJs'
+        inputs:
+          versionSpec: 'v14.18.2'
+      - task: Npm@1
+        displayName: 'Install dependencies (nativo, temporal)'
+        inputs:
+          workingDir: $(bancolombiaDesignSystem)
+          verbose: false
+          customEndpoint: 'npm-bancolombia'
+      - task: Npm@1
+        displayName: 'Install dependencies min (nativo, temporal)'
+        inputs:
+          workingDir: $(minDirectoryName)
+          verbose: false
+          customEndpoint: 'npm-bancolombia'
+      - task: CmdLine@2
+        displayName: 'Generate "minificados" (scss, js)'
+        condition: succeeded()
+        inputs:
+          script: |
+            cd  $(minDirectoryName)
+            npm run start
+      - task: Npm@1
+        displayName: 'Install dependencies'
+        inputs:
+          workingDir: $(componentDirectoryName)
+          verbose: false
+          customEndpoint: 'npm-bancolombia'
+      - task: CmdLine@2
+        displayName: 'Build the Library'
+        condition: succeeded()
+        inputs:
+          script: |
+            cd  $(componentDirectoryName)
+            node ./node_modules/@angular/cli/bin/ng build ng_bds
+      - task: Npm@1
+        displayName: 'Run unit test'
+        inputs:
+          command: 'custom'
+          customCommand: 'run test:showcase'
+          verbose: true
+          workingDir: $(Build.SourcesDirectory)/$(componentDirectoryName)
+      # -------------------------------------------<SONAR>------------------------------------------------
+      - task: SonarSource.sonarqube.15B84CA1-B62F-4A2A-A403-89B77A063157.SonarQubePrepare@4
+        displayName: 'Preparation of analyze SonarQube'
+        inputs:
+          SonarQube: SonarQube
+          scannerMode: CLI
+          configMode: manual
+          cliProjectKey: '$(Build.Repository.Name)_$(projectName)'
+          cliProjectName: '$(Build.Repository.Name)_$(projectName)'
+          cliProjectVersion: '$(Build.BuildNumber)'
+          cliSources: '$(componentDirectoryName)'
+          extraProperties: |
+            sonar.branch.name=$(Build.SourceBranchName)
+            sonar.sources=$(Build.SourcesDirectory)/$(componentDirectoryName)/src/app
+            sonar.tests=$(Build.SourcesDirectory)/$(componentDirectoryName)/src/app
+            sonar.test.inclusions=**/*.spec.ts
+            sonar.exclusions=**/node_modules, **/*.spec.ts,**/native-html-codes/**/*.ts,
+            sonar.language=ts
+            sonar.javascript.lcov.reportPaths=$(System.DefaultWorkingDirectory)/$(componentDirectoryName)/coverage/show-case/lcov.info
+            sonar.sourceEncoding=UTF-8
+      - task: SonarSource.sonarqube.6D01813A-9589-4B15-8491-8164AEB38055.SonarQubeAnalyze@4
+        displayName: 'Run analyze SonarQube'
+      - task: SimondeLang.sonar-buildbreaker.sonar-buildbreaker.sonar-buildbreaker@8
+        displayName: 'Breaker build'
+        inputs:
+          SonarQube: SonarQube
+        enabled: true
+
+      - task: Npm@1
+        displayName: 'Build showcase'
+        inputs:
+          command: 'custom'
+          customCommand: 'run build-prod'
+          verbose: true
+          workingDir: $(componentDirectoryName)
+      # -------------------------------------------</SONAR>------------------------------------------------
+      - task: ArchiveFiles@2
+        # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/trunk'))
+        displayName: 'Archive BDS-showcase.zip'
+        inputs:
+          rootFolderOrFile: '$(componentDirectoryName)/dist/show-case/'
+          archiveFile: '$(componentDirectoryName)/publish/BDS-showcase.zip'
+      - task: PublishBuildArtifacts@1
+        # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/trunk'))
+        displayName: 'Publish Artifact: BDS-min-web'
+        inputs:
+          PathtoPublish: '$(componentDirectoryName)/publish/'
+          ArtifactName: 'BDS-show-case'

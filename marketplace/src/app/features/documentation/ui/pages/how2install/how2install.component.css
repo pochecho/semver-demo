@@ -1,0 +1,16 @@
+#how-install{
+    min-height: 100vh;
+}
+#int-img{
+    height: 200px;
+}
+#ang-img{
+    height: 200px;}
+
+.show-urls{
+    height: auto;
+    min-height: 21px;
+    max-width: fit-content;
+    display:inline-block;
+
+}

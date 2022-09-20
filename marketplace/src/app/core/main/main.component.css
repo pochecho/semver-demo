@@ -1,0 +1,12 @@
+::ng-deep .bc-submenu-footer-container {
+  display: none;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+#logo-principal{
+  cursor: pointer;
+}
+.bc-content-body{
+  height: 100%;
+}

@@ -1,0 +1,243 @@
+[
+    {
+      "identifier": "id1",
+      "path": "/",
+      "text": "Inicio",
+      "iconName": "hogar",
+      "section": []
+    },
+    {
+      "identifier": "id2",
+      "path": "#",
+      "text": "Componentes",
+      "iconName": "tecnologia",
+      "section": [
+        {
+          "title": "Diseño y Contenedores",
+          "options": [
+            {
+              "text": "Acordeón",
+              "path": "components/bc-accordions"
+            },
+            {
+              "text": "Alertas",
+              "path": "//components/bc-alerts"
+            },
+            {
+              "text": "Avatar",
+              "path": "/components/bc-avatar"
+            },
+            {
+              "text": "Bordes",
+              "path": "/components/bc-border"
+            },
+            {
+              "text": "Expansion Panel",
+              "path": "/components/bc-expansion-panel"
+            },
+            {
+              "text": "Footer",
+              "path": "/components/bc-footer"
+            },
+            {
+              "text": "Header",
+              "path": "/components/bc-header"
+            },
+            {
+              "text": "Íconos",
+              "path": "/components/bc-icons"
+            },
+            {
+              "text": "Modal",
+              "path": "/components/bc-modal"
+            },
+            {
+              "text": "Menú",
+              "path": "/components/bc-menu"
+            },
+            {
+              "text": "Pestañas",
+              "path": "/components/bc-tabs-group"
+            },
+            {
+              "text": "Preloader",
+              "path": "/components/bc-preloader"
+            },
+            {
+              "text": "Tarjetas",
+              "path": "/components/bc-cards"
+            },
+            {
+              "text": "Tabla",
+              "path": "/components/bc-tables"
+            }
+          ]
+        },
+        {
+          "title": "Funcionales",
+          "options": [
+            {
+              "text": "Enlaces",
+              "path": "/components/bc-link"
+            },
+            {
+              "text": "Loader",
+              "path": "/components/bc-loader"
+            },
+            {
+              "text": "Breadcrumb",
+              "path": "/components/bc-breadcrumb"
+            },
+            {
+              "text": "Buscador",
+              "path": "/components/bc-search"
+            },
+            {
+              "text": "Loader",
+              "path": "/components/bc-loader"
+            },
+            {
+              "text": "Paginador",
+              "path": "/components/bc-paginator"
+            },
+            {
+              "text": "Barra de Progreso",
+              "path": "/components/bc-progress-bar"
+            },
+            {
+              "text": "Tag",
+              "path": "/components/bc-tag"
+            },
+            {
+              "text": "Tooltip",
+              "path": "/components/bc-tooltip"
+            },
+            {
+              "text": "Stepper",
+              "path": "/components/bc-stepper"
+            },
+            {
+              "text": "Slider",
+              "path": "/components/bc-slider"
+            },
+            {
+              "text": "Shortcut",
+              "path": "/components/bc-shortcut"
+            },
+            {
+              "text": "Card Select",
+              "path": "/components/bc-card-select"
+            }
+          ]
+        },
+        {
+          "title": "Botones e Inputs",
+          "options": [
+            {
+              "text": "Botones",
+              "path": "/components/bc-button"
+            },
+            {
+              "text": "Botones de Grupo",
+              "path": "/components/bc-button"
+            },
+            {
+              "text": "Radio Buttons",
+              "path": "/components/bc-radio"
+            },
+            {
+              "text": "Checkbox",
+              "path": "/components/bc-checkbox"
+            },
+            {
+              "text": "Switch",
+              "path": "/components/bc-switch"
+            },
+            {
+              "text": "Input",
+              "path": "/components/bc-input"
+            },
+            {
+              "text": "Input Date Range",
+              "path": "/components/bc-input-date-range"
+            },
+            {
+              "text": "Selector de Archivo",
+              "path": "/components/bc-input-file"
+            },
+            {
+              "text": "Select",
+              "path": "/components/bc-input-select"
+            },
+            {
+              "text": "Selector Numérico",
+              "path": "/components/number-selector"
+            },
+            {
+              "text": "Calendario",
+              "path": "/components/bc-calendar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "id3",
+      "path": "#",
+      "text": "Versionamiento",
+      "iconName": "app",
+      "section": [
+        {
+          "title": "Versionamientos",
+          "options": [{
+            "text": "Versionamiento de la librería",
+            "path": "version-record"
+          },{
+            "text": "Versionamiento de los minificados",
+            "path": "version-min"
+          }]
+        }
+      ]
+    },
+    {
+      "identifier": "id4",
+      "path": "#",
+      "text": "Grid System",
+      "iconName": "direccionamiento",
+      "section": [
+        {
+          "title": "Sistema de Grilla",
+          "options": [
+            {
+              "text": "Sistema de Grilla",
+              "path": "/components/bc-layout"
+            },
+            {
+              "text": "Flexbox",
+              "path": "/components/bc-flex-box"
+            }
+          ]
+        },
+        {
+          "title": "Funcionales",
+          "options": [
+            {
+              "text": "Etiquetas",
+              "path": "/components/bc-label"
+            },
+            {
+              "text": "Loader",
+              "path": "/components/bc-loader"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "id6",
+      "path": "components/bc-typography",
+      "text": "Tipografías",
+      "iconName": "consultar",
+      "section": []
+    }
+  ]

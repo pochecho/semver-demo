@@ -1,0 +1,27 @@
+#containerComunidad {
+    margin-top: 5pc;
+}
+
+#containerComunidad .bc-container {
+    background-color: #59CBE8;
+    display: flex;
+}
+
+#imageComunidad img {
+    width: 100%;
+    margin-top: -2pc;
+}
+
+#textoComunidad {
+    padding: 1pc
+}
+
+#tituloComunidad {
+    margin-bottom: 0.5pc;
+    margin-top: 1pc;
+}
+
+#pComunidad {
+    margin-bottom: 0.5pc;
+    font-weight: 400;
+}

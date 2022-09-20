@@ -1,0 +1,1 @@
+export type StatusPage = 'Loaded' | 'Pending' | 'Not Allowed'

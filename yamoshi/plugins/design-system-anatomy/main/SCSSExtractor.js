@@ -10,7 +10,7 @@ class SCSSExtractor {
     const TEMPLATE_FOLDER_PATTERN = "styles";
     const COMPONENT_IDENTIFIER_NAME =
       this.configuration["component-identifier"];
-    //  /<{prefix}-([a-zA-Z\-]+)>/gm;
+    //  /<prefix@-([a-zA-Z\-]+)>/gm;
 
     const componentsFolders = this.listComponentsNames(COMPONENTS_FOLDER_PATH);
 

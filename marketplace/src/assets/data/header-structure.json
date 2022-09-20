@@ -1,0 +1,51 @@
+{
+    "menuInteraction":false,
+    "fixed":false,
+    "items":[
+      {
+        "id":"Herramientas",
+        "text":"Herramientas",
+        "iconLeft":"calculator", 
+        "typeItem":"tools",
+        "route":"/"
+      },
+      {
+        "id":"Ayuda",
+        "text":"Ayuda",
+        "iconLeft":"help", 
+        "typeItem":"help",
+        "route":"/"
+      },
+      {
+        "id":"Notificaciones",
+        "text":"Notificaciones",
+        "iconLeft":"notification", 
+        "typeItem":"notification",
+        "route":"/"
+      },
+      {
+        "id":"sveHeaderCompany",
+        "iconLeft":"store",
+        "options": [
+            { 
+                "name": "Empresa 1", 
+                "nit": "NIT 123456789-0", 
+                "url": "#" 
+            }, 
+            { 
+                "name": "Empresa 2", 
+                "nit": "NIT 123456789-1", 
+                "url": "#" 
+            }
+        ],
+        "typeItem":"company"
+      },     
+      {
+        "text":"Julian Gómez Jaramillo",
+        "iconRight":"user",
+        "typeItem":"user",
+        "imgAvatar":"https://galatea-dev.apps.ambientesbc.com/1.0.0/assets/icons/brand/persona_on.svg",
+        "componentid":"prueba1"
+      }
+    ]
+  }

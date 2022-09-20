@@ -1,0 +1,33 @@
+<div class="bc-row">
+  <div class="bc-col-9 bc-flex bc-flex-column">
+    <ng-container *ngIf="dataIsPresent(); else dataNotPresent">
+      <ng-container #dataPresent *ngFor="let section of properties | keyvalue">
+        <h3 [id]="section.key" class="bc-mt-3 bc-mx-4">
+          {{ section.value["title"] }}
+        </h3>
+        <app-doc-fill
+          [hide]="true"
+          [canEdit]="hasPermission('component-catalogue|register-component|ui')"
+          [initialHTML]="section.value.documentation"
+          (editedData)="changedData($event)"
+          (acceptedChanges)="saveData($event, section)"
+        ></app-doc-fill>
+      </ng-container>
+    </ng-container>
+    <ng-template #dataNotPresent>
+      <app-lost-content></app-lost-content>
+    </ng-template>
+  </div>
+  <div class="bc-col-3">
+    <h5 *ngIf="dataIsPresent()">Contenido</h5>
+    <div id="list">
+      <ng-container *ngFor="let section of properties | keyvalue">
+        <div class="shortcut" (click)="scrollToElement('#' + section.key)">
+          {{ section.value.title }}
+        </div>
+        <br />
+      </ng-container>
+    </div>
+    <app-promotional-banner></app-promotional-banner>
+  </div>
+</div>

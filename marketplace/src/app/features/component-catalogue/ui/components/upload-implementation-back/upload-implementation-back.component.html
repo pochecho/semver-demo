@@ -1,0 +1,24 @@
+<!-- <section id="uploader-impl-back" *ngIf="!uploadInfo">
+
+ 
+    <h3>Por favor sube un archivo 🗳</h3>
+    <bc-input-file title="Selector de archivos" [dropArea]=true (getFilesAdded)="getFilesAdded($event)"
+        [multipleFiles]=false [validType]='["json","yml","yaml"]' [buttonLabel]="'Subir Swagger'"
+        componentId="InputConDropArea">
+    </bc-input-file>
+    <form [formGroup]="componentForm" (ngSubmit)="uploadImplementation()">
+        <bc-form-field class="space_1_left bc-col-xs-6 bc-col-md-5">
+            <input bc-input aria-label="input" type="text" placeholder="Ingresa la versión del componente " value=""
+                formControlName="version" required />
+            <span>Versión del Componente</span>
+        </bc-form-field>
+
+        <bc-icon name="il-explore-items" height="80px" aria-hidden="true"
+            aria-label="imagen de celular y varios componentes"></bc-icon>
+        <br>
+        <button bc-button class="space_1_top" type="submit" [disabled]="!componentForm.valid">Subir componente</button>
+
+    </form>
+</section>
+
+<bc-preloader type="square" width="1024" height="400" *ngIf="uploadInfo"></bc-preloader> -->

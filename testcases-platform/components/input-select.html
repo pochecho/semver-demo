@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../design-system/dist/main.js"></script>
+    <link rel="stylesheet" href="../../design-system/dist/main.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="../testacases.css" />
+
+    <title>Testcase - Input Select</title>
+  </head>
+  <body>
+    <main
+      class="bc-row bc-flex bc-justify-content-center bc-align-items-center"
+    >
+      <div class="bc-col-xs-5 bc-col-sm-8 bc-col-md-5 bc-col-lg-4 bc-col-xl-3">
+        <bc-input-select label="Europa" id="is"></bc-input-select>
+      </div>
+    </main>
+  </body>
+  <script>
+    const items = [
+      {
+        display: "Kakaroto",
+        value: "El número uno",
+      },
+      {
+        display: "Vegeta",
+        value: "Principe de los sayayin",
+      },
+      {
+        display: "Son Gohan",
+        value: "La bestia",
+      },
+    ];
+    const config = {
+      items,
+    };
+    const is = document.getElementById("is");
+    const isRef = is.configurationRef;
+
+    const pr = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(items);
+      }, 1000);
+    });
+    isRef.items = pr;
+    setTimeout(() => {
+      // isRef.items = [
+      //   {
+      //     display: "Krilin",
+      //     value: "BFF",
+      //   },
+      //   {
+      //     display: "Yamcha",
+      //     value: "WH",
+      //   },
+      // ];
+      isRef.label = "Elizabeth";
+      is.setAttribute(
+        "items",
+        JSON.stringify([
+          {
+            display: "Krilin",
+            value: "BFF",
+          },
+          {
+            display: "Yamcha",
+            value: "WH",
+          },
+        ])
+      );
+     console.log(is.loggingHelper.historicalReport);
+    }, 2000);
+  </script>
+</html>

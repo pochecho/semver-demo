@@ -1,13 +1,14 @@
 {
-  "name": "semver-demo",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@bancolombia/web-design-system",
+  "version": "0.0.1",
+  "description": "Design system para Bancolombia",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack --config webpack-extract.config.ts --stats-error-details && npx webpack --config webpack.config.ts --stats-error-details"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@bancolombia/sadala": "file:../sadala/dist/node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pochecho/semver-demo.git"

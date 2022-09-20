@@ -1,0 +1,213 @@
+.rowGrid {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 2pc;
+  cursor: pointer;
+
+  
+}
+
+.rowGridOne {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(1, 1fr);
+  cursor: pointer;
+}
+
+.icon-component {
+  float: right;
+}
+
+.bc-container {
+  margin-top: 2pc;
+}
+
+h3 {
+  margin-bottom: 1.5pc;
+}
+
+#descriptionComponents {
+  font-size: 14px;
+}
+
+#nameC {
+  padding: 16px 0px 16px 10px; 
+  margin-left: 0;
+}
+/* 
+header {
+  background-color: #373737;
+  color: white;
+  padding: 2pc 2pc 1.5pc;
+} */
+
+#breadcrumb {
+  font-size: 14px;
+  margin-bottom: 1pc;
+  word-spacing: 0.3pc;
+}
+
+#searchBar {
+  width: 45%;
+  float: right;
+}
+
+.bc-tab-header, .bc-tabs-group {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.bc-tab {
+  padding-bottom: 0.5pc;
+}
+
+.bc-tab span {
+  padding: 1pc;
+}
+
+.bc-tab-header span {
+  color: white;
+  font-weight: initial;
+}
+
+.bc-tab-header {
+  overflow-x: scroll;
+}
+
+.previewImage {
+  line-height: 0;
+}
+
+.descriptionC {
+  padding-top: 1pc
+}
+
+.iconsComponents {
+  padding-top: 1pc;
+  padding-right: 2pc;
+}
+
+#listComponents {
+  padding: 0;
+  margin-top: 1pc;
+  display: block;
+}
+
+#listCards {
+  padding: 0;
+  margin-top: 1pc;
+  display: block;
+}
+
+#inputSearch[type="text"] {
+  width: 100%;
+  height: 3pc;
+  border-radius: 10pc;
+  padding-right: 3pc;
+  border: none;
+  padding-left: 1.5pc;
+}
+
+#inputSearch:focus-visible {
+  outline: none;
+}
+
+#searchComponents {
+  display: flex;
+  margin-top: 1.5pc;
+}
+
+#buttonSearch {
+  margin-left: -3pc;
+  height: 3pc;
+  border-radius: 50%;
+  width: 3pc;
+  background: #FDDA24;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+#buttonSearch bc-icon {
+  margin: auto;
+  color: black;
+}
+
+#iconsStyleCards em {
+  cursor: pointer;
+  margin: 0 0.4pc;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+#iconsStyleCards .active {
+  color: rgba(0, 0, 0, 1);
+}
+
+#filterType {
+  background-color: #373737;
+  width: 100%;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.bc-tabs-group {
+  width: 70%;
+  margin: 0;
+  padding-top: 1pc
+}
+
+.bc-tabs {
+  left: 0;
+  width: 100%;
+}
+
+.bc-tab-header::-webkit-scrollbar {
+  display: none;
+}
+
+#width70 {
+  width: 70%;
+}
+
+#width75 {
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*991*/
+@media (max-width: 991px) {
+  .bc-tabs-group {
+    width: 100%;
+  }
+
+  #width70 {
+    width: 100%;
+  }
+
+  #width75 {
+    width: 100%;
+  }
+
+  #cardAporte {
+    margin-top: 1pc;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .rowGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.bc-tabs-group .bc-tab-header .bc-tabs .active {
+  border-bottom: 3px solid #fdda24;
+}
+
+/*.rowGrid*/

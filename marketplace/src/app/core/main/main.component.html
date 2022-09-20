@@ -1,0 +1,164 @@
+<!-- <bc-header>
+  <bc-header-left
+    logoName="bancolombia-horizontal"
+    [menuInteraction]="!currentUrl"
+    id="logo-principal"
+    routerLink="/"
+  ></bc-header-left>
+  <bc-header-list>
+    <bc-header-item
+      [text]="themeList[0].text"
+      isDropdown="true"
+      [dropdownList]="themeList"
+      class="bc-reverse-d-lg-none"
+      (optionSelected)="onChangeTheme($event)"
+    ></bc-header-item>
+    <bc-header-item
+      text="Diseño"
+      class="cursor-pointer"
+      [routerLink]="['home/design']"
+    ></bc-header-item>
+    <bc-header-item
+      text="Desarrollo"
+      class="cursor-pointer"
+      route=""
+      [routerLink]="['home/develop']"
+    ></bc-header-item>
+    <bc-header-item
+      text="Comunidad"
+      class="cursor-pointer"
+      [routerLink]="['community']"
+    ></bc-header-item>
+  </bc-header-list>
+</bc-header>
+<bc-menu hideProfileInSubmenu="true">
+  <bc-menu-drawer
+    textCloseButton="colose"
+    [ngClass]="{ 'bc-hidden': currentUrl }"
+  >
+    <bc-menu-item
+      [routerLink]="['']"
+      identifierContent="id1"
+      text="Inicio"
+      iconName="home"
+    ></bc-menu-item>
+    <bc-menu-item
+      path="#"
+      identifierContent="id2"
+      text="Versionamiento"
+      iconName="package"
+    ></bc-menu-item>
+    <bc-menu-item
+      path="#"
+      text="Foundations"
+      iconName="square"
+      identifierContent="id4"
+    ></bc-menu-item>
+    <bc-menu-item
+      routerLink="/documentation"
+      text="Documentación"
+      iconName="documents"
+      identifierContent="id6"
+    ></bc-menu-item>
+    <bc-menu-item
+      routerLink="/community"
+      text="Comunidad"
+      iconName="people"
+      identifierContent="id7"
+    ></bc-menu-item>
+    <bc-menu-item
+      routerLink="/component-catalogue/components"
+      text="Componentes"
+      iconName="assistence"
+      identifierContent="id3"
+    ></bc-menu-item>
+    <bc-menu-item
+      routerLink="/component-catalogue/widgets"
+      text="Flujos transversales"
+      iconName="directions"
+      identifierContent="id5"
+    ></bc-menu-item>
+    <bc-menu-item
+      routerLink="/component-catalogue/backend"
+      text="Componentes Backend"
+      iconName="cube-3d"
+      identifierContent="id11"
+    ></bc-menu-item>
+    <bc-menu-item
+      path="/"
+      identifierContent="id9"
+      text="Acerca de"
+      iconName="alert"
+    ></bc-menu-item>
+
+
+  </bc-menu-drawer>
+  <bc-menu-main>
+    <bc-menu-body identifier="id2">
+      <bc-menu-column>
+        <bc-menu-section title="Versionamiento">
+          <bc-menu-option
+            text="Librería de Angular"
+            routerLink="/versioning/angular"
+          ></bc-menu-option>
+          <bc-menu-option
+            text="Minificados"
+            routerLink="/versioning/minified"
+          ></bc-menu-option>
+        </bc-menu-section>
+      </bc-menu-column>
+    </bc-menu-body>
+    <bc-menu-body identifier="id4">
+      <bc-menu-column>
+        <bc-menu-section title="Sistema de Grilla">
+          <bc-menu-option
+            text="Sistema de Grilla"
+            [routerLink]="['/component-catalogue/layout']"
+          ></bc-menu-option>
+          <bc-menu-option
+            text="Flexbox"
+            [routerLink]="['/component-catalogue/flex-box']"
+          ></bc-menu-option>
+        </bc-menu-section>
+
+        <bc-menu-section title="Utilidades">
+          <bc-menu-option
+            text="Utilidades"
+            routerLink="/component-catalogue/utilities"
+          ></bc-menu-option>
+          <bc-menu-option
+            text="Tipografías"
+            routerLink="/component-catalogue/typography"
+          ></bc-menu-option>
+        </bc-menu-section>
+      </bc-menu-column>
+    </bc-menu-body>
+    <bc-menu-body identifier="id9">
+      <bc-menu-column>
+        <bc-menu-section title="Migración inicial a Fenix">
+          <bc-menu-option
+            text="Migración de componentes"
+            routerLink="/migration"
+          ></bc-menu-option>
+        </bc-menu-section>
+        <bc-menu-section title="Panel Administrativo">
+          <bc-menu-option
+            text="Creación de Términos y Condiciones"
+            routerLink="/terms/create-terms"
+          ></bc-menu-option>
+          <bc-menu-option
+            text="Versionamiento de los Términos y Condiciones"
+            routerLink="/terms/list-terms"
+          ></bc-menu-option>
+        </bc-menu-section>
+        <bc-menu-section title="Aceptación de Términos y Condiciones">
+          <bc-menu-option
+            text="Lista de Usuarios"
+            routerLink="/terms/list-user-accept-terms"
+          ></bc-menu-option>
+        </bc-menu-section>
+      </bc-menu-column>
+    </bc-menu-body>
+  </bc-menu-main> -->
+  <ng-content class="bc-content-body bc-bg-light"></ng-content>
+<!-- </bc-menu> -->

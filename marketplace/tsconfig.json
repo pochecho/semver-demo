@@ -1,0 +1,39 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "node",
+      "jasmine"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "allowJs": false,
+    "paths": {
+      "@bancolombia/design-system-web/*": ["projects/ng_bds/dist/*"],
+      "@bancolombia/design-system-web": ["../design-system/dist"]
+    },
+    "resolveJsonModule": true
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "strictNullChecks": false,
+    "enableIvy": true,
+    "compilationMode": "partial"
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "acordeon": {
+        "name": "Acordeon",
+        "expanded": "expandido",
+        "contracted": "contraído"
+    },
+    "alert-inline": {
+        "name": "Alerta,",
+        "Success": "éxito.",
+        "Error": "error.",
+        "Info": "información.",
+        "Alert": "advertencia."
+    },
+    "link": {
+        "name": "Enlace."
+    },
+    "button": {
+        "name": "Botón."
+    }
+}

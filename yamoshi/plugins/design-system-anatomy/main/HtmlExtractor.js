@@ -13,7 +13,7 @@ class HtmlExtractor {
     const TEMPLATE_FOLDER_PATTERN = "templates";
     const COMPONENT_IDENTIFIER_NAME =
       this.configuration["component-identifier"];
-    //  /<{prefix}-([a-zA-Z\-]+)>/gm;
+    //  /<prefix@-([a-zA-Z\-]+)>/gm;
     // const componentsFolders = this.listComponentsNames(COMPONENTS_FOLDER_PATH);
 
     const componentsTemplates = this.listComponentsNames(COMPONENTS_FOLDER_PATH)

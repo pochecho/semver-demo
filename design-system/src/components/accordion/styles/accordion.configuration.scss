@@ -1,0 +1,8 @@
+@use "../../../core/configuration.scss" as *;
+
+$accordion-name: "accordion";
+$accordion-namespace: #{$prefix-lib}-#{$accordion-name};
+
+$accordion-header-left: #{$accordion-namespace}-header-left;
+$accordion-header-right: #{$accordion-namespace}-header-right;
+$accordion-content: #{$accordion-namespace}-content;

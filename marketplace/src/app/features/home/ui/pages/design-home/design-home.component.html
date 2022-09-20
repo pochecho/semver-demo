@@ -1,0 +1,151 @@
+<section class="bg-primary dev-header bc-text-white">
+  <div class="bc-container">
+    <div class="bc-row header-back">
+      <div
+        class="
+          bc-col-12
+          bc-d-flex
+          bc-justify-content-between
+          bc-align-items-center
+          bc-pb-2
+        "
+      >
+        <div
+          class="bc-d-flex bc-align-items-center"
+          routerLink=".."
+          id="routingTopContent"
+        >
+          <em class="bc-icon" id="iconTopContent">arrow2-left</em>
+          Regresar
+        </div>
+      </div>
+    </div>
+    <div
+      class="bc-row bc-d-flex bc-align-items-center bc-pt-5 bc-pb-2"
+      id="topContentTextImage"
+    >
+      <div class="bc-col-6">
+        <h3 id="titleDesign">Diseñadores</h3>
+        <h2 id="subtitleDesign" class="bc-py-3">
+          Sigamos diseñando juntos el universo Bancolombia
+        </h2>
+        <p id="textDesign">
+          Encuentra aquí todo lo que necesitas para empezar a diseñar las
+          mejores experiencias digitales.
+          <br />
+          <br />
+          ¿No sabes por dónde comenzar?
+        </p>
+        <div class="bc-col-6 bc-py-4">
+          <input
+            id="buttonDesignVideo"
+            type="button"
+            value="VER VIDEO"
+            class="
+              bg-secondary
+              dev-border-rounded
+              bc-text-dark bc-border-0 bc-w-100 bc-py-2
+            "
+          />
+        </div>
+      </div>
+      <div class="bc-col-6" id="imageDesignTopContent">
+        <img src="assets/temporal/desing-home/header-1.png" alt="" />
+      </div>
+    </div>
+    <div class="bc-row bc-pt-5" id="buttonSearchContainer">
+      <input
+        id="inputSearch"
+        placeholder="Busca todo lo que necesites en diseño"
+        type="text"
+      />
+      <div id="buttonSearch"><em class="bc-icon">search</em></div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white dev-resources bc-py-6">
+  <div class="bc-container">
+    <div class="bc-row bc-pb-3 " id="titleResources">
+      <h4>Recursos</h4>
+    </div>
+    <div class="bc-row">
+      <div class="bc-col-3 bc-pe-1" id="iconResourceFigma">
+        <div
+          class="
+            bg-body
+            bc-d-flex bc-flex-column bc-justify-content-start bc-py-5 bc-px-4
+          "
+          routerLink="/main/figma-design"
+        >
+          <div>
+            <em id="iconoResourceFigma" class="bc-icon">figma</em>
+          </div>
+          <h5 class="titles">Libreria figma</h5>
+        </div>
+      </div>
+      <div class="bc-col-3 bc-px-1" id="iconResourceCommunication">
+        <div
+          class="
+            bg-body
+            bc-d-flex bc-flex-column bc-justify-content-start bc-py-5 bc-px-4
+          "
+        >
+          <div>
+            <em id="iconoResourceCommunication" class="bc-icon">book</em>
+          </div>
+          <h5 class="titles">Copy system</h5>
+        </div>
+      </div>
+      <div class="bc-col-3 bc-px-1" id="iconResourceDisability">
+        <div
+          class="
+            bg-body
+            bc-d-flex bc-flex-column bc-justify-content-start bc-py-5 bc-px-4
+          "
+        >
+          <div>
+            <em id="iconoResourceDisability" class="bc-icon">bezier</em>
+          </div>
+          <h5 class="titles">Manual de marca</h5>
+        </div>
+      </div>
+      <div class="bc-col-3 bc-ps-1" id="iconResourceAccessibility">
+        <div
+          class="
+            bg-body
+            bc-d-flex bc-flex-column bc-justify-content-start bc-py-5 bc-px-4
+          "
+        >
+          <div>
+            <em id="iconoResourceAccessibility" class="bc-icon"></em>
+          </div>
+          <h5 class="titles">Componentes</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sectionCarrousel">
+  <section class="bc-container bc-pt-5" id="containerCarrousel">
+    <h3 id="tituloCarrousel">Descubre referentes: Proyectos Bancolombia</h3>
+
+    <bc-carousel
+      [configCarouselInitial]="configCarousel"
+      [componentId]="'bc-carousel-0'"
+    >
+      <bc-carousel-item *ngFor="let item of objItemsGoodPractices">
+        <div class="rowPracticas">
+          <div class="colPracticas" id="carrouselColores">
+            <img [src]="item.img" alt="images-carousel" />
+            <h5>{{ item.title }}</h5>
+            <small>{{ item.subTitle }}</small>
+          </div>
+        </div>
+      </bc-carousel-item>
+    </bc-carousel>
+  </section>
+
+  <community-banner-component></community-banner-component>
+</section>

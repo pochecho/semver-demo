@@ -1,0 +1,16 @@
+:host {
+  width: 100%;
+  section > figure > img {
+    width: 100%;
+  }
+
+  .float-icon {
+    position: relative;
+    left: 20px;
+    top: -25px;
+    width: 40px;
+  }
+  .content-upside {
+    margin-top: -20px;
+  }
+}

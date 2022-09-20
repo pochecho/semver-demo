@@ -1,0 +1,5 @@
+@use "../../../core/configuration.scss" as *;
+@use "../../accordion/styles/accordion.configuration.scss" as *;
+
+$accordion-name: "accordions-group";
+$accordion-namespace: #{$prefix-lib}-#{$accordion-name};

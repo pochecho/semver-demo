@@ -1,0 +1,418 @@
+{
+    "assets/images/bc_loaders.png": [
+      "assets/images/bc_loaders.png"
+    ],
+    "assets/images/car.png": [
+      "assets/images/car.png"
+    ],
+    "assets/images/carBlack.png": [
+      "assets/images/carBlack.png"
+    ],
+    "assets/images/card.png": [
+      "assets/images/card.png"
+    ],
+    "assets/images/cardBlack.png": [
+      "assets/images/cardBlack.png"
+    ],
+    "assets/images/ejemplo.svg": [
+      "assets/images/ejemplo.svg"
+    ],
+    "assets/images/example.jpg": [
+      "assets/images/example.jpg"
+    ],
+    "assets/images/fenixFour.jpg": [
+      "assets/images/fenixFour.jpg"
+    ],
+    "assets/images/fenixOne.jpg": [
+      "assets/images/fenixOne.jpg"
+    ],
+    "assets/images/fenixThree.jpg": [
+      "assets/images/fenixThree.jpg"
+    ],
+    "assets/images/fenixTwo.jpg": [
+      "assets/images/fenixTwo.jpg"
+    ],
+    "assets/images/man.png": [
+      "assets/images/man.png"
+    ],
+    "assets/images/manBlack.png": [
+      "assets/images/manBlack.png"
+    ],
+    "assets/images/pic.jpg": [
+      "assets/images/pic.jpg"
+    ],
+    "assets/images/showcase/bienvenido.png": [
+      "assets/images/showcase/bienvenido.png"
+    ],
+    "packages/bds_mobile/assets/accessibility/label.json": [
+      "packages/bds_mobile/assets/accessibility/label.json",
+      "packages/bds_mobile/assets/accessibility/en/label.json",
+      "packages/bds_mobile/assets/accessibility/es/label.json"
+    ],
+    "packages/bds_mobile/assets/example.png": [
+      "packages/bds_mobile/assets/example.png"
+    ],
+    "packages/bds_mobile/assets/icons/functional/bancolombia-iconos-funcionales.ttf": [
+      "packages/bds_mobile/assets/icons/functional/bancolombia-iconos-funcionales.ttf"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/aceptar_terminos.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/aceptar_terminos.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/activacion_billetera_1.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/activacion_billetera_1.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/activacion_billetera_2.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/activacion_billetera_2.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/activacion_face_id.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/activacion_face_id.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/activacion_touch_id.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/activacion_touch_id.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/activacion_touch_id_1.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/activacion_touch_id_1.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/activacion_touch_id_2.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/activacion_touch_id_2.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/ahorro_carro.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/ahorro_carro.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/amor.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/amor.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/app_proceso.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/app_proceso.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/app_proceso_2.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/app_proceso_2.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/billetera.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/billetera.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/billetera_exitosa.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/billetera_exitosa.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/bloqueos.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/bloqueos.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/buscar-empresa.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/buscar-empresa.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/clave_dinamica_identificador.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/clave_dinamica_identificador.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/codigo-QR.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/codigo-QR.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/codigo_qr.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/codigo_qr.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/confi_biometria_huella.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/confi_biometria_huella.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/configura_face_id.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/configura_face_id.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/configura_face_id_1.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/configura_face_id_1.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/configura_face_id_2.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/configura_face_id_2.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/configura_touch_id.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/configura_touch_id.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/contrasena-mensaje.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/contrasena-mensaje.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/crecimiento.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/crecimiento.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/credito-preaprobado-online.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/credito-preaprobado-online.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/cumplea%C3%B1os.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/cumplea%C3%B1os.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/enviar_recibir_QR.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/enviar_recibir_QR.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/face_id_no_encontrada.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/face_id_no_encontrada.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/familia_1.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/familia_1.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/gestionar_clave_dinamica.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/gestionar_clave_dinamica.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/ilustracion_app_1.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/ilustracion_app_1.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/ilustracion_app_2.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/ilustracion_app_2.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/ilustracion_generica_bc.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/ilustracion_generica_bc.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/inscribir_factura.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/inscribir_factura.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/inscribir_factura_2.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/inscribir_factura_2.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/inscribir_factura_3.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/inscribir_factura_3.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/inscribir_productos.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/inscribir_productos.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/inscripcion_clave_dinamica.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/inscripcion_clave_dinamica.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/inscripcion_clave_dinamica_2.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/inscripcion_clave_dinamica_2.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/inscripcion_clave_dinamica_3.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/inscripcion_clave_dinamica_3.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/invitacion_clave_dinamica_softoken.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/invitacion_clave_dinamica_softoken.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/leer_QR.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/leer_QR.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/matrimonio.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/matrimonio.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/navidad.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/navidad.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/no_eres_cliente.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/no_eres_cliente.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/parati.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/parati.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/permiso_billetera.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/permiso_billetera.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/permiso_camara.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/permiso_camara.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/personaliza_regalo.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/personaliza_regalo.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/primera%20comunion.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/primera%20comunion.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/proceso_error.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/proceso_error.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/proceso_exitoso.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/proceso_exitoso.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/puntos_colombia.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/puntos_colombia.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/regalo.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/regalo.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/solicitar_cuentas.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/solicitar_cuentas.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/solicitar_tarjetas.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/solicitar_tarjetas.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/sucursal.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/sucursal.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/sv_proceso.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/sv_proceso.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/tarjetas_1.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/tarjetas_1.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/tarjetas_2.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/tarjetas_2.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/te%20doy%20mi%20mano.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/te%20doy%20mi%20mano.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/ubicacion_movilidad.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/ubicacion_movilidad.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/uso_efectivo.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/uso_efectivo.svg"
+    ],
+    "packages/bds_mobile/assets/icons/ilustration/withdraw-cash-atm.svg": [
+      "packages/bds_mobile/assets/icons/ilustration/withdraw-cash-atm.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/affinity.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/affinity.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/apartaestudio.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/apartaestudio.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/apartamento.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/apartamento.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/app-update.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/app-update.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/badge.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/badge.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/bloqueos.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/bloqueos.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/casa.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/casa.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/error.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/error.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/hogar.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/hogar.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/huella.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/huella.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/idea.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/idea.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/idioma.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/idioma.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/location.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/location.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/mano_4.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/mano_4.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/mano_5.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/mano_5.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/ok.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/ok.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/plant.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/plant.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/plus.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/plus.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/rocket.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/rocket.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/search.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/search.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/shield-money.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/shield-money.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/shield-user.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/shield-user.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/stone.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/stone.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/time.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/time.svg"
+    ],
+    "packages/bds_mobile/assets/icons/pictogramas/usuario.svg": [
+      "packages/bds_mobile/assets/icons/pictogramas/usuario.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/01.json": [
+      "packages/bds_mobile/assets/icons/trazo/01.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/01.svg": [
+      "packages/bds_mobile/assets/icons/trazo/01.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/02.json": [
+      "packages/bds_mobile/assets/icons/trazo/02.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/02.svg": [
+      "packages/bds_mobile/assets/icons/trazo/02.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/03.json": [
+      "packages/bds_mobile/assets/icons/trazo/03.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/03.svg": [
+      "packages/bds_mobile/assets/icons/trazo/03.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/04.json": [
+      "packages/bds_mobile/assets/icons/trazo/04.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/04.svg": [
+      "packages/bds_mobile/assets/icons/trazo/04.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/04_animate.json": [
+      "packages/bds_mobile/assets/icons/trazo/04_animate.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/05.json": [
+      "packages/bds_mobile/assets/icons/trazo/05.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/05.svg": [
+      "packages/bds_mobile/assets/icons/trazo/05.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/06.json": [
+      "packages/bds_mobile/assets/icons/trazo/06.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/06.svg": [
+      "packages/bds_mobile/assets/icons/trazo/06.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/06_animate.json": [
+      "packages/bds_mobile/assets/icons/trazo/06_animate.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/07.json": [
+      "packages/bds_mobile/assets/icons/trazo/07.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/07.svg": [
+      "packages/bds_mobile/assets/icons/trazo/07.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/08.json": [
+      "packages/bds_mobile/assets/icons/trazo/08.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/08.svg": [
+      "packages/bds_mobile/assets/icons/trazo/08.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/09.json": [
+      "packages/bds_mobile/assets/icons/trazo/09.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/09.svg": [
+      "packages/bds_mobile/assets/icons/trazo/09.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/10.json": [
+      "packages/bds_mobile/assets/icons/trazo/10.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/10.svg": [
+      "packages/bds_mobile/assets/icons/trazo/10.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/11.json": [
+      "packages/bds_mobile/assets/icons/trazo/11.json"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/11.svg": [
+      "packages/bds_mobile/assets/icons/trazo/11.svg"
+    ],
+    "packages/bds_mobile/assets/icons/trazo/trazo_splash.json": [
+      "packages/bds_mobile/assets/icons/trazo/trazo_splash.json"
+    ],
+    "packages/bds_mobile/lib/tokens/fonts/CIB_Font_Serif/CIBFontSans-Bold.ttf": [
+      "packages/bds_mobile/lib/tokens/fonts/CIB_Font_Serif/CIBFontSans-Bold.ttf"
+    ],
+    "packages/bds_mobile/lib/tokens/fonts/CIB_Font_Serif/CIBFontSans-Light.ttf": [
+      "packages/bds_mobile/lib/tokens/fonts/CIB_Font_Serif/CIBFontSans-Light.ttf"
+    ],
+    "packages/bds_mobile/lib/tokens/fonts/CIB_Font_Serif/CIBFontSerif-Bold.ttf": [
+      "packages/bds_mobile/lib/tokens/fonts/CIB_Font_Serif/CIBFontSerif-Bold.ttf"
+    ],
+    "packages/bds_mobile/lib/tokens/fonts/Open_Sans/OpenSans-Regular.ttf": [
+      "packages/bds_mobile/lib/tokens/fonts/Open_Sans/OpenSans-Regular.ttf"
+    ],
+    "packages/bds_mobile/lib/tokens/fonts/Open_Sans/OpenSans-SemiBold.ttf": [
+      "packages/bds_mobile/lib/tokens/fonts/Open_Sans/OpenSans-SemiBold.ttf"
+    ]
+  }

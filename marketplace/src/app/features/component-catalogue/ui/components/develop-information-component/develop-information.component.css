@@ -1,0 +1,43 @@
+.bc-tab {
+    margin-bottom: 20px
+}
+
+div.bc-col-3 {
+    margin-top: -6.5pc;
+}
+
+#list {
+    border-left: 1px solid #CCCCCC;
+    padding-left: 1pc;
+    margin-top: 1pc;
+    margin-bottom: 1pc;
+}
+
+.content-develop {
+    padding: 24px;
+    background-color: #F4F4F4;
+    background-clip: content-box, padding-box;
+}
+.icon-component {
+    float: right;
+}
+  
+.bc-card-floating-button {
+  border-radius: 0; 
+  background-color: #FDDA24;
+}
+
+.aporteCard {
+  text-align: center;
+}
+
+.bc-container-fluid {
+  margin-top: 2pc;
+}
+
+::ng-deep div.bc-accordions-group.bc-multiple[role=group] article.bc-accordion.bc-active section.bc-accordion-content[role=region][aria-labelledby], div.bc-accordions-group[role=group] article.bc-accordion.bc-active section.bc-accordion-content[role=region][aria-labelledby] {
+    max-height: 120vh;
+}
+::ng-deep  [class*=bc-col-] {
+  float: none;
+}

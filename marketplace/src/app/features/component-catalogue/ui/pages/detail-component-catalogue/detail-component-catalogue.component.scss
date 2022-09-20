@@ -1,0 +1,158 @@
+ol {
+  list-style-type: none;
+  li {
+    list-style: none !important;
+  }
+}
+
+div .bc-tabs-group .bc-tab-header .bc-tabs .active {
+  border-bottom: 3px solid #fdda24;
+}
+
+#rowGrid {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  cursor: pointer;
+}
+
+.icon-component {
+  float: right;
+}
+
+#header {
+  background-color: #373737;
+  color: white;
+  padding: 2pc 2pc 0;
+}
+
+#hName {
+  margin-bottom: 1.5pc;
+}
+
+#aName {
+  color: white;
+}
+
+#emName {
+  vertical-align: sub;
+}
+
+#pDescription {
+  font-size: 14px;
+}
+
+.bc-tabs {
+  left: 0;
+}
+
+#hDev {
+  width: 100%;
+}
+
+#contributors {
+  box-align: 'right';
+}
+
+#breadcrumb {
+  font-size: 14px;
+  margin-bottom: 1pc;
+  word-spacing: 0.3pc;
+}
+
+#searchBar {
+  width: 45%;
+  float: right;
+}
+
+.bc-tab-header,
+.bc-tabs-group {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.bc-tab {
+  padding-bottom: 0.5pc;
+}
+
+.bc-tab-header span {
+  color: white;
+  font-weight: initial;
+}
+
+.titles {
+  margin-bottom: 2pc;
+}
+
+hr {
+  margin: 2pc 0;
+}
+
+.buttons {
+  margin: 0;
+}
+
+#list {
+  border-left: 1px solid #cccccc;
+  padding-left: 1pc;
+  margin-top: 1pc;
+  margin-bottom: 1pc;
+}
+
+table {
+  width: 100%;
+  margin-top: 1.5pc;
+  margin-bottom: 1.5pc;
+}
+
+table,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  width: 50%;
+}
+
+.table-4 td,
+th {
+  width: 25%;
+}
+
+.table-6 td,
+th {
+  width: calc(100% / 6);
+}
+
+
+.container-select {
+  margin: 1pc 2pc;
+}
+
+.select-versions {
+  margin-right: 57pc;
+}
+
+@media (max-width: 575px) {
+  .display-colab {
+    display: none;
+  }
+  #hDev {
+    width: 100%;
+  }
+}
+
+#demoHeader {
+  #emName {
+    cursor: pointer;
+  }
+}
+
+.link{
+  cursor: pointer;
+}

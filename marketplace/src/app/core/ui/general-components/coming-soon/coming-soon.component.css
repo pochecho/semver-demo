@@ -1,0 +1,30 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  padding: 50px;
+  margin: 0;
+  overflow: hidden;
+  background-color: #fafafa;
+}
+
+
+
+.container {
+  text-align: center;
+}
+
+svg {
+  max-width: 1000px;
+}

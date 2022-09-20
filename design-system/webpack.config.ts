@@ -5,7 +5,7 @@ const config: webpack.Configuration = {
   mode: "none",
   entry: {
     main: "./src/main.ts",
-    styles: ["./src/main.scss"],
+    // styles: ["./src/main.scss"],
   },
   resolve: {
     extensions: [".ts", ".js"],

@@ -1,0 +1,19 @@
+@use "./accordions-group.configuration.scss" as *;
+
+:host {
+  outline: 0;
+  @media only screen and (max-width: 767px) {
+    // #{$accordion-namespace} {
+    //   header[aria-expanded][aria-controls][id][aria-label],
+    //   header[aria-expanded][aria-controls][id][aria-labelledby] {
+    //     section.#{$accordion-header-right} {
+    //       .#{$accordion-namespace}-columns-container {
+    //         .#{$accordion-namespace}-column {
+    //           width: 60px;
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+  }
+}
