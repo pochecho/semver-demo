@@ -1,0 +1,21 @@
+@use "../../../core/configuration.scss" as *;
+@use "../../../core/tokens/typo.scss" as *;
+@use "../../../core/tokens/icon.scss" as *;
+$input-name: "input";
+$input-namespace: #{$prefix-lib}-#{$input-name};
+$icon-left-error: "#{$prefix-lib}-icon-left-error";
+$valid-feedback: "#{$prefix-lib}-valid-feedback";
+$invalid-feedback: "#{$prefix-lib}-invalid-feedback";
+$input-error: "#{$input-namespace}-error";
+$input-filled: "#{$input-namespace}-filled";
+$input-success: "#{$input-namespace}-success";
+$input-value: "#{$input-namespace}-value";
+$input-icon: "#{$prefix-lib}-icon";
+$span-info: "#{$prefix-lib}-span-info";
+$input-active: "#{$prefix-lib}-active";
+$icon-class: "#{$prefix-lib}-icon";
+$padding-left-when-icon: 30px;
+
+$font-size-container:$icon-functional-sm;
+$font-family-input:"Open Sans";
+$font-size-label-style:$font-size-p-small;

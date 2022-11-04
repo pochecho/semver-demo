@@ -1,5 +1,9 @@
+export interface Scope {
+  [index: string]: any;
+}
+
 export interface TemplateConfiguration {
-    template: string;
-    scope?: { [index: string]: any };
-    style?: string;
-  }
+  template: string;
+  scope?: Scope;
+  style?: string;
+}

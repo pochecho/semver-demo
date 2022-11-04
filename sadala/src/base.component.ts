@@ -93,8 +93,9 @@ export abstract class BaseComponent<
 
   addBaseTemplate(configuration: TemplateConfiguration): void {
     configuration.scope = this.state;
-    
+
     const baseTemplateHTML = this.templateResolver.getTemplate(configuration);
+    
     baseTemplateHTML.forEach((node: Node) => {
       this.innerShadowDomRoot.appendChild(node);
     });

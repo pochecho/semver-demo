@@ -17,7 +17,7 @@ export class InputSelect extends BaseComponent<InputSelectConfiguration, any> {
     super(DESIGN_SYSTEM_CONFIGURATION);
     this.attributesNames = INPUT_SELECT_ATTRIBUTES;
 
-    this.lifeCycleManager.lifeCycle["base-template-configuration"] = {
+    this.lifeCycleManager.lifeCycle["template-configuration"] = {
       callback: () => {
         this.addBaseTemplate({
           template: _baseTemplate_,

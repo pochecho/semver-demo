@@ -1,7 +1,7 @@
 import { BaseComponent } from "../../base.component";
 import { StageHandler } from "./stageHandler";
 
-export class StateInitializationStage implements StageHandler {
+export class TemplateConfigurationStage implements StageHandler {
   component: BaseComponent<any, any>;
   constructor(component: BaseComponent<any, any>) {
     this.component = component;

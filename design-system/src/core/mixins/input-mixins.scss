@@ -33,6 +33,10 @@
   line-height: $line-height;
   top: $top-input;
   width: $width-input;
+  padding: 0;
+
+  padding-bottom: 4px;
+  padding-top: 2px;
   &:focus,
   &.focus-input {
     outline: none;

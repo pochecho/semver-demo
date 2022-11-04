@@ -1,12 +1,12 @@
 export const lifeCycleOrder = [
   "attribute-homologation",
   "state-initialization",
-  "base-template-configuration",
+  "template-configuration",
 ];
 export enum LifeCycleStages {
   attributeHomologation = "attribute-homologation",
   stateInitialization = "state-initialization",
-  baseTemplateConfiguration = "base-template-configuration",
+  TemplateConfiguration = "template-configuration",
 }
 
 export type LifeCycleTriggers = "before-connection" | "after-connection";

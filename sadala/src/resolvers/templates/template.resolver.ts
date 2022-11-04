@@ -3,7 +3,7 @@ import { TemplateConfiguration } from "./interfaces/template-configuration.inter
 export abstract class TemplateResolver {
   abstract getTemplate(
     configuration: TemplateConfiguration
-  ): NodeListOf<Element>;
+  ): Array<Element>;
   abstract parseItemsIntoContainer(
     items: Array<any>,
     template: string,
@@ -14,5 +14,5 @@ export abstract class TemplateResolver {
   abstract mapItemsToTemplate(
     items: Array<any>,
     template: string
-  ): Array<NodeListOf<Element>>;
+  ): Array<Array<Element>>;
 }

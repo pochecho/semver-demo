@@ -1502,9 +1502,24 @@
 }
 
 .bc-input {
-  height: 26px;
-  border-color: #2C2A29;
-  border-radius: 10px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #2C2A29;
+  color: #2C2A29;
+  display: block;
+  height: 32px;
+  left: 0px;
+  line-height: 20px;
+  top: 20px;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 4px;
+  padding-top: 2px;
+}
+.bc-input:focus, .bc-input.focus-input {
+  outline: none;
+  transition: 0.5s;
+  border-bottom: solid 2px #fdda24;
 }
 
 /** Indica qué enfoque que se utilizará al formar la media queries - mobile o desktop */

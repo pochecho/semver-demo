@@ -19,7 +19,7 @@ export class Icon extends BaseComponent<IconConfiguration, any> {
     this.attributesNames = ICON_ATTRIBUTES;
 
 
-    this.lifeCycleManager.lifeCycle["base-template-configuration"] = {
+    this.lifeCycleManager.lifeCycle["template-configuration"] = {
       callback: () => {
         this.addBaseTemplate({
           template: _baseTemplate_,

@@ -4,11 +4,16 @@ import baseTemplateHTML from "./templates/base-complex-input.html";
 import baseTemplateStyle from "./styles/complex-input.scss";
 
 const COMPLEX_INPUT_ATTRIBUTES = [
-  "color",
-  "text",
   "label",
   "icon-left",
   "icon-right",
+  "type",
+  "entry",
+  "help-text",
+  "state",
+  "pre",
+  "placeholder",
+  "character-counter-range",
 ];
 export class ComplexInput extends BaseComponent<any, any> {
   static identifierName = "complex-input";
@@ -17,12 +22,20 @@ export class ComplexInput extends BaseComponent<any, any> {
     super(DESIGN_SYSTEM_CONFIGURATION);
     this.attributesNames = COMPLEX_INPUT_ATTRIBUTES;
 
-    this.lifeCycleManager.lifeCycle["base-template-configuration"] = {
+    this.lifeCycleManager.lifeCycle["template-configuration"] = {
       callback: () => {
         this.addBaseTemplate({
           template: baseTemplateHTML,
           style: baseTemplateStyle,
         });
+
+        // setTimeout(() => {
+
+        //   const input: HTMLInputElement | null= this.innerShadowDomRoot.querySelector<HTMLInputElement>(":scope > input");
+        //   console.log(input);
+
+        //   if (!!input) input.value = "Sergio ";
+        // }, 3000);
       },
       trigger: "after-connection",
     };
@@ -32,6 +45,19 @@ export class ComplexInput extends BaseComponent<any, any> {
 
   connectedCallback() {
     super.connectedCallback();
+
+    setTimeout(() => {
+      const input: HTMLInputElement | null =
+        this.innerShadowDomRoot.querySelector<HTMLInputElement>(
+          "input"
+        );
+      console.log(input);
+      console.log(this.innerShadowDomRoot);
+//*[@id="input-1"]
+      if (!!input) {
+        input.classList.add("bc-active");
+      }
+    }, 1000);
   }
 
   static get observedAttributes() {

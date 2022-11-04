@@ -246,13 +246,13 @@ exports.LifeCycleStages = exports.lifeCycleOrder = void 0;
 exports.lifeCycleOrder = [
     "attribute-homologation",
     "state-initialization",
-    "base-template-configuration",
+    "template-configuration",
 ];
 var LifeCycleStages;
 (function (LifeCycleStages) {
     LifeCycleStages["attributeHomologation"] = "attribute-homologation";
     LifeCycleStages["stateInitialization"] = "state-initialization";
-    LifeCycleStages["baseTemplateConfiguration"] = "base-template-configuration";
+    LifeCycleStages["TemplateConfiguration"] = "template-configuration";
 })(LifeCycleStages = exports.LifeCycleStages || (exports.LifeCycleStages = {}));
 
 
@@ -262,14 +262,14 @@ var LifeCycleStages;
 /*!*******************************************!*\
   !*** ./src/lifecycle/lifecycleManager.ts ***!
   \*******************************************/
-/***/ ((__unused_webpack_module, exports, __nested_webpack_require_8584__) => {
+/***/ ((__unused_webpack_module, exports, __nested_webpack_require_8570__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.LifeCycleManager = void 0;
-const lifecycle_1 = __nested_webpack_require_8584__(/*! ./lifecycle */ "./src/lifecycle/lifecycle.ts");
-const attributeHomologationStageHandler_1 = __nested_webpack_require_8584__(/*! ./stages/attributeHomologationStageHandler */ "./src/lifecycle/stages/attributeHomologationStageHandler.ts");
-const stateInitializationStageHandler_1 = __nested_webpack_require_8584__(/*! ./stages/stateInitializationStageHandler */ "./src/lifecycle/stages/stateInitializationStageHandler.ts");
+const lifecycle_1 = __nested_webpack_require_8570__(/*! ./lifecycle */ "./src/lifecycle/lifecycle.ts");
+const attributeHomologationStageHandler_1 = __nested_webpack_require_8570__(/*! ./stages/attributeHomologationStageHandler */ "./src/lifecycle/stages/attributeHomologationStageHandler.ts");
+const stateInitializationStageHandler_1 = __nested_webpack_require_8570__(/*! ./stages/stateInitializationStageHandler */ "./src/lifecycle/stages/stateInitializationStageHandler.ts");
 class LifeCycleManager {
     constructor(component) {
         this.component = component;
@@ -304,19 +304,20 @@ exports.LifeCycleManager = LifeCycleManager;
 /*!*******************************************************************!*\
   !*** ./src/lifecycle/stages/attributeHomologationStageHandler.ts ***!
   \*******************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __nested_webpack_require_10558__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AttributeHomologationStage = exports.AttributeChangedEvent = void 0;
+const GeneralHelpers_1 = __nested_webpack_require_10558__(/*! ../../helpers/GeneralHelpers */ "./src/helpers/GeneralHelpers.ts");
 class AttributeChangedEvent {
     static create(attribute, previousValue, value) {
         return new CustomEvent(AttributeChangedEvent.identifier, {
             cancelable: false,
             detail: {
                 attribute,
-                previousValue,
-                value,
+                previousValue: (0, GeneralHelpers_1.clone)(previousValue),
+                value: (0, GeneralHelpers_1.clone)(value),
             },
         });
     }
@@ -327,6 +328,12 @@ class AttributeHomologationStage {
     constructor(component) {
         this.component = component;
         this.attributeHomologationCalls = [];
+        this.component.addEventListener(AttributeChangedEvent.identifier, (event) => {
+            const loggingObject = Object.assign({}, Object.assign({}, event.detail));
+            this.component.loggingHelper.group(`Configuration Changed (Proxy) ${this.component.constructor.name}`);
+            this.component.loggingHelper.log(loggingObject);
+            this.component.loggingHelper.groupEnd();
+        });
     }
     init() {
         const emptyConfiguration = this.createDefaultConfiguration(this.component.attributesNames);
@@ -347,7 +354,7 @@ class AttributeHomologationStage {
             const previusCall = this.attributeHomologationCalls[isInAttributeHomologationCallsIndex];
             if ((previusCall === null || previusCall === void 0 ? void 0 : previusCall.origin) !== previusCallKind) {
                 this.component.configurationRef[name] = parsedValue;
-                this.component.dispatchEvent(AttributeChangedEvent.create(name, oldValue, newValue));
+                this.component.dispatchEvent(AttributeChangedEvent.create(name, (0, GeneralHelpers_1.clone)(oldValue), (0, GeneralHelpers_1.clone)(newValue)));
             }
             else {
                 this.attributeHomologationCalls.splice(isInAttributeHomologationCallsIndex, 1);
@@ -390,27 +397,15 @@ class AttributeHomologationStage {
     setConfiguration(configuration) {
         this.component.configurationRef = new Proxy(Object.assign({}, configuration), {
             set: (target, property, value) => {
-                this.component.loggingHelper.group(`Configuration Changed (Proxy) ${this.component.constructor.name}`);
-                const loggingObject = {
-                    Target: target,
-                    Property: property,
-                    OldValue: target[property],
-                };
                 if (value instanceof Promise) {
                     value.then((x) => {
-                        loggingObject["value"] = x;
-                        this.component.loggingHelper.log(loggingObject);
-                        this.component.loggingHelper.groupEnd();
+                        this.perfomAction(x, property, Object.assign({}, target));
                         target[property] = x;
-                        this.perfomAction(x, property, target);
                     });
                 }
                 else {
-                    loggingObject["value"] = value;
-                    this.component.loggingHelper.log(loggingObject);
-                    this.component.loggingHelper.groupEnd();
+                    this.perfomAction(value, property, Object.assign({}, target));
                     target[property] = value;
-                    this.perfomAction(value, property, target);
                 }
                 return true;
             },
@@ -419,7 +414,7 @@ class AttributeHomologationStage {
     }
     perfomAction(value, property, target) {
         this.homologate(property, Object.assign({}, target)[property], value, "inline", "programatic", (data) => this.toString(data), (name, oldValue, originValue, parsedValue) => {
-            this.component.dispatchEvent(AttributeChangedEvent.create(name, oldValue, originValue));
+            this.component.dispatchEvent(AttributeChangedEvent.create(name, (0, GeneralHelpers_1.clone)(oldValue), (0, GeneralHelpers_1.clone)(originValue)));
             this.component.state[property] = value;
             this.component.setAttribute(name, parsedValue);
         });
@@ -444,6 +439,7 @@ class StateInitializationStage {
         this.component = component;
     }
     init() {
+        console.log('Wake up ', Object.assign(Object.assign({}, this.component.designSystemConfiguration), this.component.configurationRef));
         this.component.state = new Proxy(Object.assign(Object.assign({}, this.component.designSystemConfiguration), this.component.configurationRef), {
             set: (target, property, value) => {
                 this.component.dispatchEvent(new CustomEvent("state-updated", {
@@ -467,12 +463,12 @@ exports.StateInitializationStage = StateInitializationStage;
 /*!******************************************************!*\
   !*** ./src/resolvers/styles/scss-styles.resolver.ts ***!
   \******************************************************/
-/***/ ((__unused_webpack_module, exports, __nested_webpack_require_17089__) => {
+/***/ ((__unused_webpack_module, exports, __nested_webpack_require_17329__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SCSSStylesResolver = void 0;
-const styles_resolver_1 = __nested_webpack_require_17089__(/*! ./styles.resolver */ "./src/resolvers/styles/styles.resolver.ts");
+const styles_resolver_1 = __nested_webpack_require_17329__(/*! ./styles.resolver */ "./src/resolvers/styles/styles.resolver.ts");
 class SCSSStylesResolver extends styles_resolver_1.StylesResolver {
     formatStyles(styles) {
         let stylesStr = styles[0][1];
@@ -506,30 +502,29 @@ exports.StylesResolver = StylesResolver;
 /*!**********************************************************!*\
   !*** ./src/resolvers/templates/HTMLTemplate.resolver.ts ***!
   \**********************************************************/
-/***/ ((__unused_webpack_module, exports, __nested_webpack_require_18399__) => {
+/***/ ((__unused_webpack_module, exports, __nested_webpack_require_18639__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.HTMLTemplateResolver = void 0;
-const template_resolver_1 = __nested_webpack_require_18399__(/*! ./template.resolver */ "./src/resolvers/templates/template.resolver.ts");
-const patterns = [
-    {
-        pattern: /([a-zA-Z0-9\-]+)(@)/gm,
-        tokenExtractor: (result) => {
-            return { identifier: result[1], match: result[0] };
-        },
-    },
-    {
-        pattern: /(\{\{)([a-zA-Z0-9\-]+)(\}\})/gm,
-        tokenExtractor: (result) => {
-            return { identifier: result[2], match: result[0] };
-        },
-    },
-];
+const template_resolver_1 = __nested_webpack_require_18639__(/*! ./template.resolver */ "./src/resolvers/templates/template.resolver.ts");
+const view_engine_1 = __nested_webpack_require_18639__(/*! ./view-engine */ "./src/resolvers/templates/view-engine.ts");
 class HTMLTemplateResolver extends template_resolver_1.TemplateResolver {
     constructor(domHelpers) {
         super();
-        this.domHelpers = domHelpers;
+        this.tagPattern = {
+            pattern: /([a-zA-Z0-9\-]+)(@)/gm,
+            tokenExtractor: (result) => {
+                return { identifier: result[1], match: result[0] };
+            },
+        };
+        (this.valuePattern = {
+            pattern: /(\{\{)([a-zA-Z0-9\-]+)(\}\})/gm,
+            tokenExtractor: (result) => {
+                return { identifier: result[2], match: result[0] };
+            },
+        }),
+            (this.domHelpers = domHelpers);
     }
     convertTemplateToNodes(template) {
         const domParser = new DOMParser();
@@ -537,20 +532,68 @@ class HTMLTemplateResolver extends template_resolver_1.TemplateResolver {
         const content = innerDocument.body.querySelectorAll(":scope > *");
         return content;
     }
-    getTemplate(configuration) {
-        let template = configuration.template;
-        const scope = configuration.scope || {};
-        let transformedTemplate = template;
-        for (const patternConfig of patterns) {
-            const pattern = patternConfig.pattern;
-            let currentlyResult = pattern.exec(template);
-            while (!!currentlyResult) {
-                const { match, identifier } = patternConfig.tokenExtractor(currentlyResult);
-                transformedTemplate = transformedTemplate.replace(match, scope[identifier] || match);
-                currentlyResult = pattern.exec(template);
+    transformState(scope, viewEngine) {
+        const transformedState = {};
+        const statePropertyNamesMapper = {};
+        for (const key in scope) {
+            if (Object.prototype.hasOwnProperty.call(scope, key)) {
+                const value = scope[key];
+                const transformedText = viewEngine.transformNameToLowerCamelCase(key);
+                statePropertyNamesMapper[key] = transformedText;
+                transformedState[transformedText] = value;
             }
         }
-        return this.convertTemplateToNodes(transformedTemplate);
+        return {
+            transformedState,
+            statePropertyNamesMapper,
+        };
+    }
+    getTemplate(configuration) {
+        let template = configuration.template;
+        const viewEngine = new view_engine_1.ViewEngine();
+        console.log("Constructor name: ");
+        console.log(this.constructor.name);
+        console.log("Paso 1: Generar el scope con los valores transformados.");
+        const { transformedState, statePropertyNamesMapper } = this.transformState(configuration.scope || {}, viewEngine);
+        console.table(transformedState);
+        console.table(statePropertyNamesMapper);
+        let transformedTemplate = template;
+        console.log("Paso 2: Eliminar el prefix@");
+        transformedTemplate = this.resolvePattern(this.tagPattern, template, transformedTemplate, transformedState);
+        console.log(transformedTemplate);
+        console.log("Scope :", transformedState);
+        console.log();
+        console.log("Paso 3: Convierte el string en nodos HTML");
+        const templateNodes = this.convertTemplateToNodes(transformedTemplate);
+        console.log(templateNodes);
+        console.log();
+        console.log("Paso 4: Se buscan las estructuras de control y se ejecuta el codigo dentro de ellas");
+        const computedNodes = viewEngine.searchControlStructures(templateNodes, transformedState);
+        console.log("All control structures by node: ");
+        console.log(computedNodes);
+        console.log();
+        const templateNodesFinal = [];
+        for (const computedNode of computedNodes) {
+            templateNodesFinal.push(...computedNode.fullNodes);
+        }
+        const t = templateNodesFinal.reduce((x, y) => {
+            return (x += y.outerHTML);
+        }, "");
+        const r = [];
+        this.convertTemplateToNodes(t).forEach((x) => {
+            r.push(x);
+        });
+        return r;
+    }
+    resolvePattern(patternConfig, template, transformedTemplate, scope) {
+        const pattern = patternConfig.pattern;
+        let currentlyResult = pattern.exec(template);
+        while (!!currentlyResult) {
+            const { match, identifier } = patternConfig.tokenExtractor(currentlyResult);
+            transformedTemplate = transformedTemplate.replace(match, scope[identifier] || match);
+            currentlyResult = pattern.exec(template);
+        }
+        return transformedTemplate;
     }
     parseItemsIntoContainer(items, template, selector, shadowRoot) {
         const parsedItems = this.mapItemsToTemplate(items, template);
@@ -584,6 +627,173 @@ class TemplateResolver {
 exports.TemplateResolver = TemplateResolver;
 
 
+/***/ }),
+
+/***/ "./src/resolvers/templates/view-engine.ts":
+/*!************************************************!*\
+  !*** ./src/resolvers/templates/view-engine.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, exports, __nested_webpack_require_24078__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ViewEngine = exports.LoopControlStructure = exports.ConditionControlStructure = void 0;
+const DOMHelpers_1 = __nested_webpack_require_24078__(/*! ../../helpers/DOMHelpers */ "./src/helpers/DOMHelpers.ts");
+const RESPONSE_VARIABLE_NAME = "__responnse__";
+const NODE_VARIABLE_NAME = "__node__";
+class ConditionControlStructure {
+    transpile(expression) {
+        return `!!(${expression.replace("&amp", "&&")})`;
+    }
+    resolve(transpiledExpression) {
+        return `const ${RESPONSE_VARIABLE_NAME} = ${transpiledExpression} ? [${NODE_VARIABLE_NAME}.cloneNode(true)] : [];`;
+    }
+}
+exports.ConditionControlStructure = ConditionControlStructure;
+class LoopControlStructure {
+    transpile(expression) {
+        const validPatterns = [
+            {
+                pattern: "(\\w+)[ ]*,[ ]*(\\w+)[ ]*:[ ]*(\\w+)",
+                resolver: (founded) => {
+                    return "";
+                },
+            },
+            {
+                pattern: "(\\w+)[ ]*:[ ]*(\\w+)[ ]*,[ ]*(\\w+)",
+                resolver: (founded) => {
+                    return `
+for (let ${founded[1]} = ${founded[2]}; ${founded[1]} < ${founded[3]}; ${founded[1]}++) {
+  ${RESPONSE_VARIABLE_NAME}.push(${NODE_VARIABLE_NAME}.cloneNode(true));
+}
+          `;
+                },
+            },
+        ];
+        let transpiledExpression = "";
+        for (const patternConfig of validPatterns) {
+            const pattern = new RegExp(patternConfig.pattern);
+            let founded = pattern.exec(expression);
+            console.log(patternConfig, founded, expression, 321);
+            if (founded) {
+                const resolver = patternConfig.resolver;
+                transpiledExpression = resolver(founded);
+                break;
+            }
+        }
+        return transpiledExpression;
+    }
+    resolve(transpiledExpression) {
+        return `let ${RESPONSE_VARIABLE_NAME} = [];\n${transpiledExpression}\n`;
+    }
+}
+exports.LoopControlStructure = LoopControlStructure;
+class ViewEngine {
+    constructor() {
+        this.domHelpers = new DOMHelpers_1.DOMHelpers();
+        this.prefixControlStructure = "#";
+        this.controlStructurePipeline = [
+            {
+                name: "if",
+                gear: new ConditionControlStructure(),
+            },
+            {
+                name: "for",
+                gear: new LoopControlStructure(),
+            },
+        ];
+    }
+    transformNameToLowerCamelCase(name) {
+        const fragments = name.split("-");
+        let response = "";
+        if (fragments.length > 0) {
+            response = fragments[0];
+        }
+        if (fragments.length > 1) {
+            for (let i = 1; i < fragments.length; i++) {
+                const fragment = fragments[i];
+                response +=
+                    fragment.charAt(0).toUpperCase() + fragment.slice(1, fragment.length);
+            }
+        }
+        return response;
+    }
+    createScope(state) {
+        let context = "\n";
+        for (const key in state) {
+            if (Object.prototype.hasOwnProperty.call(state, key)) {
+                const value = state[key];
+                const formattedKey = this.transformNameToLowerCamelCase(key);
+                if (typeof value === "string") {
+                    context += `const ${formattedKey} = '${value}';\n`;
+                }
+                else {
+                    context += `const ${formattedKey} = ${value};\n`;
+                }
+            }
+        }
+        return context;
+    }
+    evalControlStructureExpression(controlStructureName, expression, state, scope, node) {
+        const handler = this.controlStructurePipeline
+            .filter((x) => x.name === controlStructureName)
+            .pop();
+        let result = undefined;
+        const dependentProperties = [];
+        if (handler) {
+            const transpiledExpression = handler.gear.transpile(expression);
+            const efectiveExpression = handler.gear.resolve(transpiledExpression);
+            const evalCode = `${scope}\n${efectiveExpression}`;
+            console.log(controlStructureName);
+            result = this.eval(evalCode, node);
+            for (const property in state) {
+                if (Object.prototype.hasOwnProperty.call(state, property)) {
+                    const index = efectiveExpression.indexOf(property);
+                    if (index > -1) {
+                        dependentProperties.push(property);
+                    }
+                }
+            }
+        }
+        return { result, dependentProperties };
+    }
+    eval(evalCode, node) {
+        const bodyFunction = `${evalCode}\nreturn ${RESPONSE_VARIABLE_NAME};`;
+        console.log("bodyFunction", bodyFunction);
+        const evalFunction = new Function(NODE_VARIABLE_NAME, bodyFunction);
+        return evalFunction(node);
+    }
+    searchControlStructures(templateNodes, state) {
+        const response = [];
+        const scope = this.createScope(state);
+        templateNodes.forEach((node) => {
+            const nodeMetada = {};
+            const fullNodes = [];
+            for (const controlStructure of this.controlStructurePipeline) {
+                const attribute = `${this.prefixControlStructure}${controlStructure.name}`;
+                if (node.hasAttribute(attribute)) {
+                    const attributeValue = node.getAttribute(attribute) || "";
+                    const result = this.evalControlStructureExpression(controlStructure.name, attributeValue, state, scope, node);
+                    fullNodes.push(...result.result);
+                    nodeMetada[controlStructure.name] = Object.assign({ value: attributeValue }, result);
+                }
+            }
+            if (fullNodes.length === 0 && !('if' in nodeMetada) && !('for' in nodeMetada)) {
+                fullNodes.push(node.cloneNode(true));
+            }
+            response.push({
+                node,
+                metadata: nodeMetada,
+                fullNodes,
+            });
+        });
+        return response;
+    }
+    getDependentsVariables() { }
+}
+exports.ViewEngine = ViewEngine;
+
+
 /***/ })
 
 /******/ 	});
@@ -592,7 +802,7 @@ exports.TemplateResolver = TemplateResolver;
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
 /******/ 	// The require function
-/******/ 	function __nested_webpack_require_21445__(moduleId) {
+/******/ 	function __nested_webpack_require_30470__(moduleId) {
 /******/ 		// Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
@@ -606,7 +816,7 @@ exports.TemplateResolver = TemplateResolver;
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __nested_webpack_require_21445__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __nested_webpack_require_30470__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -623,9 +833,9 @@ var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.resolveComponentName = exports.BaseComponent = void 0;
-var base_component_1 = __nested_webpack_require_21445__(/*! ./base.component */ "./src/base.component.ts");
+var base_component_1 = __nested_webpack_require_30470__(/*! ./base.component */ "./src/base.component.ts");
 Object.defineProperty(exports, "BaseComponent", ({ enumerable: true, get: function () { return base_component_1.BaseComponent; } }));
-var component_name_resolver_1 = __nested_webpack_require_21445__(/*! ./component-name-resolver */ "./src/component-name-resolver.ts");
+var component_name_resolver_1 = __nested_webpack_require_30470__(/*! ./component-name-resolver */ "./src/component-name-resolver.ts");
 Object.defineProperty(exports, "resolveComponentName", ({ enumerable: true, get: function () { return component_name_resolver_1.resolveComponentName; } }));
 
 })();
@@ -671,7 +881,7 @@ class Accordion extends sadala_1.BaseComponent {
     constructor() {
         super(desing_system_configuration_1.DESIGN_SYSTEM_CONFIGURATION);
         this.attributesNames = ACCORDION_ATTRIBUTES;
-        this.lifeCycleManager.lifeCycle["base-template-configuration"] = {
+        this.lifeCycleManager.lifeCycle["template-configuration"] = {
             callback: () => {
                 this._generateBaseStructure();
             },
@@ -743,7 +953,7 @@ class Icon extends sadala_1.BaseComponent {
     constructor() {
         super(desing_system_configuration_1.DESIGN_SYSTEM_CONFIGURATION);
         this.attributesNames = ICON_ATTRIBUTES;
-        this.lifeCycleManager.lifeCycle["base-template-configuration"] = {
+        this.lifeCycleManager.lifeCycle["template-configuration"] = {
             callback: () => {
                 this.addBaseTemplate({
                     template: base_template_html_1.default,
@@ -974,17 +1184,22 @@ const sadala_1 = __webpack_require__(2);
 const base_complex_input_html_1 = __importDefault(__webpack_require__(14));
 const complex_input_scss_1 = __importDefault(__webpack_require__(15));
 const COMPLEX_INPUT_ATTRIBUTES = [
-    "color",
-    "text",
     "label",
     "icon-left",
     "icon-right",
+    "type",
+    "entry",
+    "help-text",
+    "state",
+    "pre",
+    "placeholder",
+    "character-counter-range",
 ];
 class ComplexInput extends sadala_1.BaseComponent {
     constructor() {
         super(desing_system_configuration_1.DESIGN_SYSTEM_CONFIGURATION);
         this.attributesNames = COMPLEX_INPUT_ATTRIBUTES;
-        this.lifeCycleManager.lifeCycle["base-template-configuration"] = {
+        this.lifeCycleManager.lifeCycle["template-configuration"] = {
             callback: () => {
                 this.addBaseTemplate({
                     template: base_complex_input_html_1.default,
@@ -997,6 +1212,14 @@ class ComplexInput extends sadala_1.BaseComponent {
     }
     connectedCallback() {
         super.connectedCallback();
+        setTimeout(() => {
+            const input = this.innerShadowDomRoot.querySelector("input");
+            console.log(input);
+            console.log(this.innerShadowDomRoot);
+            if (!!input) {
+                input.classList.add("bc-active");
+            }
+        }, 1000);
     }
     static get observedAttributes() {
         return COMPLEX_INPUT_ATTRIBUTES;
@@ -1016,7 +1239,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<prefix@-icon name=\"icon-left@\"></prefix@-icon>\n<input class=\"prefix@-input\" aria-label=\"A\" type=\"text\" id=\"input-1\" value=\"\" />\n<prefix@-icon name=\"icon-right@\" aria-controls=\"id-content-2\"></prefix@-icon>\n\n<label for=\"input-1\">label@</label>\n<span>Help Text</span>\n\n";
+var code = "<prefix@-icon #if=\"iconLeft\" name=\"{{iconLeft}}\"> </prefix@-icon>\n<input\n  state=\"{{state}}\"\n  class=\"{{prefix}}-input\"\n  type=\"{{type}}\"\n  id=\"input-1\"\n  value=\"\"\n/>\n<prefix@-icon #if=\"iconRight\" name=\"{{iconRight}}\"></prefix@-icon>\n<label for=\"input-1\">{{label}}</label>\n<span>Help Text</span>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -1038,32 +1261,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@keyframes shine {\n  0% {\n    background-position: -1000px 0;\n  }\n  100% {\n    background-position: 1000px 0;\n  }\n}\n@keyframes ripple-animation {\n  from {\n    opacity: 1;\n    transform: scale(0);\n  }\n  to {\n    opacity: 0;\n    transform: scale(1);\n  }\n}\n@keyframes tick {\n  0% {\n    transform: scale(0);\n  }\n  90% {\n    transform: scale(1.4);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n@keyframes fade-in-out-background {\n  0% {\n    background-color: linear-gradient(90deg, #ffc0cb 50%, #00ffff 50%);\n  }\n  50% {\n    background-color: rgba(218, 218, 248, 0.5764705882);\n  }\n  100% {\n    background-color: rgba(234, 234, 250, 0);\n  }\n}\n@keyframes fadeInLeft {\n  from {\n    position: relative;\n    transform: translateX(-50%);\n  }\n  to {\n    position: relative;\n    transform: translateX(0);\n  }\n}\n@keyframes fadeInBottom {\n  from {\n    position: relative;\n    transform: translateY(100%);\n  }\n  to {\n    position: relative;\n    transform: translateY(0);\n  }\n}\n@keyframes tick {\n  0% {\n    transform: scale(0);\n  }\n  90% {\n    transform: scale(1.4);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n@keyframes spin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n@keyframes slide-up {\n  0% {\n    opacity: 0;\n    transform: translateY(20px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@keyframes slide-up-reverse {\n  0% {\n    opacity: 1;\n    transform: translateY(0);\n  }\n  100% {\n    opacity: 0;\n    transform: translateY(-20px);\n  }\n}\n@keyframes slide-down-reverse {\n  0% {\n    opacity: 0;\n    transform: translateY(-20px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@keyframes slide-down {\n  0% {\n    opacity: 1;\n    transform: translateY(0px);\n  }\n  100% {\n    opacity: 0;\n    transform: translateY(-20px);\n    margin-bottom: -20px;\n  }\n}\n@keyframes fade-in-opacity {\n  0% {\n    opacity: 0;\n    visibility: hidden;\n  }\n  100% {\n    opacity: 1;\n    visibility: visible;\n  }\n}\n@keyframes fade-out-opacity {\n  0% {\n    opacity: 1;\n    visibility: visible;\n  }\n  100% {\n    opacity: 0;\n    visibility: hidden;\n  }\n}\n@keyframes appear {\n  0% {\n    opacity: 0;\n    transform: scale(0);\n  }\n  90% {\n    opacity: 0;\n    transform: scale(0);\n  }\n  100% {\n    opacity: 1;\n    transform: scale(1);\n  }\n}\n@keyframes appear-at-side {\n  0% {\n    width: 0;\n    opacity: 0;\n  }\n  100% {\n    width: min-content;\n    opacity: 1;\n  }\n}\n@keyframes bc-search {\n  0% {\n    border-radius: 40px;\n  }\n  100% {\n    border-radius: 40px;\n  }\n}\n@keyframes bc-expand {\n  0% {\n    max-height: 0;\n  }\n  100% {\n    max-height: 100vh;\n  }\n}\n@keyframes bc-contract {\n  0% {\n    max-height: 100vh;\n  }\n  100% {\n    max-height: 0;\n  }\n}\n.outline {\n  outline: none;\n}\n\n:host .material-symbols-outlined {\n  font-family: \"Material Symbols Outlined\";\n  font-weight: normal;\n  font-style: normal;\n  font-size: 24px;\n  line-height: 1;\n  letter-spacing: normal;\n  text-transform: none;\n  display: inline-block;\n  white-space: nowrap;\n  word-wrap: normal;\n  direction: ltr;\n  -webkit-font-smoothing: antialiased;\n}\n\n.bc-form-field, :host {\n  width: 100%;\n  margin-top: 20px;\n}\n@media screen and (max-width: 975px) {\n  .bc-form-field, :host {\n    margin-bottom: 15px;\n  }\n}\n.bc-form-field > em, :host > em, .bc-form-field > bc-icon, :host > bc-icon {\n  position: absolute;\n  color: #2C2A29;\n  top: 4px;\n  font-size: 24px;\n  z-index: 2;\n}\n.bc-form-field > em:first-child, :host > em:first-child, .bc-form-field > bc-icon:first-child, :host > bc-icon:first-child {\n  left: 0;\n  width: 24px;\n}\n.bc-form-field > input + em, :host > input + em, .bc-form-field > input + bc-icon, :host > input + bc-icon {\n  right: 0;\n  left: initial;\n}\n.bc-form-field em + input ~ label[for], :host em + input ~ label[for], .bc-form-field bc-icon + input ~ label[for], :host bc-icon + input ~ label[for] {\n  padding-left: 30px;\n}\n.bc-form-field em + input[type=date] ~ label[for], :host em + input[type=date] ~ label[for], .bc-form-field bc-icon + input[type=date] ~ label[for], :host bc-icon + input[type=date] ~ label[for] {\n  padding-left: 0px;\n}\n.bc-form-field em + input, :host em + input, .bc-form-field bc-icon + input, :host bc-icon + input {\n  padding-left: 30px;\n}\n.bc-form-field > label[for], :host > label[for] {\n  color: #2C2A29;\n  font-size: 14px;\n  font-weight: normal;\n  left: 0px;\n  padding-left: 0px;\n  position: absolute;\n  pointer-events: none;\n  top: 3px;\n  transition: 0.2s ease all;\n}\n.bc-form-field > input[type=date] ~ label[for], :host > input[type=date] ~ label[for] {\n  color: #2C2A29;\n  font-size: 14px;\n  font-weight: 400;\n  left: 0px;\n  padding-left: -2px;\n  position: absolute;\n  pointer-events: none;\n  top: -14px;\n  transition: 0;\n  line-height: 18px;\n  letter-spacing: -0.2px;\n  font-family: \"Open Sans\";\n}\n.bc-form-field > input[type=date] ~ span, :host > input[type=date] ~ span {\n  size: 12px;\n  font-weight: 400;\n  line-height: 16px;\n  letter-spacing: -0.17px;\n}\n.bc-form-field[disabled] {\n  pointer-events: none;\n  opacity: 0.6;\n}\n.bc-form-field[disabled] input {\n  font-weight: 600;\n}\n\nbc-form-field[disabled] {\n  pointer-events: none;\n  opacity: 0.6;\n}\nbc-form-field[disabled] div {\n  opacity: 0.6;\n}\n\n:host input {\n  background-color: transparent;\n  border: none;\n  border-bottom: 1px solid #2C2A29;\n  color: #2C2A29;\n  display: block;\n  height: 32px;\n  left: 0px;\n  line-height: 20px;\n  top: 20px;\n  width: 90%;\n  font-size: 16px;\n  width: 100%;\n}\n:host input:focus, :host input.focus-input {\n  outline: none;\n  transition: 0.5s;\n  border-bottom: solid 2px #fdda24;\n}\n:host input ~ span {\n  font-size: 12px;\n  color: #2C2A29;\n}\n:host input ~ label {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  width: 95%;\n}\n:host input:not(:placeholder-shown) {\n  border-bottom: 2px solid #2C2A29;\n}\n:host input.bc-input-error {\n  border-bottom: 2px solid #e20201;\n}\n:host input.bc-input-error ~ span {\n  color: #e20201;\n  font-weight: 700;\n}\n:host input.bc-input-success {\n  border-bottom: 2px solid #00c389;\n}\n:host input.bc-input-success ~ span {\n  color: #00c389;\n  font-weight: 700;\n}\n:host bc-icon ~ input.bc-input-value {\n  padding-left: 16px;\n  font-size: 20px;\n}\n:host input.bc-input-value ~ label {\n  padding-left: 16px;\n}\n:host input {\n  font-family: \"Open Sans\";\n  font-weight: 700;\n  font-size: 16px;\n  font-style: normal;\n  letter-spacing: -0.3px;\n}\n:host input.bc-input-value {\n  font-family: \"CIBFontSans Bold\";\n  font-weight: 700;\n  font-size: 20px;\n  font-style: normal;\n}\n:host input.bc-input-value::placeholder {\n  font-family: \"Open Sans\";\n  font-weight: 400;\n  font-size: 16px;\n  font-style: normal;\n}\n:host input::placeholder {\n  font-family: \"Open Sans\";\n  font-weight: 400;\n  font-size: 16px;\n  font-style: normal;\n}\n:host input:focus ~ label, :host input:active ~ label, :host input.bc-active ~ label {\n  top: -20px;\n  font-size: 14px;\n  color: #2C2A29;\n  padding-left: 0;\n  width: 95%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n:host input:valid ~ label {\n  margin-left: 0px;\n}\n:host input:focus ~ span {\n  color: #2C2A29;\n}\n:host input:focus {\n  border-bottom: 2px solid #fdda24;\n}\n:host input:focus.bc-input-error {\n  border-bottom: 2px solid #e20201;\n}\n:host input:focus.bc-input-error:focus ~ span {\n  color: #e20201;\n}\n:host input:focus.bc-input-success {\n  border-bottom: 2px solid #00c389;\n}\n:host input:focus.bc-input-success:focus ~ span {\n  color: #00c389;\n}\n:host input[disabled] {\n  pointer-events: none;\n  opacity: 0.35;\n}\n:host input[disabled]:not([value=\"\"]) ~ label {\n  top: -20px;\n}\n\nbc-icon ~ :host input {\n  padding-left: 30px;\n}\n:host input + bc-icon {\n  right: 0;\n  width: 24px;\n  padding-left: 40px;\n  left: initial;\n}\n:host input + bc-icon:focus-visible {\n  outline: #3455DB auto 1px;\n}\n:host input + bc-icon .bc-invalid-feedback {\n  color: #e20201;\n  font-size: 12px;\n}\n:host input + bc-icon .bc-valid-feedback {\n  color: #2C2A29;\n  font-size: 12px;\n}\n:host input + bc-icon .bc-span-info {\n  color: #2C2A29;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ":host .material-symbols-outlined {\n  font-family: \"Material Symbols Outlined\";\n  font-weight: normal;\n  font-style: normal;\n  font-size: 24px;\n  line-height: 1;\n  letter-spacing: normal;\n  text-transform: none;\n  display: inline-block;\n  white-space: nowrap;\n  word-wrap: normal;\n  direction: ltr;\n  -webkit-font-smoothing: antialiased;\n}\n\n@keyframes shine {\n  0% {\n    background-position: -1000px 0;\n  }\n  100% {\n    background-position: 1000px 0;\n  }\n}\n@keyframes ripple-animation {\n  from {\n    opacity: 1;\n    transform: scale(0);\n  }\n  to {\n    opacity: 0;\n    transform: scale(1);\n  }\n}\n@keyframes tick {\n  0% {\n    transform: scale(0);\n  }\n  90% {\n    transform: scale(1.4);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n@keyframes fade-in-out-background {\n  0% {\n    background-color: linear-gradient(90deg, #ffc0cb 50%, #00ffff 50%);\n  }\n  50% {\n    background-color: rgba(218, 218, 248, 0.5764705882);\n  }\n  100% {\n    background-color: rgba(234, 234, 250, 0);\n  }\n}\n@keyframes fadeInLeft {\n  from {\n    position: relative;\n    transform: translateX(-50%);\n  }\n  to {\n    position: relative;\n    transform: translateX(0);\n  }\n}\n@keyframes fadeInBottom {\n  from {\n    position: relative;\n    transform: translateY(100%);\n  }\n  to {\n    position: relative;\n    transform: translateY(0);\n  }\n}\n@keyframes tick {\n  0% {\n    transform: scale(0);\n  }\n  90% {\n    transform: scale(1.4);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n@keyframes spin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n@keyframes slide-up {\n  0% {\n    opacity: 0;\n    transform: translateY(20px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@keyframes slide-up-reverse {\n  0% {\n    opacity: 1;\n    transform: translateY(0);\n  }\n  100% {\n    opacity: 0;\n    transform: translateY(-20px);\n  }\n}\n@keyframes slide-down-reverse {\n  0% {\n    opacity: 0;\n    transform: translateY(-20px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@keyframes slide-down {\n  0% {\n    opacity: 1;\n    transform: translateY(0px);\n  }\n  100% {\n    opacity: 0;\n    transform: translateY(-20px);\n    margin-bottom: -20px;\n  }\n}\n@keyframes fade-in-opacity {\n  0% {\n    opacity: 0;\n    visibility: hidden;\n  }\n  100% {\n    opacity: 1;\n    visibility: visible;\n  }\n}\n@keyframes fade-out-opacity {\n  0% {\n    opacity: 1;\n    visibility: visible;\n  }\n  100% {\n    opacity: 0;\n    visibility: hidden;\n  }\n}\n@keyframes appear {\n  0% {\n    opacity: 0;\n    transform: scale(0);\n  }\n  90% {\n    opacity: 0;\n    transform: scale(0);\n  }\n  100% {\n    opacity: 1;\n    transform: scale(1);\n  }\n}\n@keyframes appear-at-side {\n  0% {\n    width: 0;\n    opacity: 0;\n  }\n  100% {\n    width: min-content;\n    opacity: 1;\n  }\n}\n@keyframes bc-search {\n  0% {\n    border-radius: 40px;\n  }\n  100% {\n    border-radius: 40px;\n  }\n}\n@keyframes bc-expand {\n  0% {\n    max-height: 0;\n  }\n  100% {\n    max-height: 100vh;\n  }\n}\n@keyframes bc-contract {\n  0% {\n    max-height: 100vh;\n  }\n  100% {\n    max-height: 0;\n  }\n}\n.outline {\n  outline: none;\n}\n\n.bc-input {\n  background-color: transparent;\n  border: none;\n  border-bottom: 1px solid #2C2A29;\n  color: #2C2A29;\n  display: block;\n  height: 32px;\n  left: 0px;\n  line-height: 20px;\n  top: 20px;\n  width: 100%;\n  padding: 0;\n  padding-bottom: 4px;\n  padding-top: 2px;\n}\n.bc-input:focus, .bc-input.focus-input {\n  outline: none;\n  transition: 0.5s;\n  border-bottom: solid 2px #fdda24;\n}\n\n:host {\n  width: 100%;\n  box-sizing: content-box;\n  position: relative;\n  display: inline-block;\n  padding-top: 16px !important;\n  height: 64px;\n}\n:host textarea[aria-label],\n:host textarea[id] {\n  box-sizing: border-box;\n}\n:host textarea[aria-label] ~ span,\n:host textarea[id] ~ span {\n  line-height: 16px;\n  height: 16px;\n  font-size: 14px;\n}\n:host textarea[aria-label][state=error],\n:host textarea[id][state=error] {\n  border-bottom: 2px solid #e20201;\n}\n:host textarea[aria-label][state=error] ~ span,\n:host textarea[id][state=error] ~ span {\n  color: #e20201;\n}\n:host textarea[aria-label][state],\n:host textarea[id][state] {\n  font-weight: 700;\n}\n:host textarea[aria-label][state=success],\n:host textarea[id][state=success] {\n  border-bottom: 2px solid #00c389;\n}\n:host textarea[aria-label][state=success] ~ span,\n:host textarea[id][state=success] ~ span {\n  color: #00c389;\n}\n:host textarea[aria-label]:focus,\n:host textarea[id]:focus {\n  border-bottom: 2px solid #fdda24;\n}\n:host textarea[aria-label]:active,\n:host textarea[id]:active {\n  border-bottom: 2px solid #fdda24;\n}\n:host textarea[aria-label]:focus ~ label, :host textarea[aria-label]:active ~ label, :host textarea[aria-label].bc-active ~ label,\n:host textarea[id]:focus ~ label,\n:host textarea[id]:active ~ label,\n:host textarea[id].bc-active ~ label {\n  top: 0;\n  font-size: 14px;\n  color: #2C2A29;\n  padding-left: 0;\n  width: 95%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n:host input[aria-label],\n:host input[id] {\n  box-sizing: border-box;\n  padding-right: 30px;\n}\n:host input[aria-label] ~ span,\n:host input[id] ~ span {\n  line-height: 16px;\n  height: 16px;\n  font-size: 14px;\n}\n:host input[aria-label][state=error],\n:host input[id][state=error] {\n  border-bottom: 2px solid #e20201;\n}\n:host input[aria-label][state=error] ~ span,\n:host input[id][state=error] ~ span {\n  color: #e20201;\n}\n:host input[aria-label][state],\n:host input[id][state] {\n  font-weight: 700;\n}\n:host input[aria-label][state=success],\n:host input[id][state=success] {\n  border-bottom: 2px solid #00c389;\n}\n:host input[aria-label][state=success] ~ span,\n:host input[id][state=success] ~ span {\n  color: #00c389;\n}\n:host input[aria-label]:focus,\n:host input[id]:focus {\n  border-bottom: 2px solid #fdda24;\n}\n:host input[aria-label]:active,\n:host input[id]:active {\n  border-bottom: 2px solid #fdda24;\n}\n:host input[aria-label]:focus ~ label, :host input[aria-label]:active ~ label, :host input[aria-label].bc-active ~ label,\n:host input[id]:focus ~ label,\n:host input[id]:active ~ label,\n:host input[id].bc-active ~ label {\n  top: 0;\n  font-size: 14px;\n  color: #2C2A29;\n  padding-left: 0;\n  width: 95%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n:host input[aria-label] + bc-icon,\n:host input[id] + bc-icon {\n  right: 0;\n  width: 24px;\n  left: initial;\n}\n:host input[aria-label] + bc-icon:focus-visible,\n:host input[id] + bc-icon:focus-visible {\n  outline: auto;\n}\n:host input[aria-label] + bc-icon .bc-invalid-feedback,\n:host input[id] + bc-icon .bc-invalid-feedback {\n  color: #e20201;\n  font-size: 12px;\n}\n:host input[aria-label] + bc-icon .bc-valid-feedback,\n:host input[id] + bc-icon .bc-valid-feedback {\n  color: #2C2A29;\n  font-size: 12px;\n}\n:host input[aria-label] + bc-icon .bc-span-info,\n:host input[id] + bc-icon .bc-span-info {\n  color: #2C2A29;\n}\n:host > bc-icon {\n  position: absolute;\n  top: 20px;\n  color: #2C2A29;\n  font-size: 24px;\n  z-index: 2;\n}\n:host > bc-icon:first-child {\n  left: 0;\n  width: 24px;\n}\n:host > input + bc-icon {\n  right: 0;\n  left: initial;\n}\n:host > label {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  width: 100%;\n}\n:host bc-icon + input ~ label[for] {\n  padding-left: 30px;\n}\n:host bc-icon + input {\n  padding-left: 30px;\n}\n:host > label[for] {\n  color: #2C2A29;\n  font-size: 14px;\n  font-weight: normal;\n  left: 0px;\n  padding-left: 0px;\n  position: absolute;\n  pointer-events: none;\n  top: 20px;\n  transition: 0.2s ease all;\n  font-size: 14px;\n}\n:host > input[type=date] ~ label[for] {\n  line-height: 16px;\n  letter-spacing: -0.2px;\n  font-family: \"Open Sans\";\n}\n:host > input[type=date] ~ span {\n  size: 12px;\n  font-weight: 400;\n  line-height: 16px;\n  letter-spacing: -0.17px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
 /* 16 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.FormField = void 0;
-const desing_system_configuration_1 = __webpack_require__(3);
-const sadala_1 = __webpack_require__(2);
-class FormField extends sadala_1.BaseComponent {
-    constructor() {
-        super(desing_system_configuration_1.DESIGN_SYSTEM_CONFIGURATION);
-    }
-}
-exports.FormField = FormField;
-FormField.identifierName = "form-field";
-
-
-/***/ }),
-/* 17 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -1075,16 +1279,16 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InputSelect = void 0;
 const desing_system_configuration_1 = __webpack_require__(3);
 const sadala_1 = __webpack_require__(2);
-const base_template_html_1 = __importDefault(__webpack_require__(18));
-const item_html_1 = __importDefault(__webpack_require__(19));
-const input_select_scss_1 = __importDefault(__webpack_require__(20));
-const input_select_selectors_1 = __webpack_require__(21);
+const base_template_html_1 = __importDefault(__webpack_require__(17));
+const item_html_1 = __importDefault(__webpack_require__(18));
+const input_select_scss_1 = __importDefault(__webpack_require__(19));
+const input_select_selectors_1 = __webpack_require__(20);
 const INPUT_SELECT_ATTRIBUTES = ["items", "label"];
 class InputSelect extends sadala_1.BaseComponent {
     constructor() {
         super(desing_system_configuration_1.DESIGN_SYSTEM_CONFIGURATION);
         this.attributesNames = INPUT_SELECT_ATTRIBUTES;
-        this.lifeCycleManager.lifeCycle["base-template-configuration"] = {
+        this.lifeCycleManager.lifeCycle["template-configuration"] = {
             callback: () => {
                 this.addBaseTemplate({
                     template: base_template_html_1.default,
@@ -1114,7 +1318,7 @@ InputSelect.identifierName = "input-select";
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1123,12 +1327,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<prefix@-complex-input\n  label=\"{{label}}\"\n  icon-right=\"expand_more\"\n  icon-left=\"person\"\n>\n</prefix@-complex-input>\n<!-- <p>\n  label=\"label@\"\n</p> -->\n\n<ul\n  class=\"prefix@-input-select-content\"\n  aria-expanded=\"true\"\n  id=\"id-content-2\"\n></ul>\n";
+var code = "<prefix@-complex-input\n  label=\"{{label}}\"\n  icon-right=\"expand_more\"\n  icon-left=\"person\"\n>\n</prefix@-complex-input>\n\n<ul\n  class=\"prefix@-input-select-content\"\n  aria-expanded=\"true\"\n  id=\"id-content-2\"\n></ul>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1142,7 +1346,7 @@ var code = "<li>display@</li>\n";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1159,13 +1363,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ":host ul {\n  list-style: none;\n  padding: 0;\n  display: none;\n}\n:host ul[aria-expanded=true] {\n  height: min-content;\n  display: initial;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ":host ul {\n  list-style: none;\n  padding: 0;\n}\n:host ul li {\n  height: 32px;\n}\n:host ul[aria-expanded=true] {\n  height: min-content;\n  display: initial;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1254,13 +1458,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const accordion_group_component_1 = __webpack_require__(1);
 const accordion_component_1 = __webpack_require__(4);
 const complex_input_component_1 = __webpack_require__(13);
-const form_field_component_1 = __webpack_require__(16);
 const icon_component_1 = __webpack_require__(6);
-const input_select_component_1 = __webpack_require__(17);
+const input_select_component_1 = __webpack_require__(16);
 const desing_system_configuration_1 = __webpack_require__(3);
 const prefix = desing_system_configuration_1.DESIGN_SYSTEM_CONFIGURATION.prefix;
 customElements.define(`${prefix}-${icon_component_1.Icon.identifierName}`, icon_component_1.Icon);
-customElements.define(`${prefix}-${form_field_component_1.FormField.identifierName}`, form_field_component_1.FormField);
 customElements.define(`${prefix}-${accordion_component_1.Accordion.identifierName}`, accordion_component_1.Accordion);
 customElements.define(`${prefix}-${complex_input_component_1.ComplexInput.identifierName}`, complex_input_component_1.ComplexInput);
 customElements.define(`${prefix}-${input_select_component_1.InputSelect.identifierName}`, input_select_component_1.InputSelect);

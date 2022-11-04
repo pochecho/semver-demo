@@ -1,5 +1,24 @@
+@use "../../../core/configuration.scss" as *;
 @use "../../../core/tokens/sizes.scss" as *;
 @use "../../../core/tokens/colors.scss" as *;
+@use '../../../core/tokens/typo.scss' as *;
 
-$input-border-radius: $size-small;
-$input-base-border-color: $brand-primary-00;
+$input-name: "input";
+$input-namespace: #{$prefix-lib}-#{$input-name};
+
+$input-border-bottom-default: $group-00-130;
+$input-border-bottom-focused: $transversal-00-00;
+$input-danger-state: $complementary-01;
+$input-success-state: $brand-secondary-00;
+$input-label-standar: $brand-primary-00;
+$input-span-standar: $brand-primary-00;
+$input-font-family:  "CIBFontSans Bold";
+$input-font-weight: 700;
+$input-font-size: 16px;
+$input-placeholder-font-family:  "Open Sans";
+$input-placeholder-font-weight: 400;
+$input-placeholder-font-size: 16px;
+$input-value-font-family:  "CIBFontSans Bold";
+$input-value-font-weight: 700;
+$input-value-font-size: $font-size-h5;
+$input-outline-color: $group-02-00;

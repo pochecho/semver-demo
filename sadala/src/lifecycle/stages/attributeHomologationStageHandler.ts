@@ -1,15 +1,17 @@
+import { clone } from "../../helpers/GeneralHelpers";
 import { BaseComponent } from "../../base.component";
 import { StageHandler } from "./stageHandler";
 
 export class AttributeChangedEvent {
   static identifier = "attribute-changed";
-  static create(attribute: string, previousValue: any, value: string) {
+
+  static create(attribute: string, previousValue: any, value: any) {
     return new CustomEvent(AttributeChangedEvent.identifier, {
       cancelable: false,
       detail: {
         attribute,
-        previousValue,
-        value,
+        previousValue: clone(previousValue),
+        value: clone(value),
       },
     });
   }
@@ -25,6 +27,23 @@ export class AttributeHomologationStage implements StageHandler {
   constructor(component: BaseComponent<any, any>) {
     this.component = component;
     this.attributeHomologationCalls = [];
+
+    this.component.addEventListener(
+      AttributeChangedEvent.identifier,
+      (event: any) => {
+        const loggingObject: any = {
+          // Target: { ...target },
+          // Property: property,
+          // OldValue: target[property],
+          ...{...event.detail},
+        };
+        this.component.loggingHelper.group(
+          `Configuration Changed (Proxy) ${this.component.constructor.name}`
+        );
+        this.component.loggingHelper.log(loggingObject);
+        this.component.loggingHelper.groupEnd();
+      }
+    );
   }
   init() {
     const emptyConfiguration = this.createDefaultConfiguration(
@@ -69,7 +88,7 @@ export class AttributeHomologationStage implements StageHandler {
       if (previusCall?.origin !== previusCallKind) {
         this.component.configurationRef[name as string] = parsedValue;
         this.component.dispatchEvent(
-          AttributeChangedEvent.create(name, oldValue, newValue)
+          AttributeChangedEvent.create(name, clone(oldValue), clone(newValue))
         );
       } else {
         this.attributeHomologationCalls.splice(
@@ -129,29 +148,14 @@ export class AttributeHomologationStage implements StageHandler {
       { ...configuration },
       {
         set: (target, property, value) => {
-          this.component.loggingHelper.group(
-            `Configuration Changed (Proxy) ${this.component.constructor.name}`
-          );
-          const loggingObject: any = {
-            Target: target,
-            Property: property,
-            OldValue: target[property],
-          };
-
           if (value instanceof Promise) {
             value.then((x) => {
-              loggingObject["value"] = x;
-              this.component.loggingHelper.log(loggingObject);
-              this.component.loggingHelper.groupEnd();
+              this.perfomAction(x, property, {...target});
               target[property] = x;
-              this.perfomAction(x, property, target);
             });
           } else {
-            loggingObject["value"] = value;
-            this.component.loggingHelper.log(loggingObject);
-            this.component.loggingHelper.groupEnd();
+            this.perfomAction(value, property, {...target});
             target[property] = value;
-            this.perfomAction(value, property, target);
           }
           return true;
         },
@@ -170,7 +174,7 @@ export class AttributeHomologationStage implements StageHandler {
       (data: any) => this.toString(data),
       (name: string, oldValue: any, originValue: any, parsedValue: any) => {
         this.component.dispatchEvent(
-          AttributeChangedEvent.create(name, oldValue, originValue)
+          AttributeChangedEvent.create(name, clone(oldValue), clone(originValue))
         );
         this.component.state[property] = value;
         this.component.setAttribute(name, parsedValue);

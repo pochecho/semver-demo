@@ -5,8 +5,8 @@
   ul {
     list-style: none;
     padding: 0;
-    display: none;
     li {
+      height: 32px;
     }
 
     &[aria-expanded="true"] {

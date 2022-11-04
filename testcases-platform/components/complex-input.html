@@ -11,17 +11,41 @@
 
     <title>Testcase - Complex Input</title>
   </head>
-  <body>
-    <main
-      class="bc-row bc-flex bc-justify-content-center bc-align-items-center"
-    >
-      <div class="bc-col-xs-5 bc-col-sm-8 bc-col-md-5 bc-col-lg-4 bc-col-xl-3">
-        <bc-complex-input
-          icon-left="home"
-          icon-right="person"
-          label="Ingrese Apodo"
-        ></bc-complex-input>
+  <body
+    class="bc-flex bc-justify-content-center bc-align-items-center"
+  >
+    <main class="bc-container bc-bg-white">
+      <header class="bc-row bc-flex bc-justify-content-center">
+        <h1>Complex Input Example</h1>
+      </header>
+      <div class="bc-row bc-flex bc-justify-content-center">
+        <div
+          class="bc-col-xs-5 bc-col-sm-8 bc-col-md-5 bc-col-lg-4 bc-col-xl-3"
+        >
+          <bc-complex-input
+            state = "error"
+            icon-left="people"
+            icon-right="lock"
+
+            label="Password"
+            type="password"
+            character-counter-range = '3'
+          ></bc-complex-input>
+        </div>
       </div>
+
+      <!-- <div class="bc-row bc-flex bc-justify-content-center ">
+        <div
+          class="bc-col-xs-5 bc-col-sm-8 bc-col-md-5 bc-col-lg-4 bc-col-xl-3"
+        >
+          <bc-complex-input
+            icon-left="home"
+            icon-right="lock"
+            label="Password"
+            type="text"
+          ></bc-complex-input>
+        </div>
+      </div> -->
     </main>
   </body>
 </html>

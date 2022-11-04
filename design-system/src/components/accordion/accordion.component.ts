@@ -18,7 +18,7 @@ export class Accordion extends BaseComponent<AccordionConfiguration, any> {
     super(DESIGN_SYSTEM_CONFIGURATION);
     this.attributesNames = ACCORDION_ATTRIBUTES;
 
-    this.lifeCycleManager.lifeCycle["base-template-configuration"] = {
+    this.lifeCycleManager.lifeCycle["template-configuration"] = {
       callback: () => {
         this._generateBaseStructure();
       },

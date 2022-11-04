@@ -1,0 +1,362 @@
+@use "../../input/styles/input.foundation.scss" as *;
+@use "./complex-input.foundations.scss" as *;
+@use "../../../core/configuration.scss" as *;
+
+@use "../../../core/tokens/typo.scss" as *;
+@use "../../../core/tokens/icon.scss" as *;
+
+@mixin input-style(
+  $border,
+  $border-bottom,
+  $color,
+  $display,
+  $height-input,
+  $left-input,
+  $line-height,
+  $top-input,
+  $width-input,
+  $text-area: false
+) {
+  ~ span {
+    line-height: 16px;
+    height: 16px;
+    font-size: 14px;
+  }
+
+  &[state="error"] {
+    border-bottom: 2px solid $input-danger-state;
+    ~ span {
+      color: $input-danger-state;
+    }
+  }
+  &[state] {
+    font-weight: 700;
+  }
+
+  &[state="success"] {
+    border-bottom: 2px solid $input-success-state;
+    ~ span {
+      color: $input-success-state;
+    }
+  }
+
+  &:focus {
+    border-bottom: 2px solid $input-border-bottom-focused;
+  }
+  &:active {
+    border-bottom: 2px solid $input-border-bottom-focused;
+  }
+  box-sizing: border-box;
+
+  // @if $text-area == true {
+  //   height: 63px;
+  //   padding-left: 5px;
+  //   & ~ label {
+  //     top: -20px;
+  //     font-size: 14px;
+  //   }
+  //   &:focus {
+  //     border-bottom: solid 2px $input-border-bottom-focused;
+  //   }
+  //   &.#{$prefix-lib}-input-area-error {
+  //     border-bottom: solid 2px $input-danger-state;
+  //   }
+  // }
+
+  // &:not(:placeholder-shown) {
+  //   border-bottom: 2px solid $input-border-bottom-default;
+  // }
+
+  // &.#{$input-value} {
+  //   bc-icon ~ & {
+  //     padding-left: 16px;
+  //     font-size: $font-size-h5;
+  //   }
+
+  //   ~ label {
+  //     padding-left: 16px;
+  //   }
+  // }
+
+  // & {
+  //   @include input-fonts-style(
+  //     $input-placeholder-font-family,
+  //     $input-font-weight,
+  //     $input-font-size
+  //   );
+  //   letter-spacing: -0.3px;
+
+  //   &.bc-input-value {
+  //     @include input-fonts-style(
+  //       $input-font-family,
+  //       $input-value-font-weight,
+  //       $input-value-font-size
+  //     );
+
+  //     &::placeholder {
+  //       @include input-fonts-style(
+  //         $input-placeholder-font-family,
+  //         $input-placeholder-font-weight,
+  //         $input-placeholder-font-size
+  //       );
+  //     }
+  //   }
+  // }
+
+  // &::placeholder {
+  //   @include input-fonts-style(
+  //     $input-placeholder-font-family,
+  //     $input-placeholder-font-weight,
+  //     $input-placeholder-font-size
+  //   );
+  // }
+
+  &:focus ~ label,
+  &:active ~ label,
+  &.#{$input-active} ~ label {
+    top: 0;
+    font-size: 14px;
+    color: $input-label-standar;
+    padding-left: 0;
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // &:valid ~ label {
+  //   margin-left: 0px;
+  // }
+
+  // &:focus ~ span {
+  //   color: $input-label-standar;
+  // }
+
+  // &:focus {
+  //   border-bottom: 2px solid $input-border-bottom-focused;
+
+  //   &.#{$input-error} {
+  //     border-bottom: 2px solid $input-danger-state;
+
+  //     &:focus ~ span {
+  //       color: $input-danger-state;
+  //     }
+  //   }
+
+  //   &.#{$input-success} {
+  //     border-bottom: 2px solid $input-success-state;
+
+  //     &:focus ~ span {
+  //       color: $input-success-state;
+  //     }
+  //   }
+  // }
+
+  // &[disabled] {
+  //   @include input-status-disabled();
+  //   &:not([value=""]) {
+  //     ~ label {
+  //       top: -20px;
+  //     }
+  //   }
+  // }
+}
+
+@mixin input-icon(
+  $position,
+  $margin-left,
+  $padding,
+  $color,
+  $transition,
+  $top,
+  $font-size,
+  $z-index
+) {
+  position: $position;
+  margin-left: $margin-left;
+  padding: $padding;
+  color: $color;
+  transition: $transition;
+  top: $top;
+  font-size: $font-size;
+  z-index: $z-index;
+}
+@mixin input-fonts-style($font-family, $font-weight, $font-size) {
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  font-style: normal;
+}
+
+@mixin input-status-disabled {
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+@mixin label-style(
+  $color-label,
+  $font-size-label,
+  $font-weight-label,
+  $left-label,
+  $padding-left-label,
+  $position-label,
+  $pointer-events-label,
+  $top-label,
+  $transition-label
+) {
+  color: $color-label;
+  font-size: $font-size-label;
+  font-weight: $font-weight-label;
+  left: $left-label;
+  padding-left: $padding-left-label;
+  position: $position-label;
+  pointer-events: $pointer-events-label;
+  top: $top-label;
+  transition: $transition-label;
+
+  font-size: $font-size-label;
+}
+
+@mixin data-input-container {
+  width: 100%;
+  box-sizing: content-box;
+  position: relative;
+  display: inline-block;
+  padding-top: 16px !important;
+
+  textarea[aria-label],
+  textarea[id] {
+    @include input-style(
+      none,
+      1px solid $input-border-bottom-default,
+      $input-label-standar,
+      block,
+      32px,
+      0px,
+      $font-size-h5,
+      20px,
+      100%,
+      true
+    );
+  }
+  input[aria-label],
+  input[id] {
+    @include input-style(
+      none,
+      1px solid $input-border-bottom-default,
+      $input-label-standar,
+      block,
+      32px,
+      0px,
+      $font-size-h5,
+      20px,
+      100%,
+      false
+    );
+    padding-right: 30px;
+
+    & + bc-icon {
+      right: 0;
+      width: 24px;
+      // padding-left: 40px;
+      left: initial;
+
+      &:focus-visible {
+        outline: auto;
+      }
+
+      .#{$invalid-feedback} {
+        color: $input-danger-state;
+        font-size: $font-size-p-x-small;
+      }
+
+      .#{$valid-feedback} {
+        color: $input-label-standar;
+        font-size: $font-size-p-x-small;
+      }
+
+      .#{$span-info} {
+        color: $input-label-standar;
+      }
+    }
+  }
+
+  > bc-icon {
+    position: absolute;
+    top: 20px;
+    color: $input-label-standar;
+    font-size: $font-size-container;
+    z-index: 2;
+  }
+
+  > bc-icon:first-child {
+    left: 0;
+    width: $font-size-container;
+  }
+
+  > input + bc-icon {
+    right: 0;
+    left: initial;
+   
+  }
+
+  > label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  bc-icon + input ~ label[for] {
+    padding-left: $padding-left-when-icon;
+  }
+
+  // bc-icon + input[type="date"] ~ label[for] {
+  //   padding-left: 0px;
+  // }
+
+  bc-icon + input {
+    padding-left: $padding-left-when-icon;
+  }
+  > label[for] {
+    @include label-style(
+      $input-label-standar,
+      $font-size-label-style,
+      normal,
+      0px,
+      0px,
+      absolute,
+      none,
+      20px,
+      0.2s ease all
+    );
+  }
+  > input[type="date"] ~ label[for] {
+    line-height: 16px;
+    letter-spacing: -0.2px;
+    font-family: $font-family-input;
+  }
+  > input[type="date"] ~ span {
+    size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.17px;
+  }
+
+  // &[disabled] {
+  //   pointer-events: none;
+  //   opacity: 0.6;
+  //   input {
+  //     font-weight: 600;
+  //   }
+  // }
+  height: 64px;
+}
+
+@mixin data-input-container-disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  div {
+    opacity: 0.6;
+  }
+}

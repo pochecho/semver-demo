@@ -226,13 +226,13 @@ exports.LifeCycleStages = exports.lifeCycleOrder = void 0;
 exports.lifeCycleOrder = [
     "attribute-homologation",
     "state-initialization",
-    "base-template-configuration",
+    "template-configuration",
 ];
 var LifeCycleStages;
 (function (LifeCycleStages) {
     LifeCycleStages["attributeHomologation"] = "attribute-homologation";
     LifeCycleStages["stateInitialization"] = "state-initialization";
-    LifeCycleStages["baseTemplateConfiguration"] = "base-template-configuration";
+    LifeCycleStages["TemplateConfiguration"] = "template-configuration";
 })(LifeCycleStages = exports.LifeCycleStages || (exports.LifeCycleStages = {}));
 
 
@@ -284,19 +284,20 @@ exports.LifeCycleManager = LifeCycleManager;
 /*!*******************************************************************!*\
   !*** ./src/lifecycle/stages/attributeHomologationStageHandler.ts ***!
   \*******************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AttributeHomologationStage = exports.AttributeChangedEvent = void 0;
+const GeneralHelpers_1 = __webpack_require__(/*! ../../helpers/GeneralHelpers */ "./src/helpers/GeneralHelpers.ts");
 class AttributeChangedEvent {
     static create(attribute, previousValue, value) {
         return new CustomEvent(AttributeChangedEvent.identifier, {
             cancelable: false,
             detail: {
                 attribute,
-                previousValue,
-                value,
+                previousValue: (0, GeneralHelpers_1.clone)(previousValue),
+                value: (0, GeneralHelpers_1.clone)(value),
             },
         });
     }
@@ -307,6 +308,12 @@ class AttributeHomologationStage {
     constructor(component) {
         this.component = component;
         this.attributeHomologationCalls = [];
+        this.component.addEventListener(AttributeChangedEvent.identifier, (event) => {
+            const loggingObject = Object.assign({}, Object.assign({}, event.detail));
+            this.component.loggingHelper.group(`Configuration Changed (Proxy) ${this.component.constructor.name}`);
+            this.component.loggingHelper.log(loggingObject);
+            this.component.loggingHelper.groupEnd();
+        });
     }
     init() {
         const emptyConfiguration = this.createDefaultConfiguration(this.component.attributesNames);
@@ -327,7 +334,7 @@ class AttributeHomologationStage {
             const previusCall = this.attributeHomologationCalls[isInAttributeHomologationCallsIndex];
             if ((previusCall === null || previusCall === void 0 ? void 0 : previusCall.origin) !== previusCallKind) {
                 this.component.configurationRef[name] = parsedValue;
-                this.component.dispatchEvent(AttributeChangedEvent.create(name, oldValue, newValue));
+                this.component.dispatchEvent(AttributeChangedEvent.create(name, (0, GeneralHelpers_1.clone)(oldValue), (0, GeneralHelpers_1.clone)(newValue)));
             }
             else {
                 this.attributeHomologationCalls.splice(isInAttributeHomologationCallsIndex, 1);
@@ -370,27 +377,15 @@ class AttributeHomologationStage {
     setConfiguration(configuration) {
         this.component.configurationRef = new Proxy(Object.assign({}, configuration), {
             set: (target, property, value) => {
-                this.component.loggingHelper.group(`Configuration Changed (Proxy) ${this.component.constructor.name}`);
-                const loggingObject = {
-                    Target: target,
-                    Property: property,
-                    OldValue: target[property],
-                };
                 if (value instanceof Promise) {
                     value.then((x) => {
-                        loggingObject["value"] = x;
-                        this.component.loggingHelper.log(loggingObject);
-                        this.component.loggingHelper.groupEnd();
+                        this.perfomAction(x, property, Object.assign({}, target));
                         target[property] = x;
-                        this.perfomAction(x, property, target);
                     });
                 }
                 else {
-                    loggingObject["value"] = value;
-                    this.component.loggingHelper.log(loggingObject);
-                    this.component.loggingHelper.groupEnd();
+                    this.perfomAction(value, property, Object.assign({}, target));
                     target[property] = value;
-                    this.perfomAction(value, property, target);
                 }
                 return true;
             },
@@ -399,7 +394,7 @@ class AttributeHomologationStage {
     }
     perfomAction(value, property, target) {
         this.homologate(property, Object.assign({}, target)[property], value, "inline", "programatic", (data) => this.toString(data), (name, oldValue, originValue, parsedValue) => {
-            this.component.dispatchEvent(AttributeChangedEvent.create(name, oldValue, originValue));
+            this.component.dispatchEvent(AttributeChangedEvent.create(name, (0, GeneralHelpers_1.clone)(oldValue), (0, GeneralHelpers_1.clone)(originValue)));
             this.component.state[property] = value;
             this.component.setAttribute(name, parsedValue);
         });
@@ -424,6 +419,7 @@ class StateInitializationStage {
         this.component = component;
     }
     init() {
+        console.log('Wake up ', Object.assign(Object.assign({}, this.component.designSystemConfiguration), this.component.configurationRef));
         this.component.state = new Proxy(Object.assign(Object.assign({}, this.component.designSystemConfiguration), this.component.configurationRef), {
             set: (target, property, value) => {
                 this.component.dispatchEvent(new CustomEvent("state-updated", {
@@ -492,24 +488,23 @@ exports.StylesResolver = StylesResolver;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.HTMLTemplateResolver = void 0;
 const template_resolver_1 = __webpack_require__(/*! ./template.resolver */ "./src/resolvers/templates/template.resolver.ts");
-const patterns = [
-    {
-        pattern: /([a-zA-Z0-9\-]+)(@)/gm,
-        tokenExtractor: (result) => {
-            return { identifier: result[1], match: result[0] };
-        },
-    },
-    {
-        pattern: /(\{\{)([a-zA-Z0-9\-]+)(\}\})/gm,
-        tokenExtractor: (result) => {
-            return { identifier: result[2], match: result[0] };
-        },
-    },
-];
+const view_engine_1 = __webpack_require__(/*! ./view-engine */ "./src/resolvers/templates/view-engine.ts");
 class HTMLTemplateResolver extends template_resolver_1.TemplateResolver {
     constructor(domHelpers) {
         super();
-        this.domHelpers = domHelpers;
+        this.tagPattern = {
+            pattern: /([a-zA-Z0-9\-]+)(@)/gm,
+            tokenExtractor: (result) => {
+                return { identifier: result[1], match: result[0] };
+            },
+        };
+        (this.valuePattern = {
+            pattern: /(\{\{)([a-zA-Z0-9\-]+)(\}\})/gm,
+            tokenExtractor: (result) => {
+                return { identifier: result[2], match: result[0] };
+            },
+        }),
+            (this.domHelpers = domHelpers);
     }
     convertTemplateToNodes(template) {
         const domParser = new DOMParser();
@@ -517,20 +512,68 @@ class HTMLTemplateResolver extends template_resolver_1.TemplateResolver {
         const content = innerDocument.body.querySelectorAll(":scope > *");
         return content;
     }
-    getTemplate(configuration) {
-        let template = configuration.template;
-        const scope = configuration.scope || {};
-        let transformedTemplate = template;
-        for (const patternConfig of patterns) {
-            const pattern = patternConfig.pattern;
-            let currentlyResult = pattern.exec(template);
-            while (!!currentlyResult) {
-                const { match, identifier } = patternConfig.tokenExtractor(currentlyResult);
-                transformedTemplate = transformedTemplate.replace(match, scope[identifier] || match);
-                currentlyResult = pattern.exec(template);
+    transformState(scope, viewEngine) {
+        const transformedState = {};
+        const statePropertyNamesMapper = {};
+        for (const key in scope) {
+            if (Object.prototype.hasOwnProperty.call(scope, key)) {
+                const value = scope[key];
+                const transformedText = viewEngine.transformNameToLowerCamelCase(key);
+                statePropertyNamesMapper[key] = transformedText;
+                transformedState[transformedText] = value;
             }
         }
-        return this.convertTemplateToNodes(transformedTemplate);
+        return {
+            transformedState,
+            statePropertyNamesMapper,
+        };
+    }
+    getTemplate(configuration) {
+        let template = configuration.template;
+        const viewEngine = new view_engine_1.ViewEngine();
+        console.log("Constructor name: ");
+        console.log(this.constructor.name);
+        console.log("Paso 1: Generar el scope con los valores transformados.");
+        const { transformedState, statePropertyNamesMapper } = this.transformState(configuration.scope || {}, viewEngine);
+        console.table(transformedState);
+        console.table(statePropertyNamesMapper);
+        let transformedTemplate = template;
+        console.log("Paso 2: Eliminar el prefix@");
+        transformedTemplate = this.resolvePattern(this.tagPattern, template, transformedTemplate, transformedState);
+        console.log(transformedTemplate);
+        console.log("Scope :", transformedState);
+        console.log();
+        console.log("Paso 3: Convierte el string en nodos HTML");
+        const templateNodes = this.convertTemplateToNodes(transformedTemplate);
+        console.log(templateNodes);
+        console.log();
+        console.log("Paso 4: Se buscan las estructuras de control y se ejecuta el codigo dentro de ellas");
+        const computedNodes = viewEngine.searchControlStructures(templateNodes, transformedState);
+        console.log("All control structures by node: ");
+        console.log(computedNodes);
+        console.log();
+        const templateNodesFinal = [];
+        for (const computedNode of computedNodes) {
+            templateNodesFinal.push(...computedNode.fullNodes);
+        }
+        const t = templateNodesFinal.reduce((x, y) => {
+            return (x += y.outerHTML);
+        }, "");
+        const r = [];
+        this.convertTemplateToNodes(t).forEach((x) => {
+            r.push(x);
+        });
+        return r;
+    }
+    resolvePattern(patternConfig, template, transformedTemplate, scope) {
+        const pattern = patternConfig.pattern;
+        let currentlyResult = pattern.exec(template);
+        while (!!currentlyResult) {
+            const { match, identifier } = patternConfig.tokenExtractor(currentlyResult);
+            transformedTemplate = transformedTemplate.replace(match, scope[identifier] || match);
+            currentlyResult = pattern.exec(template);
+        }
+        return transformedTemplate;
     }
     parseItemsIntoContainer(items, template, selector, shadowRoot) {
         const parsedItems = this.mapItemsToTemplate(items, template);
@@ -562,6 +605,173 @@ exports.TemplateResolver = void 0;
 class TemplateResolver {
 }
 exports.TemplateResolver = TemplateResolver;
+
+
+/***/ }),
+
+/***/ "./src/resolvers/templates/view-engine.ts":
+/*!************************************************!*\
+  !*** ./src/resolvers/templates/view-engine.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ViewEngine = exports.LoopControlStructure = exports.ConditionControlStructure = void 0;
+const DOMHelpers_1 = __webpack_require__(/*! ../../helpers/DOMHelpers */ "./src/helpers/DOMHelpers.ts");
+const RESPONSE_VARIABLE_NAME = "__responnse__";
+const NODE_VARIABLE_NAME = "__node__";
+class ConditionControlStructure {
+    transpile(expression) {
+        return `!!(${expression.replace("&amp", "&&")})`;
+    }
+    resolve(transpiledExpression) {
+        return `const ${RESPONSE_VARIABLE_NAME} = ${transpiledExpression} ? [${NODE_VARIABLE_NAME}.cloneNode(true)] : [];`;
+    }
+}
+exports.ConditionControlStructure = ConditionControlStructure;
+class LoopControlStructure {
+    transpile(expression) {
+        const validPatterns = [
+            {
+                pattern: "(\\w+)[ ]*,[ ]*(\\w+)[ ]*:[ ]*(\\w+)",
+                resolver: (founded) => {
+                    return "";
+                },
+            },
+            {
+                pattern: "(\\w+)[ ]*:[ ]*(\\w+)[ ]*,[ ]*(\\w+)",
+                resolver: (founded) => {
+                    return `
+for (let ${founded[1]} = ${founded[2]}; ${founded[1]} < ${founded[3]}; ${founded[1]}++) {
+  ${RESPONSE_VARIABLE_NAME}.push(${NODE_VARIABLE_NAME}.cloneNode(true));
+}
+          `;
+                },
+            },
+        ];
+        let transpiledExpression = "";
+        for (const patternConfig of validPatterns) {
+            const pattern = new RegExp(patternConfig.pattern);
+            let founded = pattern.exec(expression);
+            console.log(patternConfig, founded, expression, 321);
+            if (founded) {
+                const resolver = patternConfig.resolver;
+                transpiledExpression = resolver(founded);
+                break;
+            }
+        }
+        return transpiledExpression;
+    }
+    resolve(transpiledExpression) {
+        return `let ${RESPONSE_VARIABLE_NAME} = [];\n${transpiledExpression}\n`;
+    }
+}
+exports.LoopControlStructure = LoopControlStructure;
+class ViewEngine {
+    constructor() {
+        this.domHelpers = new DOMHelpers_1.DOMHelpers();
+        this.prefixControlStructure = "#";
+        this.controlStructurePipeline = [
+            {
+                name: "if",
+                gear: new ConditionControlStructure(),
+            },
+            {
+                name: "for",
+                gear: new LoopControlStructure(),
+            },
+        ];
+    }
+    transformNameToLowerCamelCase(name) {
+        const fragments = name.split("-");
+        let response = "";
+        if (fragments.length > 0) {
+            response = fragments[0];
+        }
+        if (fragments.length > 1) {
+            for (let i = 1; i < fragments.length; i++) {
+                const fragment = fragments[i];
+                response +=
+                    fragment.charAt(0).toUpperCase() + fragment.slice(1, fragment.length);
+            }
+        }
+        return response;
+    }
+    createScope(state) {
+        let context = "\n";
+        for (const key in state) {
+            if (Object.prototype.hasOwnProperty.call(state, key)) {
+                const value = state[key];
+                const formattedKey = this.transformNameToLowerCamelCase(key);
+                if (typeof value === "string") {
+                    context += `const ${formattedKey} = '${value}';\n`;
+                }
+                else {
+                    context += `const ${formattedKey} = ${value};\n`;
+                }
+            }
+        }
+        return context;
+    }
+    evalControlStructureExpression(controlStructureName, expression, state, scope, node) {
+        const handler = this.controlStructurePipeline
+            .filter((x) => x.name === controlStructureName)
+            .pop();
+        let result = undefined;
+        const dependentProperties = [];
+        if (handler) {
+            const transpiledExpression = handler.gear.transpile(expression);
+            const efectiveExpression = handler.gear.resolve(transpiledExpression);
+            const evalCode = `${scope}\n${efectiveExpression}`;
+            console.log(controlStructureName);
+            result = this.eval(evalCode, node);
+            for (const property in state) {
+                if (Object.prototype.hasOwnProperty.call(state, property)) {
+                    const index = efectiveExpression.indexOf(property);
+                    if (index > -1) {
+                        dependentProperties.push(property);
+                    }
+                }
+            }
+        }
+        return { result, dependentProperties };
+    }
+    eval(evalCode, node) {
+        const bodyFunction = `${evalCode}\nreturn ${RESPONSE_VARIABLE_NAME};`;
+        console.log("bodyFunction", bodyFunction);
+        const evalFunction = new Function(NODE_VARIABLE_NAME, bodyFunction);
+        return evalFunction(node);
+    }
+    searchControlStructures(templateNodes, state) {
+        const response = [];
+        const scope = this.createScope(state);
+        templateNodes.forEach((node) => {
+            const nodeMetada = {};
+            const fullNodes = [];
+            for (const controlStructure of this.controlStructurePipeline) {
+                const attribute = `${this.prefixControlStructure}${controlStructure.name}`;
+                if (node.hasAttribute(attribute)) {
+                    const attributeValue = node.getAttribute(attribute) || "";
+                    const result = this.evalControlStructureExpression(controlStructure.name, attributeValue, state, scope, node);
+                    fullNodes.push(...result.result);
+                    nodeMetada[controlStructure.name] = Object.assign({ value: attributeValue }, result);
+                }
+            }
+            if (fullNodes.length === 0 && !('if' in nodeMetada) && !('for' in nodeMetada)) {
+                fullNodes.push(node.cloneNode(true));
+            }
+            response.push({
+                node,
+                metadata: nodeMetada,
+                fullNodes,
+            });
+        });
+        return response;
+    }
+    getDependentsVariables() { }
+}
+exports.ViewEngine = ViewEngine;
 
 
 /***/ })

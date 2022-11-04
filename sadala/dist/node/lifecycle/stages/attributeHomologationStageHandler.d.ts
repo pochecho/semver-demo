@@ -2,10 +2,10 @@ import { BaseComponent } from "../../base.component";
 import { StageHandler } from "./stageHandler";
 export declare class AttributeChangedEvent {
     static identifier: string;
-    static create(attribute: string, previousValue: any, value: string): CustomEvent<{
+    static create(attribute: string, previousValue: any, value: any): CustomEvent<{
         attribute: string;
         previousValue: any;
-        value: string;
+        value: any;
     }>;
 }
 export declare class AttributeHomologationStage implements StageHandler {
